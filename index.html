@@ -12,6 +12,12 @@
 body{margin:0;background:var(--bg);font-family:'Inter',system-ui,sans-serif;color:var(--ink);
   font-feature-settings:'tnum' 1;padding:24px;}
 .wrap{max-width:880px;margin:0 auto;}
+.topbar{display:flex;justify-content:space-between;align-items:flex-start;gap:18px;}
+.intro{min-width:0;}
+.lang-switch{display:flex;background:#DCE5EE;border:1px solid #CBD5E1;border-radius:9px;padding:3px;flex:none;}
+.lang-btn{border:0;background:transparent;color:var(--mut);font-family:'Space Grotesk';font-weight:700;font-size:11px;padding:7px 10px;border-radius:6px;cursor:pointer;}
+.lang-btn.on{background:#fff;color:var(--teal-d);box-shadow:0 1px 3px rgba(15,23,42,.12);}
+@media(max-width:600px){.topbar{flex-direction:column-reverse;gap:10px}.lang-switch{align-self:flex-end}}
 .eyebrow{font-family:'Space Grotesk';font-weight:600;font-size:11px;letter-spacing:.16em;
   text-transform:uppercase;color:var(--teal);margin:0 0 6px;}
 .h1{font-family:'Space Grotesk';font-weight:700;font-size:23px;line-height:1.15;margin:0 0 4px;}
@@ -91,34 +97,38 @@ tr.selrow td{background:#FBFAF6;}
 </style>
 
 <div class="wrap">
-  <p class="eyebrow">Vision 2040 · Impact & budget model</p>
-  <h1 class="h1">Asia Skills Passport — from participation to economic value</h1>
-  <p class="sub">Passport effectiveness → women into work → annual potential economic value → compared with pilot cost.
+  <div class="topbar"><div class="intro">
+  <p class="eyebrow" data-i18n="eyebrow">Vision 2040 · Impact & budget model</p>
+  <h1 class="h1" data-i18n="title">Asia Skills Passport — from participation to economic value</h1>
+  <p class="sub" data-i18n-html="subtitle">Passport effectiveness → women into work → annual potential economic value → compared with pilot cost.
   <b style="color:var(--teal-d)">Teal = real 2024 data.</b> <b style="color:var(--gain-d)">Amber = your assumptions.</b> Everything recomputes live.</p>
+  </div><div class="lang-switch" role="group" aria-label="Language">
+    <button class="lang-btn on" data-lang="en">English</button><button class="lang-btn" data-lang="ja">日本語</button>
+  </div></div>
 
   <!-- ASSUMPTIONS + SELECTED COUNTRY -->
   <div class="grid">
     <div class="card first">
-      <div class="card-h">1 · Passport assumptions <span class="tag tag-assume">adjustable</span></div>
+      <div class="card-h"><span data-i18n="assumptions">1 · Passport assumptions</span> <span class="tag tag-assume" data-i18n="adjustable">adjustable</span></div>
       <div class="slider">
-        <div class="slider-top"><span class="slider-label">Skills-barrier share</span><span class="slider-val" id="v-addr">25%</span></div>
+        <div class="slider-top"><span class="slider-label" data-i18n="barrier">Skills-barrier share</span><span class="slider-val" id="v-addr">25%</span></div>
         <input type="range" id="s-addr" min="0" max="60" value="25">
-        <p class="slider-hint">Of non-working women, the share held back by skills/credentials not being recognised.</p>
+        <p class="slider-hint" data-i18n="barrierHint">Of non-working women, the share held back by skills/credentials not being recognised.</p>
       </div>
       <div class="slider">
-        <div class="slider-top"><span class="slider-label">Passport coverage</span><span class="slider-val" id="v-cov">80%</span></div>
+        <div class="slider-top"><span class="slider-label" data-i18n="coverage">Passport coverage</span><span class="slider-val" id="v-cov">80%</span></div>
         <input type="range" id="s-cov" min="0" max="100" value="80">
-        <p class="slider-hint">Share of women holding the Asia Skills Passport by 2040 — your headline lever.</p>
+        <p class="slider-hint" data-i18n="coverageHint">Share of women holding the Asia Skills Passport by 2040 — your headline lever.</p>
       </div>
       <div class="slider">
-        <div class="slider-top"><span class="slider-label">Activation rate</span><span class="slider-val" id="v-act">60%</span></div>
+        <div class="slider-top"><span class="slider-label" data-i18n="activation">Activation rate</span><span class="slider-val" id="v-act">60%</span></div>
         <input type="range" id="s-act" min="0" max="100" value="60">
-        <p class="slider-hint">Of passport-holders facing the barrier, the share who actually (re-)enter work.</p>
+        <p class="slider-hint" data-i18n="activationHint">Of passport-holders facing the barrier, the share who actually (re-)enter work.</p>
       </div>
     </div>
 
     <div class="card first">
-      <div class="card-h"><span id="sel-name">Philippines</span> in 2040 <span class="tag tag-real" id="sel-src">WB/ILO 2024</span></div>
+      <div class="card-h"><span><span id="sel-name">Philippines</span> <span data-i18n="in2040">in 2040</span></span> <span class="tag tag-real" id="sel-src">WB/ILO 2024</span></div>
       <div class="chips" id="chips"></div>
       <div class="big">
         <span class="big-num" id="sel-new">55.9%</span>
@@ -131,86 +141,86 @@ tr.selrow td{background:#FBFAF6;}
         <div class="bar-male" id="bar-male"><span id="bar-male-lbl"></span></div>
       </div>
       <div class="bar-legend">
-        <div class="leg"><span class="sw" style="background:var(--base)"></span>Today (real)</div>
-        <div class="leg"><span class="sw" style="background:var(--gain)"></span>Passport lift</div>
-        <div class="leg"><span class="sw" style="background:var(--ink);width:3px"></span>Male LFP</div>
+        <div class="leg"><span class="sw" style="background:var(--base)"></span><span data-i18n="today">Today (real)</span></div>
+        <div class="leg"><span class="sw" style="background:var(--gain)"></span><span data-i18n="lift">Passport lift</span></div>
+        <div class="leg"><span class="sw" style="background:var(--ink);width:3px"></span><span data-i18n="maleLfp">Male LFP</span></div>
       </div>
       <div class="mini">
-        <div class="box"><div class="k">+ Women working</div><div class="v" id="sel-workers">—</div></div>
-        <div class="box"><div class="k">Annual value added</div><div class="v val" id="sel-value">—</div></div>
+        <div class="box"><div class="k" data-i18n="womenWorking">+ Women working</div><div class="v" id="sel-workers">—</div></div>
+        <div class="box"><div class="k" data-i18n="annualValue">Annual value added</div><div class="v val" id="sel-value">—</div></div>
       </div>
       <div class="editrow">
-        ≈ <input type="number" id="pop-in" value="38"> M women 15+ ·
-        GDP/cap ≈ $<input type="number" id="gdp-in" value="4100"> <span class="tag tag-real">WB 2024</span>
+        ≈ <input type="number" id="pop-in" value="38"> <span data-i18n="popUnit">M women 15+</span> ·
+        <span data-i18n="gdpCap">GDP/cap</span> ≈ $<input type="number" id="gdp-in" value="4100"> <span class="tag tag-real">WB 2024</span>
       </div>
     </div>
   </div>
 
   <!-- WAGE + ALL COUNTRIES -->
   <div class="card">
-    <div class="card-h">2 · Wage dimension <span class="tag tag-assume">adjustable</span></div>
+    <div class="card-h"><span data-i18n="wageDimension">2 · Wage dimension</span> <span class="tag tag-assume" data-i18n="adjustable">adjustable</span></div>
     <div class="grid" style="gap:20px">
       <div>
         <div class="slider">
-          <div class="slider-top"><span class="slider-label">Gender wage gap today</span><span class="slider-val" id="v-gap">25%</span></div>
+          <div class="slider-top"><span class="slider-label" data-i18n="wageGap">Gender wage gap today</span><span class="slider-val" id="v-gap">25%</span></div>
           <input type="range" id="s-gap" min="0" max="45" value="25">
-          <p class="slider-hint">Women earn this much less than men. SE Asia ≈ 30–40%; Vietnam formal sector 13.7%.</p>
+          <p class="slider-hint" data-i18n="wageGapHint">Women earn this much less than men. SE Asia ≈ 30–40%; Vietnam formal sector 13.7%.</p>
         </div>
         <div class="slider">
-          <div class="slider-top"><span class="slider-label">Share of gap the passport closes</span><span class="slider-val" id="v-close">10%</span></div>
+          <div class="slider-top"><span class="slider-label" data-i18n="gapClose">Share of gap the passport closes</span><span class="slider-val" id="v-close">10%</span></div>
           <input type="range" id="s-close" min="0" max="50" value="10">
-          <p class="slider-hint">Recognised skills let women move from informal/vulnerable to formal work, narrowing the gap.</p>
+          <p class="slider-hint" data-i18n="gapCloseHint">Recognised skills let women move from informal/vulnerable to formal work, narrowing the gap.</p>
         </div>
       </div>
       <div>
         <div class="mini" style="margin-top:2px">
-          <div class="box"><div class="k">Quantity effect (new income)</div><div class="v val" id="w-qty">—</div></div>
+          <div class="box"><div class="k" data-i18n="quantityEffect">Quantity effect (new income)</div><div class="v val" id="w-qty">—</div></div>
         </div>
         <div class="mini">
-          <div class="box"><div class="k">Wage-gap effect (higher pay)</div><div class="v val" id="w-gap">—</div></div>
+          <div class="box"><div class="k" data-i18n="wageEffect">Wage-gap effect (higher pay)</div><div class="v val" id="w-gap">—</div></div>
         </div>
-        <p class="slider-hint" style="margin-top:10px">Regional annual value, split into women entering work vs. women already working who now earn more.</p>
+        <p class="slider-hint" style="margin-top:10px" data-i18n="splitHint">Regional annual value, split into women entering work vs. women already working who now earn more.</p>
       </div>
     </div>
   </div>
 
   <div class="card">
-    <div class="card-h">All six economies, same assumptions</div>
+    <div class="card-h" data-i18n="sixEconomies">All six economies, same assumptions</div>
     <table>
-      <thead><tr><th>Economy</th><th>FLFP →2040</th><th>Gain</th><th>+Workers</th><th>Value/yr</th></tr></thead>
+      <thead><tr><th data-i18n="economy">Economy</th><th data-i18n="flfp2040">FLFP →2040</th><th data-i18n="gain">Gain</th><th data-i18n="workers">+Workers</th><th data-i18n="valueYr">Value/yr</th></tr></thead>
       <tbody id="tbody"></tbody>
     </table>
   </div>
 
   <!-- REGION -->
   <div class="region">
-    <div><p class="eyebrow">Regional headline (pop-weighted)</p>
-      <div style="font-family:'Space Grotesk';font-weight:600;font-size:14px">6 economies · Japan + Taiwan + 4 ASEAN</div></div>
-    <div class="rstat"><div class="v" id="r-base">—</div><div class="k">FLFP today</div></div>
-    <div class="rstat"><div class="v g" id="r-new">—</div><div class="k">FLFP 2040</div></div>
-    <div class="rstat"><div class="v g" id="r-workers">—</div><div class="k">women working</div></div>
-    <div class="rstat"><div class="v b" id="r-value">—</div><div class="k">value / year</div></div>
+    <div><p class="eyebrow" data-i18n="regional">Regional headline (pop-weighted)</p>
+      <div style="font-family:'Space Grotesk';font-weight:600;font-size:14px" data-i18n="regionScope">6 economies · Japan + Taiwan + 4 ASEAN</div></div>
+    <div class="rstat"><div class="v" id="r-base">—</div><div class="k" data-i18n="flfpToday">FLFP today</div></div>
+    <div class="rstat"><div class="v g" id="r-new">—</div><div class="k" data-i18n="flfp2040plain">FLFP 2040</div></div>
+    <div class="rstat"><div class="v g" id="r-workers">—</div><div class="k" data-i18n="womenWorkingPlain">women working</div></div>
+    <div class="rstat"><div class="v b" id="r-value">—</div><div class="k" data-i18n="valueYear">value / year</div></div>
   </div>
 
   <!-- BUDGET / LEVERAGE -->
   <div class="card">
-    <div class="card-h">3 · Budget & leverage <span class="tag tag-real">cost from your action plan</span></div>
+    <div class="card-h"><span data-i18n="budget">3 · Budget & leverage</span> <span class="tag tag-real" data-i18n="actionCost">cost from your action plan</span></div>
     <div class="lever">
       <div class="prize">
         <div class="v" id="lev-prize">—</div>
-        <div class="k">annual economic value unlocked (size of the prize)</div>
+        <div class="k" data-i18n="prize">annual economic value unlocked (size of the prize)</div>
       </div>
-      <div class="arrow">vs</div>
+      <div class="arrow" data-i18n="vs">vs</div>
       <div class="cost">
         <div class="v">¥<input type="number" id="inv-in" value="1088" style="width:76px;padding:5px 7px;border:1px solid var(--line);border-radius:6px;font-family:'Space Grotesk';font-weight:700;font-size:20px;text-align:right;color:var(--ink)">M</div>
-        <div class="k" style="font-size:12px;color:var(--mut);margin-top:4px">Base Pilot TCO (default: ¥1,088M)</div>
+        <div class="k" style="font-size:12px;color:var(--mut);margin-top:4px" data-i18n="baseTco">Base Pilot TCO (default: ¥1,088M)</div>
       </div>
     </div>
     <div class="pctbar"><div class="fill" id="lev-fill"></div></div>
-    <p class="slider-hint" style="margin-top:8px">The Base Pilot TCO equals <b id="lev-pct" style="color:var(--teal-d)">—</b> of one year's potential regional value. Default cost follows the presentation's Base Pilot estimate of ¥1.088B. Exchange-rate assumption: USD 1 = JPY 150.</p>
+    <p class="slider-hint" style="margin-top:8px" data-i18n-html="leverageHint">The Base Pilot TCO equals <b id="lev-pct" style="color:var(--teal-d)">—</b> of one year's potential regional value. Default cost follows the presentation's Base Pilot estimate of ¥1.088B. Exchange-rate assumption: USD 1 = JPY 150.</p>
   </div>
 
-  <p class="foot"><b>Method.</b> Supply-side scenario, McKinsey <i>Power of Parity</i> logic.
+  <p class="foot" data-i18n-html="method"><b>Method.</b> Supply-side scenario, McKinsey <i>Power of Parity</i> logic.
   New workers: <b>Δ = (1 − FLFP) × barrier × coverage × activation</b>. Value added ≈ workers × GDP per capita
   (conservative: per-capita &lt; per-worker). Wage-gap effect = existing female workers × GDP/cap × wage gap × share closed.
   <b>Real 2024:</b> female/male LFP (WB/ILO; Taiwan DGBAS), GDP per capita nominal (WB/IMF). Population & wage-gap figures are editable estimates.
@@ -218,6 +228,19 @@ tr.selrow td{background:#FBFAF6;}
 </div>
 
 <script>
+let lang="en";
+const I18N={
+ en:{eyebrow:"Vision 2040 · Impact & budget model",title:"Asia Skills Passport — from participation to economic value",subtitle:'Passport effectiveness → women into work → annual potential economic value → compared with pilot cost. <b style="color:var(--teal-d)">Teal = real 2024 data.</b> <b style="color:var(--gain-d)">Amber = your assumptions.</b> Everything recomputes live.',assumptions:"1 · Passport assumptions",adjustable:"adjustable",barrier:"Skills-barrier share",barrierHint:"Of non-working women, the share held back by skills/credentials not being recognised.",coverage:"Passport coverage",coverageHint:"Share of women holding the Asia Skills Passport by 2040 — your headline lever.",activation:"Activation rate",activationHint:"Of passport-holders facing the barrier, the share who actually (re-)enter work.",in2040:"in 2040",today:"Today (real)",lift:"Passport lift",maleLfp:"Male LFP",womenWorking:"+ Women working",annualValue:"Annual value added",popUnit:"M women 15+",gdpCap:"GDP/cap",wageDimension:"2 · Wage dimension",wageGap:"Gender wage gap today",wageGapHint:"Women earn this much less than men. SE Asia ≈ 30–40%; Vietnam formal sector 13.7%.",gapClose:"Share of gap the passport closes",gapCloseHint:"Recognised skills let women move from informal/vulnerable to formal work, narrowing the gap.",quantityEffect:"Quantity effect (new income)",wageEffect:"Wage-gap effect (higher pay)",splitHint:"Regional annual value, split into women entering work vs. women already working who now earn more.",sixEconomies:"All six economies, same assumptions",economy:"Economy",flfp2040:"FLFP →2040",gain:"Gain",workers:"+Workers",valueYr:"Value/yr",regional:"Regional headline (pop-weighted)",regionScope:"6 economies · Japan + Taiwan + 4 ASEAN",flfpToday:"FLFP today",flfp2040plain:"FLFP 2040",womenWorkingPlain:"women working",valueYear:"value / year",budget:"3 · Budget & leverage",actionCost:"cost from your action plan",prize:"annual economic value unlocked (size of the prize)",vs:"vs",baseTco:"Base Pilot TCO (default: ¥1,088M)",leverageHint:'The Base Pilot TCO equals <b id="lev-pct" style="color:var(--teal-d)">—</b> of one year\'s potential regional value. Default cost follows the presentation\'s Base Pilot estimate of ¥1.088B. Exchange-rate assumption: USD 1 = JPY 150.',method:'<b>Method.</b> Supply-side scenario, McKinsey <i>Power of Parity</i> logic. New workers: <b>Δ = (1 − FLFP) × barrier × coverage × activation</b>. Value added ≈ workers × GDP per capita (conservative: per-capita &lt; per-worker). Wage-gap effect = existing female workers × GDP/cap × wage gap × share closed. <b>Real 2024:</b> female/male LFP (WB/ILO; Taiwan DGBAS), GDP per capita nominal (WB/IMF). Population & wage-gap figures are editable estimates. <b>This is the size of the prize, not value attributable to the passport alone.</b> Skill Pass is one enabler among several. This interactive scenario is not a causal forecast.'},
+ ja:{eyebrow:"Vision 2040 · 経済効果・予算モデル",title:"アジア技能パスポート — 労働参加を経済価値へ",subtitle:'パスポートの有効性 → 女性の就業 → 年間の潜在的経済価値 → 実証コストとの比較。<b style="color:var(--teal-d)">青緑＝2024年実績値。</b> <b style="color:var(--gain-d)">黄＝調整可能な仮定。</b> 数値はリアルタイムで再計算されます。',assumptions:"1 · Skill Passの前提",adjustable:"調整可能",barrier:"技能・資格が障壁となる割合",barrierHint:"非就業女性のうち、技能・資格が認められないため就業を阻まれている割合。",coverage:"Skill Pass保有率",coverageHint:"2040年までにアジア技能パスポートを保有する女性の割合。主要な政策レバーです。",activation:"就業転換率",activationHint:"障壁に直面する保有者のうち、実際に就業・復職する割合。",in2040:"｜2040年",today:"現在（実績）",lift:"Skill Passによる上昇",maleLfp:"男性労働参加率",womenWorking:"＋就業女性",annualValue:"年間付加価値",popUnit:"百万人（15歳以上女性）",gdpCap:"1人当たりGDP",wageDimension:"2 · 賃金への効果",wageGap:"現在の男女賃金格差",wageGapHint:"男性より低い女性賃金の割合。東南アジア約30～40％、ベトナム正規部門13.7％。",gapClose:"Skill Passが縮小する格差",gapCloseHint:"技能が認められることで、脆弱・非公式就業から正規就業への移行を促し、格差を縮小します。",quantityEffect:"量的効果（新規所得）",wageEffect:"賃金格差効果（所得上昇）",splitHint:"地域の年間価値を、新規就業女性と既就業女性の所得上昇に分けて表示。",sixEconomies:"6経済圏｜同一条件で比較",economy:"経済圏",flfp2040:"女性労働参加率 →2040",gain:"上昇",workers:"＋就業者",valueYr:"年間価値",regional:"地域全体（人口加重）",regionScope:"6経済圏 · 日本＋台湾＋ASEAN 4か国",flfpToday:"現在の女性労働参加率",flfp2040plain:"2040年の女性労働参加率",womenWorkingPlain:"就業女性",valueYear:"年間価値",budget:"3 · 予算とレバレッジ",actionCost:"アクションプランの費用",prize:"実現し得る年間経済価値（潜在規模）",vs:"対",baseTco:"基本実証TCO（初期値：10.88億円）",leverageHint:'基本実証TCOは、地域の年間潜在価値の <b id="lev-pct" style="color:var(--teal-d)">—</b> に相当します。初期費用は発表資料の基本実証TCO 10.88億円を使用。為替前提：1米ドル＝150円。',method:'<b>算定方法。</b> 供給側シナリオ。McKinsey <i>Power of Parity</i> の考え方を参照。新規就業者：<b>Δ＝（1－女性労働参加率）×障壁割合×保有率×就業転換率</b>。付加価値 ≈ 就業者数×1人当たりGDP（保守的に、就業者1人当たりではなく人口1人当たりを使用）。賃金格差効果＝既就業女性×1人当たりGDP×賃金格差×縮小率。<b>2024年実績：</b> 男女労働参加率（WB/ILO、台湾DGBAS）、名目1人当たりGDP（WB/IMF）。人口と賃金格差は編集可能な推定値です。<b>これは潜在規模であり、Skill Pass単独に帰属する価値ではありません。</b> Skill Passは複数の実現手段の一つであり、本モデルは因果的予測ではありません。'}
+};
+const NAMES={en:{JP:"Japan",TW:"Taiwan",SG:"Singapore",VN:"Vietnam",PH:"Philippines",ID:"Indonesia"},ja:{JP:"日本",TW:"台湾",SG:"シンガポール",VN:"ベトナム",PH:"フィリピン",ID:"インドネシア"}};
+function applyLang(next){
+ lang=next; document.documentElement.lang=next; document.title=next==="ja"?"アジア技能パスポート｜Vision 2040 経済効果・予算モデル":"Asia Skills Passport — Vision 2040 Impact & Budget Model";
+ document.querySelectorAll("[data-i18n]").forEach(el=>el.textContent=I18N[next][el.dataset.i18n]);
+ document.querySelectorAll("[data-i18n-html]").forEach(el=>el.innerHTML=I18N[next][el.dataset.i18nHtml]);
+ document.querySelectorAll(".lang-btn").forEach(b=>b.classList.toggle("on",b.dataset.lang===next));
+ render();
+}
 const E=[
  {code:"JP",name:"Japan",flfp:55.3,male:71.6,pop:56.5,gdp:32500,src:"WB/ILO 2024"},
  {code:"TW",name:"Taiwan",flfp:51.8,male:67,pop:10.3,gdp:34100,src:"DGBAS 2023"},
@@ -257,13 +280,13 @@ function render(){
   $("v-addr").textContent=a+"%";$("v-cov").textContent=c+"%";$("v-act").textContent=act+"%";
   $("v-gap").textContent=gap+"%";$("v-close").textContent=close+"%";
   const e=E.find(x=>x.code===sel), r=calc(e,a,c,act,gap,close);
-  $("sel-name").textContent=e.name;$("sel-src").textContent=e.src;
-  $("sel-new").textContent=f(r.newFlfp)+"%";$("sel-from").textContent="from "+f(e.flfp)+"%";
-  $("sel-delta").textContent="+"+f(r.deltaPP)+" pts";
+  $("sel-name").textContent=NAMES[lang][e.code];$("sel-src").textContent=e.src;
+  $("sel-new").textContent=f(r.newFlfp)+"%";$("sel-from").textContent=(lang==="ja"?"現在 ":"from ")+f(e.flfp)+"%";
+  $("sel-delta").textContent="+"+f(r.deltaPP)+(lang==="ja"?" pt":" pts");
   $("bar-base").style.width=e.flfp+"%";$("bar-gain").style.left=e.flfp+"%";$("bar-gain").style.width=r.deltaPP+"%";
   $("bar-male").style.left=e.male+"%";$("bar-male-lbl").textContent="♂ "+e.male+"%";
   $("sel-workers").textContent="+"+f(r.addW,2)+"M";
-  $("sel-value").textContent=money(r.total)+"/yr";
+  $("sel-value").textContent=money(r.total)+(lang==="ja"?"/年":"/yr");
   // table + region + wage split
   let tp=0,bw=0,nw=0,aw=0,qty=0,gv=0,tot=0;
   $("tbody").innerHTML="";
@@ -271,16 +294,16 @@ function render(){
     tp+=store[x.code].pop;bw+=x.flfp*store[x.code].pop;nw+=rr.newFlfp*store[x.code].pop;
     aw+=rr.addW;qty+=rr.qtyVal;gv+=rr.gapVal;tot+=rr.total;
     const tr=document.createElement("tr");if(x.code===sel)tr.className="selrow";
-    tr.innerHTML=`<td>${x.name}</td><td class="num">${f(rr.newFlfp)}%</td>
+    tr.innerHTML=`<td>${NAMES[lang][x.code]}</td><td class="num">${f(rr.newFlfp)}%</td>
       <td class="num gain-t">+${f(rr.deltaPP)}</td><td class="num">${f(rr.addW,2)}M</td>
       <td class="num val-t">${money(rr.total)}</td>`;
     $("tbody").appendChild(tr);});
   $("r-base").textContent=f(bw/tp)+"%";$("r-new").textContent=f(nw/tp)+"%";
-  $("r-workers").textContent="+"+f(aw,1)+"M";$("r-value").textContent=money(tot)+"/yr";
-  $("w-qty").textContent=money(qty)+"/yr";$("w-gap").textContent=money(gv)+"/yr";
+  $("r-workers").textContent="+"+f(aw,1)+"M";$("r-value").textContent=money(tot)+(lang==="ja"?"/年":"/yr");
+  $("w-qty").textContent=money(qty)+(lang==="ja"?"/年":"/yr");$("w-gap").textContent=money(gv)+(lang==="ja"?"/年":"/yr");
   // leverage
   const inv=(+$("inv-in").value)/150/1000; // JPY million → USD billion
-  $("lev-prize").textContent=money(tot)+" / year";
+  $("lev-prize").textContent=money(tot)+(lang==="ja"?" / 年":" / year");
   const pct=tot>0?(inv/tot*100):0;
   $("lev-pct").textContent=pct<0.01?"<0.01%":f(pct,pct<1?2:1)+"%";
   $("lev-fill").style.width=Math.min(100,Math.max(1,pct))+"%";
@@ -289,5 +312,6 @@ function render(){
 $("pop-in").addEventListener("input",ev=>{store[sel].pop=+ev.target.value||0;render();});
 $("gdp-in").addEventListener("input",ev=>{store[sel].gdp=+ev.target.value||0;render();});
 $("inv-in").addEventListener("input",render);
-build();syncEdit();render();
+document.querySelectorAll(".lang-btn").forEach(b=>b.addEventListener("click",()=>applyLang(b.dataset.lang)));
+build();syncEdit();applyLang("en");
 </script>
