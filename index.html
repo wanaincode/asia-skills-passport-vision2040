@@ -52,6 +52,47 @@ h1 small{display:block;font-size:13px;font-weight:500;letter-spacing:.04em;color
 .grid{display:grid;grid-template-columns:295px 1fr;gap:26px;margin-top:28px;align-items:start}
 @media(max-width:900px){.grid{grid-template-columns:1fr}}
 
+/* ---------- desktop recording layout (16:9 friendly) ---------- */
+@media(min-width:1100px){
+  .wrap{max-width:1480px;padding-left:24px;padding-right:24px}
+  header{padding:20px 0 17px}
+  .eyebrow{margin-bottom:5px;font-size:10px}
+  h1{font-size:25px;line-height:1.22}
+  h1 small{font-size:11px;margin-top:5px}
+  .legend{margin-top:10px;font-size:10.5px}
+  .grid{grid-template-columns:410px minmax(0,1fr);gap:18px;margin-top:18px}
+  .panel{top:10px}
+  .card h2{padding:10px 14px 9px}
+  .ctl-group{padding:9px 14px}
+  .ctl-group>.gl{margin-bottom:7px}
+  .ctl{margin-bottom:8px}
+  .ctl .hint{font-size:9.5px;line-height:1.35}
+  .funnel-grid,.tco-grid{display:grid;gap:7px 10px}
+  .funnel-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .tco-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .funnel-grid>.gl,.tco-grid>.gl,.funnel-grid>.funnel-out{grid-column:1/-1}
+  .funnel-grid .ctl,.tco-grid .ctl{margin-bottom:0}
+  .funnel-grid .ctl label,.tco-grid .ctl label{display:block;font-size:10.5px;line-height:1.35}
+  .funnel-grid .ctl label .v,.tco-grid .ctl label .v{display:block;font-size:12px;margin-top:1px}
+  .tco-grid .ctl .hint{display:none}
+  .rail{padding:14px 18px 12px}
+  .rail-val{font-size:34px}
+  .rail input[type=range]{margin-top:10px}
+  .rail-note{margin-top:7px;padding-top:7px;line-height:1.45}
+  .rows{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px;margin-top:12px}
+  .row{padding:10px 12px 9px}
+  .row-head .nm{font-size:13px}
+  .row-head .sec,.row-head .gap{font-size:10px}
+  .bar{height:18px;margin-top:7px}
+  .row-foot{font-size:9.5px;gap:3px 12px;margin-top:6px}
+  .row-foot span:nth-child(3),.row-foot span:nth-child(4),.src{display:none}
+  .totals{margin-top:12px;gap:8px}
+  .kpi{padding:10px 11px}
+  .kpi .n{font-size:22px;margin-top:5px}
+  .kpi .s{font-size:9px;margin-top:3px}
+  .budget{margin-top:12px;padding:12px 15px 14px}
+}
+
 .card{background:#fff;border:1px solid var(--line);border-radius:12px}
 .card h2{margin:0;padding:15px 18px 13px;font-size:13px;font-weight:800;letter-spacing:.09em;border-bottom:1px solid var(--line);color:var(--navy)}
 .card h2 span{display:block;font-size:10px;letter-spacing:.1em;color:var(--ink-3);font-weight:600;margin-top:3px}
@@ -155,6 +196,38 @@ button.reset:hover{background:#f7f9fc;color:var(--navy)}
 .caveat li{margin-bottom:3px}
 footer{margin-top:26px;font-size:10.5px;color:var(--ink-3);line-height:1.8;border-top:1px solid var(--line);padding-top:14px}
 @media(max-width:640px){h1{font-size:25px}header::before{display:none}header::after{right:-140px;top:-160px;opacity:.35}.rail-val{font-size:32px}.kpi .n{font-size:22px}}
+/* Final desktop overrides: keep the recording view compact and horizontal. */
+@media(min-width:1100px){
+  .card h2{padding:10px 14px 9px}
+  .ctl-group{padding:9px 14px}
+  .ctl-group>.gl{margin-bottom:7px}
+  .ctl{margin-bottom:8px}
+  .ctl .hint{font-size:9.5px;line-height:1.35}
+  .funnel-grid,.tco-grid{display:grid;gap:7px 10px}
+  .funnel-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .tco-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .funnel-grid>.gl,.tco-grid>.gl,.funnel-grid>.funnel-out{grid-column:1/-1}
+  .funnel-grid .ctl,.tco-grid .ctl{margin-bottom:0}
+  .funnel-grid .ctl label,.tco-grid .ctl label{display:block;font-size:10.5px;line-height:1.35}
+  .funnel-grid .ctl label .v,.tco-grid .ctl label .v{display:block;font-size:12px;margin-top:1px}
+  .tco-grid .ctl .hint{display:none}
+  .rail{padding:14px 18px 12px}
+  .rail-val{font-size:34px}
+  .rail input[type=range]{margin-top:10px}
+  .rail-note{margin-top:7px;padding-top:7px;line-height:1.45}
+  .rows{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px;margin-top:12px}
+  .row{padding:10px 12px 9px}
+  .row-head .nm{font-size:13px}
+  .row-head .sec,.row-head .gap{font-size:10px}
+  .bar{height:18px;margin-top:7px}
+  .row-foot{font-size:9.5px;gap:3px 12px;margin-top:6px}
+  .row-foot span:nth-child(3),.row-foot span:nth-child(4),.src{display:none}
+  .totals{margin-top:12px;gap:8px}
+  .kpi{padding:10px 11px}
+  .kpi .n{font-size:22px;margin-top:5px}
+  .kpi .s{font-size:9px;margin-top:3px}
+  .budget{margin-top:12px;padding:12px 15px 14px}
+}
 @media print{.panel{position:static}header::after,header::before{display:none}}
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
 </style>
@@ -192,7 +265,7 @@ footer{margin-top:26px;font-size:10.5px;color:var(--ink-3);line-height:1.8;borde
         </div>
       </div>
 
-      <div class="ctl-group">
+      <div class="ctl-group funnel-grid">
         <div class="gl">② 実証ファネル（デッキ p₁·p₂·p₃）</div>
         <div class="ctl">
           <label>Pass完了率 p₁ <span class="v" id="v-p1">80%</span></label>
@@ -209,7 +282,7 @@ footer{margin-top:26px;font-size:10.5px;color:var(--ink-3);line-height:1.8;borde
         <div class="funnel-out" id="funnel">発行1,000人 → 定着 104人（10.4%）</div>
       </div>
 
-      <div class="ctl-group">
+      <div class="ctl-group tco-grid">
         <div class="gl">③ 予算（TCO）</div>
         <div class="ctl">
           <label>基盤コスト F <span class="v" id="v-F">6.75億円</span></label>
