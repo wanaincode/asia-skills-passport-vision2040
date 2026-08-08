@@ -1,293 +1,583 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Asia Skills Passport — Vision 2040 Impact & Budget Model</title>
+<title>スキルパス｜人材不足を埋めるには、どこまで広げればよいか</title>
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap');
 :root{
-  --ink:#16243A; --ink2:#2C3E5B; --mut:#64748B; --line:#E2E8F0;
-  --surface:#FFFFFF; --bg:#EEF2F7; --teal:#0E7C7B; --teal-d:#0A5E5D;
-  --gain:#E0A030; --gain-d:#C2851D; --base:#9FB3C8; --val:#2F6F9E; --val-d:#1F517A;
+  --navy:#132741;
+  --navy-2:#1c3557;
+  --navy-3:#25406a;
+  --teal:#0f6f63;
+  --teal-l:#4fc4b6;
+  --amber:#e2a233;
+  --amber-d:#a97612;
+  --coral:#e2654a;
+  --paper:#f4f6f9;
+  --line:#dfe4ec;
+  --ink:#132741;
+  --ink-2:#54617a;
+  --ink-3:#8a94a8;
+  --white:#fff;
 }
-*{box-sizing:border-box;}
-body{margin:0;background:var(--bg);font-family:'Inter',system-ui,sans-serif;color:var(--ink);
-  font-feature-settings:'tnum' 1;padding:24px;}
-.wrap{max-width:880px;margin:0 auto;}
-.eyebrow{font-family:'Space Grotesk';font-weight:600;font-size:11px;letter-spacing:.16em;
-  text-transform:uppercase;color:var(--teal);margin:0 0 6px;}
-.h1{font-family:'Space Grotesk';font-weight:700;font-size:23px;line-height:1.15;margin:0 0 4px;}
-.sub{font-size:13px;color:var(--mut);margin:0 0 18px;max-width:66ch;line-height:1.5;}
-.grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
-@media(max-width:720px){.grid{grid-template-columns:1fr;}}
-.card{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:18px;margin-top:16px;}
-.card.first{margin-top:0;}
-.card-h{font-family:'Space Grotesk';font-weight:600;font-size:13px;letter-spacing:.04em;
-  text-transform:uppercase;color:var(--ink2);margin:0 0 14px;display:flex;
-  justify-content:space-between;align-items:center;gap:8px;}
-.tag{font-size:10px;font-weight:600;letter-spacing:.05em;padding:2px 7px;border-radius:20px;text-transform:uppercase;white-space:nowrap;}
-.tag-real{background:#E6F4F1;color:var(--teal-d);}
-.tag-assume{background:#FBEFD8;color:var(--gain-d);}
-.slider{margin-bottom:16px;}
-.slider:last-child{margin-bottom:0;}
-.slider-top{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:5px;}
-.slider-label{font-size:13px;font-weight:600;}
-.slider-val{font-family:'Space Grotesk';font-weight:700;font-size:15px;color:var(--gain-d);}
-input[type=range]{width:100%;height:5px;border-radius:5px;-webkit-appearance:none;appearance:none;background:#E2E8F0;cursor:pointer;}
-input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:17px;height:17px;border-radius:50%;
-  background:#fff;border:3px solid var(--gain-d);cursor:pointer;box-shadow:0 1px 3px rgba(0,0,0,.2);}
-input[type=range]::-moz-range-thumb{width:17px;height:17px;border-radius:50%;background:#fff;border:3px solid var(--gain-d);cursor:pointer;}
-.slider-hint{font-size:11.5px;color:var(--mut);margin:5px 0 0;line-height:1.45;}
-.chips{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:16px;}
-.chip{font-family:'Space Grotesk';font-weight:600;font-size:12px;padding:6px 11px;border-radius:8px;
-  border:1px solid var(--line);background:#fff;color:var(--ink2);cursor:pointer;transition:all .15s;}
-.chip:hover{border-color:var(--teal);}
-.chip.on{background:var(--ink);color:#fff;border-color:var(--ink);}
-.big{display:flex;align-items:flex-end;gap:14px;margin:4px 0 14px;flex-wrap:wrap;}
-.big-num{font-family:'Space Grotesk';font-weight:700;font-size:44px;line-height:.9;}
-.big-from{font-size:13px;color:var(--mut);padding-bottom:7px;}
-.big-delta{font-family:'Space Grotesk';font-weight:700;font-size:16px;color:var(--gain-d);background:#FBEFD8;padding:3px 9px;border-radius:7px;margin-bottom:7px;}
-.bar-track{position:relative;height:28px;background:#F1F5F9;border-radius:7px;margin-top:12px;}
-.bar-base{position:absolute;left:0;top:0;height:100%;background:var(--base);border-radius:7px 0 0 7px;transition:width .5s cubic-bezier(.4,0,.2,1);}
-.bar-gain{position:absolute;top:0;height:100%;transition:left .5s,width .5s;
-  background:repeating-linear-gradient(45deg,var(--gain),var(--gain) 7px,var(--gain-d) 7px,var(--gain-d) 8px);}
-.bar-male{position:absolute;top:-3px;height:34px;width:2px;background:var(--ink);}
-.bar-male span{position:absolute;top:-15px;left:50%;transform:translateX(-50%);white-space:nowrap;font-size:9.5px;font-weight:600;color:var(--ink2);}
-.bar-legend{display:flex;gap:14px;font-size:11px;color:var(--mut);margin-top:11px;flex-wrap:wrap;}
-.leg{display:flex;align-items:center;gap:5px;}
-.sw{width:11px;height:11px;border-radius:3px;}
-.mini{display:flex;gap:10px;margin-top:14px;}
-.mini .box{flex:1;background:#F7FAFC;border:1px solid var(--line);border-radius:9px;padding:10px 12px;}
-.mini .k{font-size:10.5px;color:var(--mut);text-transform:uppercase;letter-spacing:.04em;font-weight:600;}
-.mini .v{font-family:'Space Grotesk';font-weight:700;font-size:20px;margin-top:3px;}
-.mini .v.val{color:var(--val-d);}
-.editrow{display:flex;align-items:center;gap:7px;margin-top:12px;font-size:12px;color:var(--mut);flex-wrap:wrap;}
-.editrow input{width:64px;padding:5px 7px;border:1px solid var(--line);border-radius:6px;font-family:'Space Grotesk';font-weight:600;color:var(--ink);font-size:13px;text-align:right;}
-table{width:100%;border-collapse:collapse;font-size:12px;}
-th{text-align:right;font-weight:600;color:var(--mut);font-size:10px;letter-spacing:.03em;text-transform:uppercase;padding:0 0 8px;border-bottom:1px solid var(--line);}
-th:first-child{text-align:left;}
-td{padding:8px 0;border-bottom:1px solid #F1F5F9;text-align:right;}
-td:first-child{text-align:left;font-weight:600;}
-tr.selrow td{background:#FBFAF6;}
-.num{font-family:'Space Grotesk';font-weight:600;}
-.gain-t{color:var(--gain-d);font-weight:700;}
-.val-t{color:var(--val-d);font-weight:700;}
-.region{background:var(--ink);color:#fff;border-radius:12px;padding:18px 20px;margin-top:16px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:14px;}
-.region .eyebrow{color:#7DD3CF;}
-.rstat{text-align:center;}
-.rstat .v{font-family:'Space Grotesk';font-weight:700;font-size:28px;line-height:1;}
-.rstat .v.g{color:var(--gain);}
-.rstat .v.b{color:#6FB3E0;}
-.rstat .k{font-size:11px;color:#9DB2C9;margin-top:4px;}
-.lever{display:flex;align-items:center;gap:16px;flex-wrap:wrap;}
-.lever .prize{flex:1;min-width:180px;}
-.lever .prize .v{font-family:'Space Grotesk';font-weight:700;font-size:32px;color:var(--val-d);line-height:1;}
-.lever .prize .k{font-size:12px;color:var(--mut);margin-top:4px;}
-.lever .arrow{font-size:22px;color:var(--mut);}
-.lever .cost .v{font-family:'Space Grotesk';font-weight:700;font-size:22px;}
-.pctbar{height:14px;background:#EDF2F7;border-radius:8px;margin-top:12px;overflow:hidden;position:relative;}
-.pctbar .fill{height:100%;background:var(--teal);border-radius:8px;min-width:2px;transition:width .5s;}
-.foot{font-size:11px;color:var(--mut);line-height:1.55;margin-top:16px;border-top:1px solid var(--line);padding-top:12px;}
-.foot b{color:var(--ink2);}
-@media(prefers-reduced-motion:reduce){*{transition:none!important;}}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{
+  background:var(--paper);
+  color:var(--ink);
+  font-family:"Hiragino Kaku Gothic ProN","Hiragino Sans","Yu Gothic Medium","Yu Gothic","Meiryo","Noto Sans JP",system-ui,sans-serif;
+  font-size:15px;line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+}
+.num{font-variant-numeric:tabular-nums;font-feature-settings:"tnum";letter-spacing:-.01em}
+.wrap{max-width:1180px;margin:0 auto;padding:0 20px 72px}
+
+/* ---------- header ---------- */
+header{background:var(--navy);color:#fff;padding:34px 0 30px;position:relative;overflow:hidden}
+header .wrap{padding-bottom:0;position:relative;z-index:2}
+header::after{content:"";position:absolute;right:-90px;top:-120px;width:340px;height:340px;border-radius:50%;background:#1a5f57;opacity:.55}
+header::before{content:"";position:absolute;right:130px;bottom:-70px;width:120px;height:120px;border-radius:50%;background:var(--amber);opacity:.75}
+.eyebrow{color:var(--teal-l);font-size:12px;font-weight:700;letter-spacing:.16em;margin:0 0 10px}
+h1{margin:0;font-size:31px;line-height:1.3;font-weight:800;letter-spacing:.01em}
+h1 small{display:block;font-size:13px;font-weight:500;letter-spacing:.04em;color:#a9bdd6;margin-top:9px;line-height:1.5}
+.legend{display:flex;flex-wrap:wrap;gap:8px 18px;margin-top:20px;font-size:12px;color:#c3d2e4}
+.legend b{display:inline-flex;align-items:center;gap:6px;font-weight:600}
+.dot{width:9px;height:9px;border-radius:2px;display:inline-block}
+.dot.real{background:var(--teal-l)}
+.dot.assume{background:var(--amber)}
+.dot.check{background:var(--coral)}
+
+/* ---------- layout ---------- */
+.grid{display:grid;grid-template-columns:295px 1fr;gap:26px;margin-top:28px;align-items:start}
+@media(max-width:900px){.grid{grid-template-columns:1fr}}
+
+.card{background:#fff;border:1px solid var(--line);border-radius:12px}
+.card h2{margin:0;padding:15px 18px 13px;font-size:13px;font-weight:800;letter-spacing:.09em;border-bottom:1px solid var(--line);color:var(--navy)}
+.card h2 span{display:block;font-size:10px;letter-spacing:.1em;color:var(--ink-3);font-weight:600;margin-top:3px}
+
+/* ---------- controls ---------- */
+.panel{position:sticky;top:16px}
+@media(max-width:900px){.panel{position:static}}
+.ctl-group{padding:15px 18px;border-bottom:1px solid var(--line)}
+.ctl-group:last-child{border-bottom:0}
+.ctl-group>.gl{font-size:10.5px;font-weight:800;letter-spacing:.11em;color:var(--amber-d);margin-bottom:12px}
+.ctl{margin-bottom:15px}
+.ctl:last-child{margin-bottom:0}
+.ctl label{display:flex;justify-content:space-between;align-items:baseline;gap:8px;font-size:12.5px;font-weight:600;color:var(--ink-2)}
+.ctl label .v{font-size:14px;font-weight:800;color:var(--amber-d)}
+.ctl .hint{font-size:10.5px;color:var(--ink-3);line-height:1.5;margin-top:3px}
+input[type=range]{width:100%;margin:7px 0 0;-webkit-appearance:none;appearance:none;background:transparent;height:18px}
+input[type=range]::-webkit-slider-runnable-track{height:4px;border-radius:3px;background:#e6eaf1}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:16px;height:16px;border-radius:50%;background:#fff;border:3px solid var(--amber);margin-top:-6px;cursor:pointer;box-shadow:0 1px 3px rgba(0,0,0,.18)}
+input[type=range]::-moz-range-track{height:4px;border-radius:3px;background:#e6eaf1}
+input[type=range]::-moz-range-thumb{width:12px;height:12px;border-radius:50%;background:#fff;border:3px solid var(--amber);cursor:pointer}
+input[type=range]:focus-visible::-webkit-slider-thumb{outline:2px solid var(--navy);outline-offset:2px}
+.funnel-out{background:#f2f6f5;border-left:3px solid var(--teal);padding:9px 11px;font-size:11.5px;color:var(--teal);font-weight:700;border-radius:0 5px 5px 0}
+button.reset{width:100%;padding:9px;font:inherit;font-size:12px;font-weight:700;color:var(--ink-2);background:#fff;border:1px solid var(--line);border-radius:7px;cursor:pointer}
+button.reset:hover{background:#f7f9fc;color:var(--navy)}
+
+/* ---------- coverage rail (signature) ---------- */
+.rail{background:var(--navy);color:#fff;border-radius:12px;padding:20px 22px 18px}
+.rail-top{display:flex;justify-content:space-between;align-items:flex-end;gap:16px;flex-wrap:wrap}
+.rail-top .lbl{font-size:11px;letter-spacing:.13em;font-weight:700;color:var(--teal-l)}
+.rail-top .lbl span{display:block;color:#7f93ad;font-size:9.5px;letter-spacing:.08em;margin-top:3px;font-weight:600}
+.rail-val{font-size:40px;font-weight:800;line-height:1;letter-spacing:-.02em}
+.rail-val em{font-style:normal;font-size:17px;font-weight:700;margin-left:2px;color:#a9bdd6}
+.rail input[type=range]{margin-top:16px}
+.rail input[type=range]::-webkit-slider-runnable-track{background:rgba(255,255,255,.16);height:5px}
+.rail input[type=range]::-webkit-slider-thumb{border-color:var(--teal-l);width:20px;height:20px;margin-top:-7.5px}
+.rail input[type=range]::-moz-range-track{background:rgba(255,255,255,.16);height:5px}
+.rail input[type=range]::-moz-range-thumb{border-color:var(--teal-l)}
+.rail-scale{display:flex;justify-content:space-between;font-size:10px;color:#7f93ad;margin-top:2px}
+.rail-note{margin-top:12px;font-size:11.5px;color:#a9bdd6;line-height:1.6;border-top:1px solid rgba(255,255,255,.12);padding-top:11px}
+.rail-note b{color:var(--amber);font-weight:700}
+
+/* ---------- economy rows ---------- */
+.rows{margin-top:18px;display:flex;flex-direction:column;gap:11px}
+.row{background:#fff;border:1px solid var(--line);border-radius:11px;padding:14px 16px 13px;transition:border-color .15s}
+.row.met{border-color:#9ed8ce;background:#fbfefd}
+.row-head{display:flex;align-items:baseline;gap:9px;flex-wrap:wrap}
+.row-head .nm{font-size:15px;font-weight:800;letter-spacing:.01em}
+.row-head .sec{font-size:11.5px;color:var(--ink-2);font-weight:600}
+.row-head .gap{margin-left:auto;font-size:11.5px;color:var(--ink-2)}
+.row-head .gap b{font-size:14px;color:var(--coral);font-weight:800}
+.bar{position:relative;height:22px;border-radius:5px;margin-top:10px;overflow:hidden;background:repeating-linear-gradient(135deg,#fbe6e0 0 6px,#f6dcd5 6px 12px)}
+.bar .fill{position:absolute;left:0;top:0;bottom:0;background:linear-gradient(90deg,var(--teal) 0%,#17877a 100%);transition:width .18s ease-out}
+.bar .pct{position:absolute;right:8px;top:0;bottom:0;display:flex;align-items:center;font-size:11px;font-weight:800;color:var(--coral)}
+.bar .pct.inside{right:auto;color:#fff}
+.row-foot{display:flex;flex-wrap:wrap;gap:5px 20px;margin-top:9px;font-size:11px;color:var(--ink-2)}
+.row-foot i{font-style:normal;color:var(--ink-3)}
+.row-foot b{font-weight:800;color:var(--navy)}
+.row-foot b.need{color:var(--amber-d)}
+.src{margin-top:7px;font-size:10px;color:var(--ink-3);line-height:1.55}
+.flagchk{color:var(--coral);font-weight:700}
+.gapinput{width:82px;padding:2px 5px;font:inherit;font-size:12px;font-weight:800;color:var(--coral);border:1px solid var(--line);border-radius:4px;text-align:right;font-variant-numeric:tabular-nums}
+.gapinput:focus{outline:2px solid var(--teal);border-color:var(--teal)}
+
+/* ---------- totals ---------- */
+.totals{display:grid;grid-template-columns:repeat(4,1fr);gap:11px;margin-top:18px}
+@media(max-width:760px){.totals{grid-template-columns:repeat(2,1fr)}}
+.kpi{background:#fff;border:1px solid var(--line);border-radius:11px;padding:14px 15px}
+.kpi .k{font-size:10px;letter-spacing:.1em;font-weight:800;color:var(--ink-3)}
+.kpi .k span{display:block;font-size:9px;letter-spacing:.06em;color:#b3bccb;margin-top:2px;font-weight:600}
+.kpi .n{font-size:26px;font-weight:800;line-height:1.15;margin-top:9px;letter-spacing:-.02em}
+.kpi .n em{font-style:normal;font-size:14px;font-weight:700;margin-left:1px}
+.kpi .s{font-size:10.5px;color:var(--ink-2);margin-top:5px;line-height:1.5}
+.kpi.a .n{color:var(--teal)}
+.kpi.b .n{color:var(--navy)}
+.kpi.c .n{color:var(--amber-d)}
+.kpi.d .n{color:var(--coral)}
+.kpi.d.ok .n{color:var(--teal)}
+
+/* ---------- budget breakdown ---------- */
+.budget{margin-top:18px;background:#fff;border:1px solid var(--line);border-radius:12px;padding:16px 18px 18px}
+.budget h3{margin:0 0 3px;font-size:13px;font-weight:800;letter-spacing:.09em}
+.budget .sub{font-size:10.5px;color:var(--ink-3);letter-spacing:.06em;margin-bottom:14px}
+.stack{display:flex;height:30px;border-radius:6px;overflow:hidden;background:#eef1f6}
+.stack div{display:flex;align-items:center;justify-content:center;font-size:10.5px;font-weight:800;color:#fff;min-width:2px;transition:width .18s}
+.stack .f{background:var(--navy-3)}
+.stack .v{background:var(--teal)}
+.blegend{display:flex;flex-wrap:wrap;gap:8px 22px;margin-top:11px;font-size:11.5px;color:var(--ink-2)}
+.blegend b{font-weight:800;color:var(--navy)}
+.breakeven{margin-top:13px;background:#eef5f4;border-left:3px solid var(--teal);border-radius:0 6px 6px 0;padding:10px 13px;font-size:12px;color:#1b4f48;line-height:1.7}
+.breakeven b{font-weight:800;color:var(--teal)}
+.breakeven.warn{background:#fdf1ee;border-left-color:var(--coral);color:#7d3a2a}
+.breakeven.warn b{color:var(--coral)}
+.formula{margin-top:15px;padding-top:14px;border-top:1px solid var(--line);font-size:11.5px;color:var(--ink-2);line-height:1.9}
+.formula code{background:#f2f5f9;border-radius:4px;padding:2px 7px;font-family:"SFMono-Regular",Consolas,monospace;font-size:11px;color:var(--navy);font-weight:600}
+.formula .fl{display:block;margin-bottom:4px}
+
+/* ---------- caveat ---------- */
+.caveat{margin-top:18px;background:#fdf7ea;border:1px solid #f0dcae;border-radius:11px;padding:14px 17px;font-size:11.5px;color:#6d5a2c;line-height:1.75}
+.caveat b{color:var(--amber-d);font-weight:800;display:block;margin-bottom:5px;font-size:12px;letter-spacing:.05em}
+.caveat ul{margin:6px 0 0;padding-left:17px}
+.caveat li{margin-bottom:3px}
+footer{margin-top:26px;font-size:10.5px;color:var(--ink-3);line-height:1.8;border-top:1px solid var(--line);padding-top:14px}
+@media(max-width:640px){h1{font-size:25px}header::before{display:none}header::after{right:-140px;top:-160px;opacity:.35}.rail-val{font-size:32px}.kpi .n{font-size:22px}}
+@media print{.panel{position:static}header::after,header::before{display:none}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
 </style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <p class="eyebrow">ASEAN GROUP 5 ・ SKILL PASS ・ GAP-CLOSING MODEL</p>
+    <h1>人材不足を埋めるには、スキルパスをどこまで広げればよいか
+      <small>6経済の公式統計による人材不足の実数から、必要な普及規模と必要予算を逆算する ／ From published talent-shortage data to the coverage and budget required</small>
+    </h1>
+    <div class="legend">
+      <b><i class="dot real"></i>実データ（公式統計・出典明記）</b>
+      <b><i class="dot assume"></i>仮定値（スライダーで調整）</b>
+      <b><i class="dot check"></i>要検証（発表前に一次資料で確認）</b>
+    </div>
+  </div>
+</header>
 
 <div class="wrap">
-  <p class="eyebrow">Vision 2040 · Impact & budget model</p>
-  <h1 class="h1">Asia Skills Passport — from participation to economic value</h1>
-  <p class="sub">Passport effectiveness → women into work → annual economic value (wages) → vs the cost of building it.
-  <b style="color:var(--teal-d)">Teal = real 2024 data.</b> <b style="color:var(--gain-d)">Amber = your assumptions.</b> Everything recomputes live.</p>
+<div class="grid">
 
-  <!-- ASSUMPTIONS + SELECTED COUNTRY -->
-  <div class="grid">
-    <div class="card first">
-      <div class="card-h">1 · Passport assumptions <span class="tag tag-assume">adjustable</span></div>
-      <div class="slider">
-        <div class="slider-top"><span class="slider-label">Skills-barrier share</span><span class="slider-val" id="v-addr">25%</span></div>
-        <input type="range" id="s-addr" min="0" max="60" value="25">
-        <p class="slider-hint">Of non-working women, the share held back by skills/credentials not being recognised.</p>
-      </div>
-      <div class="slider">
-        <div class="slider-top"><span class="slider-label">Passport coverage</span><span class="slider-val" id="v-cov">80%</span></div>
-        <input type="range" id="s-cov" min="0" max="100" value="80">
-        <p class="slider-hint">Share of women holding the Asia Skills Passport by 2040 — your headline lever.</p>
-      </div>
-      <div class="slider">
-        <div class="slider-top"><span class="slider-label">Activation rate</span><span class="slider-val" id="v-act">60%</span></div>
-        <input type="range" id="s-act" min="0" max="100" value="60">
-        <p class="slider-hint">Of passport-holders facing the barrier, the share who actually (re-)enter work.</p>
-      </div>
-    </div>
+  <!-- ============ CONTROLS ============ -->
+  <div class="panel">
+    <div class="card">
+      <h2>前提を動かす<span>ASSUMPTIONS · ADJUSTABLE</span></h2>
 
-    <div class="card first">
-      <div class="card-h"><span id="sel-name">Philippines</span> in 2040 <span class="tag tag-real" id="sel-src">WB/ILO 2024</span></div>
-      <div class="chips" id="chips"></div>
-      <div class="big">
-        <span class="big-num" id="sel-new">55.9%</span>
-        <span class="big-from" id="sel-from">from 49.9%</span>
-        <span class="big-delta" id="sel-delta">+6.0 pts</span>
+      <div class="ctl-group">
+        <div class="gl">① 技能はあるのに、就けない</div>
+        <div class="ctl">
+          <label>技能障壁の該当率 <span class="v" id="v-s">25%</span></label>
+          <input type="range" id="s" min="5" max="60" value="25" step="1">
+          <div class="hint">スキルパス取得者のうち、技能や経験があっても資格制度の違い・証明手段の不足で就業につながっていない人の割合。</div>
+        </div>
       </div>
-      <div class="bar-track">
-        <div class="bar-base" id="bar-base"></div>
-        <div class="bar-gain" id="bar-gain"></div>
-        <div class="bar-male" id="bar-male"><span id="bar-male-lbl"></span></div>
-      </div>
-      <div class="bar-legend">
-        <div class="leg"><span class="sw" style="background:var(--base)"></span>Today (real)</div>
-        <div class="leg"><span class="sw" style="background:var(--gain)"></span>Passport lift</div>
-        <div class="leg"><span class="sw" style="background:var(--ink);width:3px"></span>Male LFP</div>
-      </div>
-      <div class="mini">
-        <div class="box"><div class="k">+ Women working</div><div class="v" id="sel-workers">—</div></div>
-        <div class="box"><div class="k">Annual value added</div><div class="v val" id="sel-value">—</div></div>
-      </div>
-      <div class="editrow">
-        ≈ <input type="number" id="pop-in" value="38"> M women 15+ ·
-        GDP/cap ≈ $<input type="number" id="gdp-in" value="4100"> <span class="tag tag-real">WB 2024</span>
-      </div>
-    </div>
-  </div>
 
-  <!-- WAGE + ALL COUNTRIES -->
-  <div class="card">
-    <div class="card-h">2 · Wage dimension <span class="tag tag-assume">adjustable</span></div>
-    <div class="grid" style="gap:20px">
-      <div>
-        <div class="slider">
-          <div class="slider-top"><span class="slider-label">Gender wage gap today</span><span class="slider-val" id="v-gap">25%</span></div>
-          <input type="range" id="s-gap" min="0" max="45" value="25">
-          <p class="slider-hint">Women earn this much less than men. SE Asia ≈ 30–40%; Vietnam formal sector 13.7%.</p>
+      <div class="ctl-group">
+        <div class="gl">② 実証ファネル（デッキ p₁·p₂·p₃）</div>
+        <div class="ctl">
+          <label>Pass完了率 p₁ <span class="v" id="v-p1">80%</span></label>
+          <input type="range" id="p1" min="40" max="100" value="80" step="1">
         </div>
-        <div class="slider">
-          <div class="slider-top"><span class="slider-label">Share of gap the passport closes</span><span class="slider-val" id="v-close">10%</span></div>
-          <input type="range" id="s-close" min="0" max="50" value="10">
-          <p class="slider-hint">Recognised skills let women move from informal/vulnerable to formal work, narrowing the gap.</p>
+        <div class="ctl">
+          <label>適合就業率 p₂ <span class="v" id="v-p2">65%</span></label>
+          <input type="range" id="p2" min="20" max="100" value="65" step="1">
+        </div>
+        <div class="ctl">
+          <label>12か月定着率 p₃ <span class="v" id="v-p3">80%</span></label>
+          <input type="range" id="p3" min="40" max="100" value="80" step="1">
+        </div>
+        <div class="funnel-out" id="funnel">発行1,000人 → 定着 104人（10.4%）</div>
+      </div>
+
+      <div class="ctl-group">
+        <div class="gl">③ 予算（TCO）</div>
+        <div class="ctl">
+          <label>基盤コスト F <span class="v" id="v-F">6.75億円</span></label>
+          <input type="range" id="F" min="0" max="30" value="6.75" step="0.25">
+          <div class="hint">制度設計＋共通基盤。人数によらない固定費。</div>
+        </div>
+        <div class="ctl">
+          <label>1人あたり単価 v₀ <span class="v" id="v-v0">137.5万円</span></label>
+          <input type="range" id="v0" min="20" max="300" value="137.5" step="2.5">
+          <div class="hint">実証規模1,000人時点の研修＋支援の単価。</div>
+        </div>
+        <div class="ctl">
+          <label>規模の経済 <span class="v" id="v-L">20%</span></label>
+          <input type="range" id="L" min="0" max="35" value="20" step="1">
+          <div class="hint">累計発行数が倍になるごとに単価が下がる率（学習曲線）。デジタル基盤の効果はここに現れる。</div>
+        </div>
+        <div class="ctl">
+          <label>展開期間 <span class="v" id="v-Y">13年</span></label>
+          <input type="range" id="Y" min="5" max="20" value="13" step="1">
+          <div class="hint">2028年〜2040年を想定。</div>
+        </div>
+        <div class="ctl">
+          <label>現行の受入コスト <span class="v" id="v-B">80万円</span></label>
+          <input type="range" id="B" min="20" max="250" value="80" step="5">
+          <div class="hint">比較用。海外人材1人を受け入れるのに現在かかる費用の目安（仮置き・要差し替え）。</div>
         </div>
       </div>
-      <div>
-        <div class="mini" style="margin-top:2px">
-          <div class="box"><div class="k">Quantity effect (new income)</div><div class="v val" id="w-qty">—</div></div>
-        </div>
-        <div class="mini">
-          <div class="box"><div class="k">Wage-gap effect (higher pay)</div><div class="v val" id="w-gap">—</div></div>
-        </div>
-        <p class="slider-hint" style="margin-top:10px">Regional annual value, split into women entering work vs. women already working who now earn more.</p>
+
+      <div class="ctl-group">
+        <button class="reset" id="reset">前提を初期値に戻す</button>
       </div>
     </div>
   </div>
 
-  <div class="card">
-    <div class="card-h">All six economies, same assumptions</div>
-    <table>
-      <thead><tr><th>Economy</th><th>FLFP →2040</th><th>Gain</th><th>+Workers</th><th>Value/yr</th></tr></thead>
-      <tbody id="tbody"></tbody>
-    </table>
-  </div>
+  <!-- ============ MAIN ============ -->
+  <div>
 
-  <!-- REGION -->
-  <div class="region">
-    <div><p class="eyebrow">Regional headline (pop-weighted)</p>
-      <div style="font-family:'Space Grotesk';font-weight:600;font-size:14px">6 economies · Japan + Taiwan + 4 ASEAN</div></div>
-    <div class="rstat"><div class="v" id="r-base">—</div><div class="k">FLFP today</div></div>
-    <div class="rstat"><div class="v g" id="r-new">—</div><div class="k">FLFP 2040</div></div>
-    <div class="rstat"><div class="v g" id="r-workers">—</div><div class="k">women working</div></div>
-    <div class="rstat"><div class="v b" id="r-value">—</div><div class="k">value / year</div></div>
-  </div>
-
-  <!-- BUDGET / LEVERAGE -->
-  <div class="card">
-    <div class="card-h">3 · Budget & leverage <span class="tag tag-real">cost from your action plan</span></div>
-    <div class="lever">
-      <div class="prize">
-        <div class="v" id="lev-prize">—</div>
-        <div class="k">annual economic value unlocked (size of the prize)</div>
+    <!-- signature: one rail, six bars -->
+    <div class="rail">
+      <div class="rail-top">
+        <div class="lbl">スキルパス普及率<span>SHARE OF THE LABOUR FORCE HOLDING A SKILL PASS</span></div>
+        <div class="rail-val num" id="cval">1.0<em>%</em></div>
       </div>
-      <div class="arrow">vs</div>
-      <div class="cost">
-        <div class="v">$<input type="number" id="inv-in" value="45" style="width:56px;padding:5px 7px;border:1px solid var(--line);border-radius:6px;font-family:'Space Grotesk';font-weight:700;font-size:20px;text-align:right;color:var(--ink)">M</div>
-        <div class="k" style="font-size:12px;color:var(--mut);margin-top:4px">total build cost through 2040</div>
+      <input type="range" id="c" min="0" max="25" value="1.0" step="0.1">
+      <div class="rail-scale"><span>0%</span><span>5%</span><span>10%</span><span>15%</span><span>20%</span><span>25%</span></div>
+      <div class="rail-note" id="railnote"></div>
+    </div>
+
+    <div class="rows" id="rows"></div>
+
+    <div class="totals">
+      <div class="kpi a">
+        <div class="k">充足人数<span>GAP FILLED</span></div>
+        <div class="n num" id="k-filled">–</div>
+        <div class="s" id="k-filled-s"></div>
+      </div>
+      <div class="kpi b">
+        <div class="k">発行数<span>PASSES ISSUED</span></div>
+        <div class="n num" id="k-issued">–</div>
+        <div class="s" id="k-issued-s"></div>
+      </div>
+      <div class="kpi c">
+        <div class="k">予算 TCO<span>TOTAL COST OF OWNERSHIP</span></div>
+        <div class="n num" id="k-tco">–</div>
+        <div class="s" id="k-tco-s"></div>
+      </div>
+      <div class="kpi d" id="kpi-cpo">
+        <div class="k">成果単価 CPO<span>COST PER 12-MONTH RETENTION</span></div>
+        <div class="n num" id="k-cpo">–</div>
+        <div class="s" id="k-cpo-s"></div>
       </div>
     </div>
-    <div class="pctbar"><div class="fill" id="lev-fill"></div></div>
-    <p class="slider-hint" style="margin-top:8px">Building the enabling infrastructure costs <b id="lev-pct" style="color:var(--teal-d)">—</b> of a single year's value — i.e. a high-leverage enabler, not a spending programme. (Default $45M ≈ Formal $6.5M setup + Informal ≈$2.5M/yr through 2040.)</p>
-  </div>
 
-  <p class="foot"><b>Method.</b> Supply-side scenario, McKinsey <i>Power of Parity</i> logic.
-  New workers: <b>Δ = (1 − FLFP) × barrier × coverage × activation</b>. Value added ≈ workers × GDP per capita
-  (conservative: per-capita &lt; per-worker). Wage-gap effect = existing female workers × GDP/cap × wage gap × share closed.
-  <b>Real 2024:</b> female/male LFP (WB/ILO; Taiwan DGBAS), GDP per capita nominal (WB/IMF). Population & wage-gap figures are editable estimates.
-  <b>This is the size of the prize, not value attributable to the passport alone</b> — it is one enabler among several. Scenario, not a forecast.</p>
+    <div class="budget">
+      <h3>予算の内訳</h3>
+      <div class="sub">BUDGET COMPOSITION · FIXED vs VARIABLE</div>
+      <div class="stack"><div class="f" id="st-f"></div><div class="v" id="st-v"></div></div>
+      <div class="blegend">
+        <span>■ 基盤コスト（固定）<b id="b-f">–</b></span>
+        <span>■ 展開コスト（人数比例）<b id="b-v">–</b></span>
+        <span>平均単価<b id="b-avg">–</b>／人</span>
+        <span>年あたり<b id="b-yr">–</b></span>
+      </div>
+      <div class="breakeven" id="breakeven"></div>
+      <div class="formula">
+        <span class="fl"><code>発行数 N ＝ 労働力人口 × 普及率 c</code></span>
+        <span class="fl"><code>充足人数 R ＝ N × 技能障壁率 s × p₁ × p₂ × p₃</code></span>
+        <span class="fl"><code>必要普及率 c* ＝ 人材ギャップ ÷（労働力人口 × s × p₁p₂p₃）</code></span>
+        <span class="fl"><code>TCO ＝ F ＋ ∫v(n)dn　（v(n)＝v₀·(n/1,000)^k, k＝log₂(1−L)）</code></span>
+        <span class="fl"><code>CPO ＝ TCO ÷ R</code></span>
+      </div>
+    </div>
+
+    <div class="caveat">
+      <b>この試算の読み方</b>
+      本モデルは予測ではなく、就業障壁が改善した場合のシナリオ推計である。
+      <ul>
+        <li>人材ギャップは各国の公式統計の実数。定義・対象年・職種の範囲が国ごとに異なるため、合計値は「規模感の比較」として読む。</li>
+        <li>普及率の分母は各経済の労働力人口。実際の供給は国境を越えるため、域内（6経済 約3.4億人）を母集団と見れば必要普及率はさらに下がる。</li>
+        <li>ギャップの数値は各カードから直接編集できる。出典を差し替えた場合はその場で上書きすること。</li>
+        <li>スキルパス単独の効果ではなく、制度連携・研修・受入環境の整備を伴った場合の上限側の推計である。</li>
+      </ul>
+    </div>
+
+    <footer id="sources"></footer>
+  </div>
+</div>
 </div>
 
 <script>
-const E=[
- {code:"JP",name:"Japan",flfp:55.3,male:71.6,pop:56.5,gdp:32500,src:"WB/ILO 2024"},
- {code:"TW",name:"Taiwan",flfp:51.8,male:67,pop:10.3,gdp:34100,src:"DGBAS 2023"},
- {code:"SG",name:"Singapore",flfp:62.4,male:76.8,pop:2.5,gdp:90600,src:"WB/ILO 2024"},
- {code:"VN",name:"Vietnam",flfp:69.1,male:78.6,pop:39.0,gdp:4700,src:"WB/ILO 2024"},
- {code:"PH",name:"Philippines",flfp:49.9,male:72.3,pop:38.0,gdp:4100,src:"WB/ILO 2024"},
- {code:"ID",name:"Indonesia",flfp:52.6,male:81.4,pop:100.0,gdp:4925,src:"WB/ILO 2024"},
+"use strict";
+
+/* ============================================================
+   DATA — talent gaps from official statistics
+   verified: true  = primary source confirmed
+   verified: false = 要検証（発表前に一次資料で確認）
+   ============================================================ */
+const ECON = [
+  { id:"jp", name:"日本", en:"Japan", sector:"介護人材", sectorEn:"Long-term care",
+    gap:570000, gapV:true,
+    gapNote:"2040年度の必要数 272万人 − 2022年度の現員 215万人",
+    gapSrc:"厚生労働省「第9期介護保険事業計画に基づく介護職員の必要数について」2024年7月12日",
+    lf:70040000, lfV:true,
+    lfNote:"2025年平均：就業者6,828万人＋完全失業者176万人",
+    lfSrc:"総務省統計局 労働力調査 2025年平均",
+    extra:"参考：在留外国人の介護人材は現在 約8.8万人（特定技能5.30万人・技能実習2.01万人・在留資格「介護」1.22万人・EPA0.28万人／厚労省）" },
+
+  { id:"tw", name:"台湾", en:"Taiwan", sector:"工業・サービス業の職位空缺",  sectorEn:"Unfilled vacancies, all industries",
+    gap:263000, gapV:true,
+    gapNote:"職缺数26.3万件・職缺率3.0%・平均募集期間3.2か月",
+    gapSrc:"労働部「職位空缺概況調査」2025年12月末（114年12月底）",
+    lf:12050000, lfV:false,
+    lfNote:"2025年 労働力人口（概数）",
+    lfSrc:"行政院主計総処 人力資源調査",
+    extra:"" },
+
+  { id:"sg", name:"シンガポール", en:"Singapore", sector:"PMET（専門職）長期未充足",  sectorEn:"PMET vacancies unfilled 6+ months",
+    gap:7000, gapV:true,
+    gapNote:"求人77,700件 × PMET比56.3% × 6か月以上未充足16.0% ＝ 約7,000件",
+    gapSrc:"Singapore MOM『Job Vacancies 2025』／Labour Market Report 4Q 2025",
+    lf:3540000, lfV:false,
+    lfNote:"2025年 労働力人口（外国人材含む・概数）",
+    lfSrc:"Singapore MOM Labour Force Survey",
+    extra:"雇用主が挙げた理由は「専門技能の不足」と「実務経験の不足」。求人の79.6%で学歴は主な判断基準ではない＝技能の可視化が効く領域。" },
+
+  { id:"vn", name:"ベトナム", en:"Viet Nam", sector:"IT人材",  sectorEn:"IT professionals",
+    gap:200000, gapV:true,
+    gapNote:"2025年の需要 約70万人 − 供給 約50万人（年15〜20万人不足）",
+    gapSrc:"TopDev『Vietnam IT Market Report』",
+    lf:53600000, lfV:true,
+    lfNote:"2025年 労働力人口 約5,360万人",
+    lfSrc:"ベトナム国家統計局（NSO）",
+    extra:"労働力人口のうち公式な資格・証明を持つ人は約29%（NSO）。看護師は WHO 基準26万人に対し15万人で約11万人不足。" },
+
+  { id:"ph", name:"フィリピン", en:"Philippines", sector:"医療従事者",  sectorEn:"Health workforce",
+    gap:290000, gapV:true,
+    gapNote:"うち看護師19.6万人・医師9.4万人。人口1万人あたり21.2人（WHO基準44.5人）",
+    gapSrc:"EDCOM II 最終報告書『Turning Point: A Decade of Necessary Reform 2026–2035』2026年",
+    lf:52000000, lfV:false,
+    lfNote:"2025年 労働力人口（概数）",
+    lfSrc:"Philippine Statistics Authority 労働力調査",
+    extra:"" },
+
+  { id:"id", name:"インドネシア", en:"Indonesia", sector:"デジタル人材",  sectorEn:"Digital talent",
+    gap:3000000, gapV:true,
+    gapNote:"2030年の需要1,200万人 − 国内供給見込み900万人",
+    gapSrc:"Kominfo『Indonesia Digital Society Index（IMDI）2024』",
+    lf:153000000, lfV:false,
+    lfNote:"2025年 労働力人口（概数）",
+    lfSrc:"Badan Pusat Statistik（BPS）",
+    extra:"" }
 ];
-let sel="PH";
-const store={}; E.forEach(e=>store[e.code]={pop:e.pop,gdp:e.gdp});
-const $=id=>document.getElementById(id);
-const f=(n,d=1)=>n.toLocaleString("en-US",{minimumFractionDigits:d,maximumFractionDigits:d});
-function money(bil){ // bil = value in $ billions
-  if(bil>=1000) return "$"+f(bil/1000,2)+"T";
-  if(bil>=1) return "$"+f(bil,1)+"B";
-  return "$"+f(bil*1000,0)+"M";
+
+const DEFAULTS = { s:25, p1:80, p2:65, p3:80, F:6.75, v0:137.5, L:20, Y:13, B:80, c:1.0 };
+const N0 = 1000; // 単価の基準規模（デッキの Scale Test）
+
+/* ---------- formatting ---------- */
+const CHO=1e12, OKU=1e8, MAN=1e4;
+function yen(x){
+  if(x>=CHO) return (x/CHO).toFixed(2)+"<em>兆円</em>";
+  if(x>=OKU) return Math.round(x/OKU).toLocaleString()+"<em>億円</em>";
+  if(x>=MAN) return (x/MAN).toFixed(1)+"<em>万円</em>";
+  return Math.round(x).toLocaleString()+"<em>円</em>";
 }
-function calc(e,a,c,act,gap,close){
-  const pop=store[e.code].pop, gdp=store[e.code].gdp;
-  const deltaFrac=((100-e.flfp)/100)*(a/100)*(c/100)*(act/100);
-  const deltaPP=deltaFrac*100, newFlfp=e.flfp+deltaPP;
-  const addW=deltaFrac*pop;                         // million people
-  const existW=(e.flfp/100)*pop;                    // million people
-  const qtyVal=addW*gdp/1000;                       // $ billion
-  const gapVal=existW*gdp*(gap/100)*(close/100)/1000; // $ billion
-  return {deltaPP,newFlfp,addW,existW,qtyVal,gapVal,total:qtyVal+gapVal};
+function yenT(x){ return yen(x).replace(/<\/?em>/g,""); }
+function ppl(x){
+  if(x>=1e8) return (x/1e8).toFixed(2)+"<em>億人</em>";
+  if(x>=1e4) return Math.round(x/1e4).toLocaleString()+"<em>万人</em>";
+  return Math.round(x).toLocaleString()+"<em>人</em>";
 }
-function build(){
-  $("chips").innerHTML="";
-  E.forEach(e=>{const b=document.createElement("button");
-    b.className="chip"+(e.code===sel?" on":"");b.textContent=e.code;
-    b.onclick=()=>{sel=e.code;syncEdit();render();};$("chips").appendChild(b);});
+function pplT(x){ return ppl(x).replace(/<\/?em>/g,""); }
+function pct(x,d){ return (x*100).toFixed(d===undefined?1:d)+"%"; }
+
+/* ---------- state ---------- */
+const S = Object.assign({}, DEFAULTS);
+const gaps = {}; ECON.forEach(e=>gaps[e.id]=e.gap);
+
+/* variable cost: integral of Wright's law learning curve */
+function variableCost(N, v0yen, L){
+  if(N<=0) return 0;
+  if(L<=0) return v0yen*N;
+  const k = Math.log(1-L)/Math.LN2;           // negative
+  return v0yen*Math.pow(N0,-k)*Math.pow(N,k+1)/(k+1);
 }
-function syncEdit(){ $("pop-in").value=store[sel].pop; $("gdp-in").value=store[sel].gdp; }
+
+/* ---------- build rows ---------- */
+const rowsEl = document.getElementById("rows");
+ECON.forEach(e=>{
+  const d=document.createElement("div");
+  d.className="row"; d.id="row-"+e.id;
+  d.innerHTML=`
+    <div class="row-head">
+      <span class="nm">${e.name}</span>
+      <span class="sec">${e.sector}<i style="color:#b3bccb"> / ${e.sectorEn}</i></span>
+      <span class="gap">人材ギャップ
+        <input class="gapinput num" id="gi-${e.id}" value="${e.gap.toLocaleString()}" inputmode="numeric" aria-label="${e.name}の人材ギャップ（人）">
+        人</span>
+    </div>
+    <div class="bar"><div class="fill" id="fill-${e.id}"></div><div class="pct num" id="pc-${e.id}"></div></div>
+    <div class="row-foot">
+      <span><i>この普及率での充足</i> <b id="fl-${e.id}"></b></span>
+      <span><i>ギャップ全量に必要な普及率</i> <b class="need" id="nd-${e.id}"></b></span>
+      <span><i>そのときの発行数</i> <b id="nn-${e.id}"></b></span>
+      <span><i>労働力人口</i> <b id="lf-${e.id}"></b></span>
+    </div>
+    <div class="src">出典：${e.gapSrc}（${e.gapNote}）${e.lfV?"":' ／ 労働力人口は<span class="flagchk">要検証</span>'}</div>`;
+  rowsEl.appendChild(d);
+
+  const gi=document.getElementById("gi-"+e.id);
+  gi.addEventListener("input",()=>{
+    const n=parseInt(gi.value.replace(/[^0-9]/g,""),10);
+    gaps[e.id]=isNaN(n)?0:n; render();
+  });
+  gi.addEventListener("blur",()=>{ gi.value=gaps[e.id].toLocaleString(); });
+});
+
+/* ---------- sources footer ---------- */
+document.getElementById("sources").innerHTML =
+  "<b>出典一覧</b><br>" +
+  ECON.map(e=>`${e.name}｜${e.gapSrc}　／　労働力人口：${e.lfSrc}${e.lfV?"":"（要検証）"}${e.extra?"<br><span style='color:#a3abbb'>　　"+e.extra+"</span>":""}`).join("<br>") +
+  "<br>コストの枠組み（TCO＝F＋vN、R＝N×p₁×p₂×p₃、CPO＝TCO÷R）は本提案スライド35「予算仮説」と同一。単価の逓減はWright学習曲線で近似。<br>作成：ASEAN Group 5 ／ 第5回 日本ASEAN台湾次世代交流フォーラム";
+
+/* ---------- controls wiring ---------- */
+const ctrls=["s","p1","p2","p3","F","v0","L","Y","B","c"];
+ctrls.forEach(id=>{
+  const el=document.getElementById(id);
+  el.value=DEFAULTS[id];
+  el.addEventListener("input",()=>{ S[id]=parseFloat(el.value); render(); });
+});
+document.getElementById("reset").addEventListener("click",()=>{
+  ctrls.forEach(id=>{ S[id]=DEFAULTS[id]; document.getElementById(id).value=DEFAULTS[id]; });
+  ECON.forEach(e=>{ gaps[e.id]=e.gap; document.getElementById("gi-"+e.id).value=e.gap.toLocaleString(); });
+  render();
+});
+
+/* ---------- render ---------- */
 function render(){
-  const a=+$("s-addr").value,c=+$("s-cov").value,act=+$("s-act").value,gap=+$("s-gap").value,close=+$("s-close").value;
-  $("v-addr").textContent=a+"%";$("v-cov").textContent=c+"%";$("v-act").textContent=act+"%";
-  $("v-gap").textContent=gap+"%";$("v-close").textContent=close+"%";
-  const e=E.find(x=>x.code===sel), r=calc(e,a,c,act,gap,close);
-  $("sel-name").textContent=e.name;$("sel-src").textContent=e.src;
-  $("sel-new").textContent=f(r.newFlfp)+"%";$("sel-from").textContent="from "+f(e.flfp)+"%";
-  $("sel-delta").textContent="+"+f(r.deltaPP)+" pts";
-  $("bar-base").style.width=e.flfp+"%";$("bar-gain").style.left=e.flfp+"%";$("bar-gain").style.width=r.deltaPP+"%";
-  $("bar-male").style.left=e.male+"%";$("bar-male-lbl").textContent="♂ "+e.male+"%";
-  $("sel-workers").textContent="+"+f(r.addW,2)+"M";
-  $("sel-value").textContent=money(r.total)+"/yr";
-  // table + region + wage split
-  let tp=0,bw=0,nw=0,aw=0,qty=0,gv=0,tot=0;
-  $("tbody").innerHTML="";
-  E.forEach(x=>{const rr=calc(x,a,c,act,gap,close);
-    tp+=store[x.code].pop;bw+=x.flfp*store[x.code].pop;nw+=rr.newFlfp*store[x.code].pop;
-    aw+=rr.addW;qty+=rr.qtyVal;gv+=rr.gapVal;tot+=rr.total;
-    const tr=document.createElement("tr");if(x.code===sel)tr.className="selrow";
-    tr.innerHTML=`<td>${x.name}</td><td class="num">${f(rr.newFlfp)}%</td>
-      <td class="num gain-t">+${f(rr.deltaPP)}</td><td class="num">${f(rr.addW,2)}M</td>
-      <td class="num val-t">${money(rr.total)}</td>`;
-    $("tbody").appendChild(tr);});
-  $("r-base").textContent=f(bw/tp)+"%";$("r-new").textContent=f(nw/tp)+"%";
-  $("r-workers").textContent="+"+f(aw,1)+"M";$("r-value").textContent=money(tot)+"/yr";
-  $("w-qty").textContent=money(qty)+"/yr";$("w-gap").textContent=money(gv)+"/yr";
-  // leverage
-  const inv=(+$("inv-in").value)/1000; // $B
-  $("lev-prize").textContent=money(tot)+" / year";
-  const pct=tot>0?(inv/tot*100):0;
-  $("lev-pct").textContent=pct<0.01?"<0.01%":f(pct,pct<1?2:1)+"%";
-  $("lev-fill").style.width=Math.min(100,Math.max(1,pct))+"%";
+  const s=S.s/100, p=(S.p1/100)*(S.p2/100)*(S.p3/100), c=S.c/100;
+  const conv=s*p;                       // 発行1人あたりの充足人数
+  const v0yen=S.v0*1e4, Fyen=S.F*1e8;
+
+  document.getElementById("v-s").textContent=S.s+"%";
+  document.getElementById("v-p1").textContent=S.p1+"%";
+  document.getElementById("v-p2").textContent=S.p2+"%";
+  document.getElementById("v-p3").textContent=S.p3+"%";
+  document.getElementById("v-F").textContent=S.F.toFixed(2)+"億円";
+  document.getElementById("v-v0").textContent=S.v0.toFixed(1)+"万円";
+  document.getElementById("v-L").textContent=S.L+"%";
+  document.getElementById("v-Y").textContent=S.Y+"年";
+  document.getElementById("v-B").textContent=S.B+"万円";
+  document.getElementById("cval").innerHTML=S.c.toFixed(1)+"<em>%</em>";
+  document.getElementById("funnel").textContent =
+    `発行1,000人 → 定着 ${Math.round(1000*conv).toLocaleString()}人（${pct(conv)}）`;
+
+  let totIssued=0, totFilled=0, totGap=0, totLF=0, metCount=0;
+
+  ECON.forEach(e=>{
+    const G=gaps[e.id], N=e.lf*c, filled=N*conv;
+    const ratio = G>0 ? filled/G : 0;
+    const cNeed = G>0 ? G/(e.lf*conv) : 0;
+    const nNeed = conv>0 ? G/conv : 0;
+
+    totIssued+=N; totFilled+=Math.min(filled,G); totGap+=G; totLF+=e.lf;
+    if(ratio>=1) metCount++;
+
+    const w=Math.min(ratio,1)*100;
+    document.getElementById("fill-"+e.id).style.width=w+"%";
+    const pcEl=document.getElementById("pc-"+e.id);
+    pcEl.textContent=pct(ratio,0);
+    pcEl.className = "pct num" + (w>26 ? " inside" : "");
+    if(w>26){ pcEl.style.right="auto"; pcEl.style.left="calc("+w+"% - 46px)"; }
+    else { pcEl.style.left="auto"; pcEl.style.right="8px"; }
+
+    document.getElementById("row-"+e.id).classList.toggle("met", ratio>=1);
+    document.getElementById("fl-"+e.id).innerHTML=pplT(Math.min(filled,G))+" / "+pplT(G)+(filled>G*1.02?' <span style="color:#0f6f63;font-weight:700">＋余力 '+pplT(filled-G)+'（域内へ供給可）</span>':"");
+    document.getElementById("nd-"+e.id).textContent = cNeed>0.99 ? "＞99%（到達不能）" : pct(cNeed,2);
+    document.getElementById("nn-"+e.id).innerHTML=pplT(nNeed);
+    document.getElementById("lf-"+e.id).innerHTML=pplT(e.lf)+(e.lfV?"":" ⚑");
+  });
+
+  /* budget on the passes actually issued at the current coverage */
+  const VC=variableCost(totIssued, v0yen, S.L/100);
+  const TCO=Fyen+VC;
+  const R=totIssued*conv;
+  const CPO=R>0?TCO/R:0;
+  const avg=totIssued>0?VC/totIssued:0;
+  const bench=S.B*1e4;
+
+  document.getElementById("k-filled").innerHTML=ppl(totFilled);
+  document.getElementById("k-filled-s").textContent=
+    `6経済のギャップ ${pplT(totGap)} の ${pct(totGap>0?totFilled/totGap:0,0)}／${metCount}経済で全量充足`;
+
+  document.getElementById("k-issued").innerHTML=ppl(totIssued);
+  document.getElementById("k-issued-s").textContent=
+    `域内労働力 ${pplT(totLF)} の${S.c.toFixed(1)}%／年間 ${pplT(totIssued/S.Y)}ペース`;
+
+  document.getElementById("k-tco").innerHTML=yen(TCO);
+  document.getElementById("k-tco-s").textContent=
+    `${S.Y}年間の総額／年あたり ${yenT(TCO/S.Y)}（6経済合計）`;
+
+  const cpoBox=document.getElementById("kpi-cpo");
+  cpoBox.classList.toggle("ok", CPO>0 && CPO<=bench);
+  document.getElementById("k-cpo").innerHTML=CPO>0?yen(CPO):"–";
+  document.getElementById("k-cpo-s").textContent = CPO<=0 ? "普及率を上げると算出されます"
+    : (CPO<=bench
+        ? `現行の受入コスト ${S.B}万円/人 を ${pct(1-CPO/bench,0)} 下回る`
+        : `現行の受入コスト ${S.B}万円/人 を ${pct(CPO/bench-1,0)} 上回る`);
+
+  const fShare=TCO>0?Fyen/TCO*100:0;
+  document.getElementById("st-f").style.width=fShare+"%";
+  document.getElementById("st-v").style.width=(100-fShare)+"%";
+  document.getElementById("st-f").textContent=fShare>9?"基盤 "+Math.round(fShare)+"%":"";
+  document.getElementById("st-v").textContent=(100-fShare)>14?"展開 "+Math.round(100-fShare)+"%":"";
+  document.getElementById("b-f").innerHTML=" "+yenT(Fyen);
+  document.getElementById("b-v").innerHTML=" "+yenT(VC);
+  document.getElementById("b-avg").innerHTML=" "+yenT(avg);
+  document.getElementById("b-yr").innerHTML=" "+yenT(TCO/S.Y);
+
+  /* break-even coverage: where CPO drops below the current recruitment cost */
+  let beC=null;
+  for(let x=0.05;x<=25.001;x+=0.05){
+    const n=totLF*(x/100);
+    const cost=(Fyen+variableCost(n,v0yen,S.L/100))/(n*conv);
+    if(cost<=bench){ beC=x; break; }
+  }
+  const beEl=document.getElementById("breakeven");
+  if(beC===null){
+    beEl.className="breakeven warn";
+    beEl.innerHTML=`この前提では、普及率25%までのどの水準でも成果単価が現行コスト（${S.B}万円/人）を下回らない。単価 v₀ か規模の経済 L を見直す必要がある。`;
+  }else{
+    const below = CPO>0 && CPO<=bench;
+    beEl.className="breakeven"+(below?"":" warn");
+    beEl.innerHTML=
+      `<b>損益分岐となる普及率：${beC.toFixed(2)}%</b>　`+
+      `これを超えると、1人を12か月定着させる費用が現行の受入コスト（${S.B}万円/人）を下回る。`+
+      (below ? `現在の設定（${S.c.toFixed(1)}%）はすでにこの水準を超えている。`
+             : `現在の設定（${S.c.toFixed(1)}%）はまだ下回っており、小規模のままでは割高になる ── 共通基盤として広く使われてはじめて費用が見合う、という構造そのものを示している。`);
+  }
+
+  /* rail note: the single sentence the audience should take away */
+  const worst=ECON.reduce((a,b)=> (gaps[a.id]/(a.lf*conv)) > (gaps[b.id]/(b.lf*conv)) ? a : b);
+  const best =ECON.reduce((a,b)=> (gaps[a.id]/(a.lf*conv)) < (gaps[b.id]/(b.lf*conv)) ? a : b);
+  document.getElementById("railnote").innerHTML =
+    `労働力人口の<b>${S.c.toFixed(1)}%</b>がスキルパスを持つと、6経済の人材ギャップ ${pplT(totGap)} のうち <b>${pplT(totFilled)}</b>（${pct(totGap>0?totFilled/totGap:0,0)}）が埋まる。`+
+    `　最も少ない普及率で足りるのは<b>${best.name}</b>（${pct(gaps[best.id]/(best.lf*conv),2)}）、最も大きな普及率が要るのは<b>${worst.name}</b>（${pct(gaps[worst.id]/(worst.lf*conv),2)}）。`;
 }
-["s-addr","s-cov","s-act","s-gap","s-close"].forEach(id=>$(id).addEventListener("input",render));
-$("pop-in").addEventListener("input",ev=>{store[sel].pop=+ev.target.value||0;render();});
-$("gdp-in").addEventListener("input",ev=>{store[sel].gdp=+ev.target.value||0;render();});
-$("inv-in").addEventListener("input",render);
-build();syncEdit();render();
+
+render();
 </script>
+</body>
+</html>
