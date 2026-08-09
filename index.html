@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>スキルパス｜人材不足を埋めるには、どこまで広げればよいか</title>
+<title>スキルパス｜普及率から経済価値を試算する</title>
 <style>
 :root{
   --navy:#132741;
@@ -115,6 +115,13 @@ input[type=range]::-moz-range-track{height:4px;border-radius:3px;background:#e6e
 input[type=range]::-moz-range-thumb{width:12px;height:12px;border-radius:50%;background:#fff;border:3px solid var(--amber);cursor:pointer}
 input[type=range]:focus-visible::-webkit-slider-thumb{outline:2px solid var(--navy);outline-offset:2px}
 .funnel-out{background:#f2f6f5;border-left:3px solid var(--teal);padding:9px 11px;font-size:11.5px;color:var(--teal);font-weight:700;border-radius:0 5px 5px 0}
+.value-assumption{background:#fff8e8}
+.value-assumption .gl{color:var(--teal)!important}
+.advanced{border-top:1px solid var(--line)}
+.advanced summary{padding:12px 18px;cursor:pointer;font-size:12px;font-weight:800;color:var(--ink-2);list-style:none}
+.advanced summary::-webkit-details-marker{display:none}
+.advanced summary::after{content:"＋";float:right;color:var(--teal);font-size:16px;line-height:1}
+.advanced[open] summary::after{content:"−"}
 button.reset{width:100%;padding:9px;font:inherit;font-size:12px;font-weight:700;color:var(--ink-2);background:#fff;border:1px solid var(--line);border-radius:7px;cursor:pointer}
 button.reset:hover{background:#f7f9fc;color:var(--navy)}
 
@@ -133,6 +140,16 @@ button.reset:hover{background:#f7f9fc;color:var(--navy)}
 .rail-scale{display:flex;justify-content:space-between;font-size:10px;color:#7f93ad;margin-top:2px}
 .rail-note{margin-top:12px;font-size:11.5px;color:#a9bdd6;line-height:1.6;border-top:1px solid rgba(255,255,255,.12);padding-top:11px}
 .rail-note b{color:var(--amber);font-weight:700}
+
+/* ---------- one-glance impact flow ---------- */
+.impact-flow{display:grid;grid-template-columns:1fr 38px 1fr 38px 1.15fr;align-items:center;gap:8px;margin-top:14px}
+.impact-step{background:#fff;border:1px solid var(--line);border-radius:11px;padding:13px 14px;text-align:center;min-height:92px}
+.impact-step strong{display:block;font-size:25px;line-height:1.15;margin:5px 0 2px;color:var(--navy)}
+.impact-step small{font-size:10px;color:var(--ink-3);font-weight:700;letter-spacing:.06em}
+.impact-step.value{border-color:#e9c575;background:#fffaf0}
+.impact-step.value strong{color:var(--amber-d)}
+.impact-arrow{text-align:center;color:var(--teal);font-size:25px;font-weight:800}
+@media(max-width:760px){.impact-flow{grid-template-columns:1fr}.impact-arrow{transform:rotate(90deg)}}
 
 /* ---------- economy rows ---------- */
 .rows{margin-top:18px;display:flex;flex-direction:column;gap:11px}
@@ -236,9 +253,9 @@ footer{margin-top:26px;font-size:10.5px;color:var(--ink-3);line-height:1.8;borde
 
 <header>
   <div class="wrap">
-    <p class="eyebrow">ASEAN GROUP 5 ・ SKILL PASS ・ GAP-CLOSING MODEL</p>
-    <h1>人材不足を埋めるには、スキルパスをどこまで広げればよいか
-      <small>6経済の公式統計による人材不足の実数から、必要な普及規模と必要予算を逆算する ／ From published talent-shortage data to the coverage and budget required</small>
+    <p class="eyebrow">ASEAN GROUP 5 ・ SKILL PASS ・ ECONOMIC VALUE MODEL</p>
+    <h1>スキルパスは、どれだけの経済価値を生むのか
+      <small>普及率から、適合就業者数と年間経済価値を試算する ／ From Skill Pass adoption to jobs and annual economic value</small>
     </h1>
     <div class="legend">
       <b><i class="dot real"></i>実データ（公式統計・出典明記）</b>
@@ -254,7 +271,19 @@ footer{margin-top:26px;font-size:10.5px;color:var(--ink-3);line-height:1.8;borde
   <!-- ============ CONTROLS ============ -->
   <div class="panel">
     <div class="card">
-      <h2>前提を動かす<span>ASSUMPTIONS · ADJUSTABLE</span></h2>
+      <h2>経済価値を試算する<span>ONE MAIN INPUT + ADJUSTABLE ASSUMPTIONS</span></h2>
+
+      <div class="ctl-group value-assumption">
+        <div class="gl">1人あたりの年間経済価値</div>
+        <div class="ctl">
+          <label>所得増加＋欠員コスト削減 <span class="v" id="v-E">100万円</span></label>
+          <input type="range" id="E" min="20" max="300" value="100" step="5">
+          <div class="hint">適合就業者1人が1年間に生む価値の仮定。実証後に所得増加と企業の欠員コストから更新する。</div>
+        </div>
+      </div>
+
+      <details class="advanced">
+      <summary>詳細な計算条件を見る</summary>
 
       <div class="ctl-group">
         <div class="gl">① 技能はあるのに、就けない</div>
@@ -310,6 +339,7 @@ footer{margin-top:26px;font-size:10.5px;color:var(--ink-3);line-height:1.8;borde
           <div class="hint">比較用。海外人材1人を受け入れるのに現在かかる費用の目安（仮置き・要差し替え）。</div>
         </div>
       </div>
+      </details>
 
       <div class="ctl-group">
         <button class="reset" id="reset">前提を初期値に戻す</button>
@@ -331,28 +361,36 @@ footer{margin-top:26px;font-size:10.5px;color:var(--ink-3);line-height:1.8;borde
       <div class="rail-note" id="railnote"></div>
     </div>
 
+    <div class="impact-flow" aria-label="普及率から経済価値までの計算結果">
+      <div class="impact-step"><small>SKILL PASSES ISSUED</small><strong class="num" id="flow-issued">–</strong><span>発行数</span></div>
+      <div class="impact-arrow">→</div>
+      <div class="impact-step"><small>SUITABLE JOBS</small><strong class="num" id="flow-filled">–</strong><span>適合就業者</span></div>
+      <div class="impact-arrow">→</div>
+      <div class="impact-step value"><small>ANNUAL ECONOMIC VALUE</small><strong class="num" id="flow-value">–</strong><span>年間経済価値</span></div>
+    </div>
+
     <div class="rows" id="rows"></div>
 
     <div class="totals">
-      <div class="kpi a">
-        <div class="k">充足人数<span>GAP FILLED</span></div>
-        <div class="n num" id="k-filled">–</div>
-        <div class="s" id="k-filled-s"></div>
-      </div>
       <div class="kpi b">
         <div class="k">発行数<span>PASSES ISSUED</span></div>
         <div class="n num" id="k-issued">–</div>
         <div class="s" id="k-issued-s"></div>
       </div>
+      <div class="kpi a">
+        <div class="k">適合就業者<span>SUITABLE JOBS</span></div>
+        <div class="n num" id="k-filled">–</div>
+        <div class="s" id="k-filled-s"></div>
+      </div>
+      <div class="kpi d ok">
+        <div class="k">年間経済価値<span>ANNUAL ECONOMIC VALUE</span></div>
+        <div class="n num" id="k-value">–</div>
+        <div class="s" id="k-value-s"></div>
+      </div>
       <div class="kpi c">
         <div class="k">予算 TCO<span>TOTAL COST OF OWNERSHIP</span></div>
         <div class="n num" id="k-tco">–</div>
         <div class="s" id="k-tco-s"></div>
-      </div>
-      <div class="kpi d" id="kpi-cpo">
-        <div class="k">成果単価 CPO<span>COST PER 12-MONTH RETENTION</span></div>
-        <div class="n num" id="k-cpo">–</div>
-        <div class="s" id="k-cpo-s"></div>
       </div>
     </div>
 
@@ -373,6 +411,7 @@ footer{margin-top:26px;font-size:10.5px;color:var(--ink-3);line-height:1.8;borde
         <span class="fl"><code>必要普及率 c* ＝ 人材ギャップ ÷（労働力人口 × s × p₁p₂p₃）</code></span>
         <span class="fl"><code>TCO ＝ F ＋ ∫v(n)dn　（v(n)＝v₀·(n/1,000)^k, k＝log₂(1−L)）</code></span>
         <span class="fl"><code>CPO ＝ TCO ÷ R</code></span>
+        <span class="fl"><code>年間経済価値 V ＝ R × 1人あたり年間経済価値 E</code></span>
       </div>
     </div>
 
@@ -383,6 +422,7 @@ footer{margin-top:26px;font-size:10.5px;color:var(--ink-3);line-height:1.8;borde
         <li>人材ギャップは各国の公式統計の実数。定義・対象年・職種の範囲が国ごとに異なるため、合計値は「規模感の比較」として読む。</li>
         <li>普及率の分母は各経済の労働力人口。実際の供給は国境を越えるため、域内（6経済 約3.4億人）を母集団と見れば必要普及率はさらに下がる。</li>
         <li>ギャップの数値は各カードから直接編集できる。出典を差し替えた場合はその場で上書きすること。</li>
+        <li>1人あたり年間経済価値は仮説値。所得増加と企業の欠員コスト削減を実証で測定し、重複を避けて更新する。</li>
         <li>スキルパス単独の効果ではなく、制度連携・研修・受入環境の整備を伴った場合の上限側の推計である。</li>
       </ul>
     </div>
@@ -456,7 +496,7 @@ const ECON = [
     extra:"" }
 ];
 
-const DEFAULTS = { s:25, p1:80, p2:65, p3:80, F:6.75, v0:137.5, L:20, Y:13, B:80, c:1.0 };
+const DEFAULTS = { E:100, s:25, p1:80, p2:65, p3:80, F:6.75, v0:137.5, L:20, Y:13, B:80, c:1.0 };
 const N0 = 1000; // 単価の基準規模（デッキの Scale Test）
 
 /* ---------- formatting ---------- */
@@ -523,10 +563,10 @@ ECON.forEach(e=>{
 document.getElementById("sources").innerHTML =
   "<b>出典一覧</b><br>" +
   ECON.map(e=>`${e.name}｜${e.gapSrc}　／　労働力人口：${e.lfSrc}${e.lfV?"":"（要検証）"}${e.extra?"<br><span style='color:#a3abbb'>　　"+e.extra+"</span>":""}`).join("<br>") +
-  "<br>コストの枠組み（TCO＝F＋vN、R＝N×p₁×p₂×p₃、CPO＝TCO÷R）は本提案スライド35「予算仮説」と同一。単価の逓減はWright学習曲線で近似。<br>作成：ASEAN Group 5 ／ 第5回 日本ASEAN台湾次世代交流フォーラム";
+  "<br>コストの枠組み（TCO＝F＋vN、R＝N×p₁×p₂×p₃、CPO＝TCO÷R）は本提案スライド35「予算仮説」と同一。年間経済価値はR×1人あたり年間経済価値で試算し、単価は実証後に更新する。<br>作成：ASEAN Group 5 ／ 第5回 日本ASEAN台湾次世代交流フォーラム";
 
 /* ---------- controls wiring ---------- */
-const ctrls=["s","p1","p2","p3","F","v0","L","Y","B","c"];
+const ctrls=["E","s","p1","p2","p3","F","v0","L","Y","B","c"];
 ctrls.forEach(id=>{
   const el=document.getElementById(id);
   el.value=DEFAULTS[id];
@@ -545,6 +585,7 @@ function render(){
   const v0yen=S.v0*1e4, Fyen=S.F*1e8;
 
   document.getElementById("v-s").textContent=S.s+"%";
+  document.getElementById("v-E").textContent=S.E.toFixed(0)+"万円";
   document.getElementById("v-p1").textContent=S.p1+"%";
   document.getElementById("v-p2").textContent=S.p2+"%";
   document.getElementById("v-p3").textContent=S.p3+"%";
@@ -588,6 +629,7 @@ function render(){
   const TCO=Fyen+VC;
   const R=totIssued*conv;
   const CPO=R>0?TCO/R:0;
+  const annualValue=totFilled*S.E*1e4;
   const avg=totIssued>0?VC/totIssued:0;
   const bench=S.B*1e4;
 
@@ -599,17 +641,17 @@ function render(){
   document.getElementById("k-issued-s").textContent=
     `域内労働力 ${pplT(totLF)} の${S.c.toFixed(1)}%／年間 ${pplT(totIssued/S.Y)}ペース`;
 
+  document.getElementById("k-value").innerHTML=yen(annualValue);
+  document.getElementById("k-value-s").textContent=
+    `適合就業者 ${pplT(totFilled)} × 1人あたり年間 ${S.E.toFixed(0)}万円`;
+
+  document.getElementById("flow-issued").innerHTML=ppl(totIssued);
+  document.getElementById("flow-filled").innerHTML=ppl(totFilled);
+  document.getElementById("flow-value").innerHTML=yen(annualValue);
+
   document.getElementById("k-tco").innerHTML=yen(TCO);
   document.getElementById("k-tco-s").textContent=
     `${S.Y}年間の総額／年あたり ${yenT(TCO/S.Y)}（6経済合計）`;
-
-  const cpoBox=document.getElementById("kpi-cpo");
-  cpoBox.classList.toggle("ok", CPO>0 && CPO<=bench);
-  document.getElementById("k-cpo").innerHTML=CPO>0?yen(CPO):"–";
-  document.getElementById("k-cpo-s").textContent = CPO<=0 ? "普及率を上げると算出されます"
-    : (CPO<=bench
-        ? `現行の受入コスト ${S.B}万円/人 を ${pct(1-CPO/bench,0)} 下回る`
-        : `現行の受入コスト ${S.B}万円/人 を ${pct(CPO/bench-1,0)} 上回る`);
 
   const fShare=TCO>0?Fyen/TCO*100:0;
   document.getElementById("st-f").style.width=fShare+"%";
@@ -643,11 +685,9 @@ function render(){
   }
 
   /* rail note: the single sentence the audience should take away */
-  const worst=ECON.reduce((a,b)=> (gaps[a.id]/(a.lf*conv)) > (gaps[b.id]/(b.lf*conv)) ? a : b);
-  const best =ECON.reduce((a,b)=> (gaps[a.id]/(a.lf*conv)) < (gaps[b.id]/(b.lf*conv)) ? a : b);
   document.getElementById("railnote").innerHTML =
-    `労働力人口の<b>${S.c.toFixed(1)}%</b>がスキルパスを持つと、6経済の人材ギャップ ${pplT(totGap)} のうち <b>${pplT(totFilled)}</b>（${pct(totGap>0?totFilled/totGap:0,0)}）が埋まる。`+
-    `　最も少ない普及率で足りるのは<b>${best.name}</b>（${pct(gaps[best.id]/(best.lf*conv),2)}）、最も大きな普及率が要るのは<b>${worst.name}</b>（${pct(gaps[worst.id]/(worst.lf*conv),2)}）。`;
+    `普及率<b>${S.c.toFixed(1)}%</b>で、<b>${pplT(totFilled)}</b>が技能に合う仕事へつながり、年間<b>${yenT(annualValue)}</b>の経済価値を生むシナリオ。`+
+    `　6経済の人材ギャップ ${pplT(totGap)} の${pct(totGap>0?totFilled/totGap:0,0)}を補う。`;
 }
 
 render();
