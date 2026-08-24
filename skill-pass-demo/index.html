@@ -24,10 +24,11 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Yu Gothic",Me
 button{font:inherit}
 .app{width:100%;min-height:100dvh;background:var(--navy2)}
 .topbar{height:62px;padding:0 max(18px,env(safe-area-inset-left));display:flex;align-items:center;justify-content:space-between;background:var(--navy);border-bottom:1px solid rgba(255,255,255,.05)}
-.brand{display:flex;align-items:center;gap:9px;font-weight:700;font-size:15px}.brand-mark{width:29px;height:29px;border-radius:9px;display:grid;place-items:center;background:var(--teal);color:var(--navy);font-size:13px;font-weight:900}.top-actions{display:flex;align-items:center;gap:9px}.icon-button{width:34px;height:34px;border:1px solid var(--line);border-radius:50%;display:grid;place-items:center;background:transparent;color:var(--text);cursor:pointer}.user-mode{padding:5px 9px;border-radius:999px;background:#285067;color:#dcebf0;font-size:11px;font-weight:700;white-space:nowrap}
+.brand{display:flex;align-items:center;gap:9px;font-weight:700;font-size:15px}.brand-mark{width:29px;height:29px;border-radius:9px;display:grid;place-items:center;background:var(--teal);color:var(--navy);font-size:13px;font-weight:900}.top-actions{display:flex;align-items:center;gap:9px}.icon-button{width:34px;height:34px;border:1px solid var(--line);border-radius:50%;display:grid;place-items:center;background:transparent;color:var(--text);cursor:pointer}.user-mode{border:0;padding:5px 9px;border-radius:999px;background:#285067;color:#dcebf0;font-size:11px;font-weight:700;white-space:nowrap;cursor:pointer}
 .demo{padding:4px 12px;border-radius:999px;background:var(--gold);color:#102033;font-size:14px;font-weight:700;letter-spacing:0}
 .main{padding:22px 18px calc(88px + env(safe-area-inset-bottom))}
 .screen{display:none}.screen.active{display:block}
+.role-screen{min-height:calc(100dvh - 172px);display:none;align-content:center}.role-screen.active{display:grid}.role-intro{text-align:center;margin:0 auto 24px;max-width:440px}.role-title{margin:0;font-size:28px}.role-sub{margin:7px 0 0;color:var(--muted);font-size:13px}.role-options{display:grid;gap:12px}.role-card{border:1px solid var(--line);border-radius:18px;padding:20px;background:var(--panel);color:var(--text);text-align:left;cursor:pointer}.role-card:hover,.role-card:focus-visible{border-color:var(--teal)}.role-icon{width:44px;height:44px;border-radius:13px;display:grid;place-items:center;margin-bottom:15px;background:#15584f;color:var(--teal);font-size:19px}.role-name{display:block;font-size:18px;font-weight:700}.role-desc{display:block;margin-top:4px;color:var(--muted);font-size:13px}.role-arrow{display:block;margin-top:14px;color:var(--teal);font-size:13px}
 .employer-head{margin-bottom:16px}.eyebrow{margin:0 0 5px;color:var(--teal);font-size:11px;font-weight:700;letter-spacing:.08em}.page-title{margin:0;font-size:25px;line-height:1.35}
 .search-box{display:flex;align-items:center;gap:10px;margin:15px 0 10px;padding:10px 14px;border:1px solid var(--line);border-radius:12px;background:#0f1f2d;color:var(--muted);font-size:13px}.search-box:focus-within{border-color:var(--teal)}.search-box input{min-width:0;width:100%;border:0;outline:0;background:transparent;color:var(--text);font:inherit}.search-box input::placeholder{color:var(--muted)}.search-icon{font-size:16px}.filter-row{display:flex;gap:7px;overflow:auto;padding-bottom:2px;scrollbar-width:none}.filter-row::-webkit-scrollbar{display:none}.filter-chip{flex:0 0 auto;border:1px solid var(--line);border-radius:999px;padding:6px 10px;background:transparent;color:#d2dde4;font-size:11px;cursor:pointer}.filter-chip.active{border-color:rgba(97,209,191,.55);background:rgba(97,209,191,.11);color:var(--teal)}
 .job-box{padding:14px;border:1px solid var(--line);border-radius:14px;background:linear-gradient(145deg,#1b3143,#182a39)}
@@ -38,7 +39,7 @@ button{font:inherit}
 .candidate-top{display:grid;grid-template-columns:44px minmax(0,1fr) auto;gap:11px;align-items:center}.candidate-avatar{width:44px;height:44px;border-radius:50%;display:grid;place-items:center;background:#15584f;color:var(--teal);font-weight:700}.candidate-name{font-size:16px;font-weight:700}.candidate-role{color:var(--muted);font-size:12px}.score{color:var(--gold);font-size:22px;font-weight:800}.score small{font-size:11px;font-weight:500}
 .candidate-skills{display:flex;flex-wrap:wrap;gap:5px;margin-top:12px}.candidate-skill{padding:3px 7px;border-radius:5px;background:var(--panel2);color:#d5e1e8;font-size:11px}.candidate-note{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-top:9px;color:var(--muted);font-size:12px}.candidate-note .verified-mini{color:var(--teal)}.match-track{height:4px;margin-top:12px;border-radius:999px;background:#2b4152;overflow:hidden}.match-track span{display:block;height:100%;border-radius:inherit;background:linear-gradient(90deg,var(--teal),#8be1d2)}.candidate.disabled{cursor:default;opacity:.72}.candidate.disabled:hover{border-color:var(--line);transform:none}
 .profile-toolbar{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:18px}.back-button{border:0;padding:7px 0;background:transparent;color:var(--teal);cursor:pointer}.profile-score{color:var(--gold);font-weight:800}
-.bottom-nav{position:fixed;z-index:8;left:0;right:0;bottom:0;height:68px;padding-bottom:env(safe-area-inset-bottom);display:grid;grid-template-columns:repeat(4,1fr);background:rgba(11,24,38,.97);border-top:1px solid var(--line);backdrop-filter:blur(12px)}.nav-item{border:0;background:transparent;color:#8295a4;font-size:10px;display:grid;place-content:center;gap:2px;text-align:center}.nav-icon{font-size:17px;line-height:1}.nav-item.active{color:var(--teal)}
+.bottom-nav{position:fixed;z-index:8;left:0;right:0;bottom:0;height:68px;padding-bottom:env(safe-area-inset-bottom);display:grid;grid-template-columns:repeat(4,1fr);background:rgba(11,24,38,.97);border-top:1px solid var(--line);backdrop-filter:blur(12px)}.bottom-nav.hidden{display:none}.nav-item{border:0;background:transparent;color:#8295a4;font-size:10px;display:grid;place-content:center;gap:2px;text-align:center}.nav-icon{font-size:17px;line-height:1}.nav-item.active{color:var(--teal)}
 .identity{display:grid;grid-template-columns:72px minmax(0,1fr);gap:18px;align-items:center;padding-bottom:25px;border-bottom:1px solid var(--line)}
 .avatar{width:72px;height:72px;border-radius:50%;display:grid;place-items:center;background:#15584f;color:var(--teal)}
 .avatar svg{width:31px;height:31px}
@@ -100,6 +101,7 @@ button{font:inherit}
   .topbar{height:66px;padding:0 28px}
   .main{padding:28px 34px 96px}
   .employer-layout{display:grid;grid-template-columns:minmax(260px,.85fr) minmax(0,1.5fr);gap:24px;align-items:start}.employer-head{grid-column:1/-1;margin-bottom:0}.job-box{position:sticky;top:20px}.result-head{margin-top:0}.candidate-list{grid-template-columns:repeat(2,minmax(0,1fr))}.candidate:first-child{grid-column:1/-1}
+  .role-options{grid-template-columns:repeat(2,minmax(0,1fr));max-width:700px;margin:auto}.role-card{padding:26px}.role-screen{min-height:560px}
   .identity{grid-template-columns:92px minmax(0,1fr) 190px;gap:22px}
   .avatar{width:92px;height:92px}
   .name{font-size:26px}
@@ -127,11 +129,19 @@ button{font:inherit}
 <main class="app">
   <header class="topbar">
     <div class="brand"><span class="brand-mark">SP</span><span>SKILL PASS</span></div>
-    <div class="top-actions"><button class="icon-button" type="button" aria-label="通知">♢</button><span class="user-mode">採用担当者</span><div class="demo">DEMO</div></div>
+    <div class="top-actions"><button class="icon-button" type="button" aria-label="通知">♢</button><button class="user-mode" id="change-role" type="button">モード選択</button><div class="demo">DEMO</div></div>
   </header>
 
   <div class="main">
-    <section class="screen active" id="employer-screen" aria-label="候補者マッチング">
+    <section class="screen role-screen active" id="role-screen" aria-label="利用者モード選択">
+      <div class="role-intro"><h1 class="role-title">利用方法を選択</h1><p class="role-sub">Skill Passを利用する立場を選んでください</p></div>
+      <div class="role-options">
+        <button class="role-card" id="choose-jobseeker" type="button"><span class="role-icon">♙</span><span class="role-name">求職者</span><span class="role-desc">自分の技能・証明・仕事との適合を確認</span><span class="role-arrow">Skill Passを開く ›</span></button>
+        <button class="role-card" id="choose-employer" type="button"><span class="role-icon">▣</span><span class="role-name">採用担当者</span><span class="role-desc">求人条件から応募者を比較・確認</span><span class="role-arrow">応募者管理を開く ›</span></button>
+      </div>
+    </section>
+
+    <section class="screen" id="employer-screen" aria-label="候補者マッチング">
       <div class="employer-layout">
         <div class="employer-head">
           <h1 class="page-title">応募者管理</h1>
@@ -279,7 +289,7 @@ button{font:inherit}
     </footer>
     </section>
   </div>
-  <nav class="bottom-nav" aria-label="アプリメニュー"><button class="nav-item" type="button"><span class="nav-icon">⌂</span><span>ホーム</span></button><button class="nav-item" type="button"><span class="nav-icon">▤</span><span>求人</span></button><button class="nav-item active" type="button"><span class="nav-icon">◎</span><span>候補者</span></button><button class="nav-item" type="button"><span class="nav-icon">□</span><span>メッセージ</span></button></nav>
+  <nav class="bottom-nav hidden" id="bottom-nav" aria-label="アプリメニュー"><button class="nav-item" type="button"><span class="nav-icon">⌂</span><span>ホーム</span></button><button class="nav-item" type="button"><span class="nav-icon">▤</span><span>求人</span></button><button class="nav-item active" type="button"><span class="nav-icon">◎</span><span id="primary-nav-label">Skill Pass</span></button><button class="nav-item" type="button"><span class="nav-icon">□</span><span>メッセージ</span></button></nav>
 </main>
 
 <dialog class="sheet" id="evidence-sheet" aria-labelledby="evidence-title">
@@ -330,11 +340,32 @@ button{font:inherit}
 <script>
 const tabs=[...document.querySelectorAll('.tab')];
 const panels=[...document.querySelectorAll('.panel')];
+const roleScreen=document.querySelector('#role-screen');
 const employerScreen=document.querySelector('#employer-screen');
 const profileScreen=document.querySelector('#profile-screen');
+const changeRole=document.querySelector('#change-role');
+const bottomNav=document.querySelector('#bottom-nav');
+const backToResults=document.querySelector('#back-to-results');
+const primaryNavLabel=document.querySelector('#primary-nav-label');
+function setRole(role,{updateUrl=true}={}){
+  [roleScreen,employerScreen,profileScreen].forEach(screen=>screen.classList.remove('active'));
+  bottomNav.classList.toggle('hidden',!role);
+  if(role==='employer'){
+    employerScreen.classList.add('active');changeRole.textContent='採用担当者';primaryNavLabel.textContent='候補者';backToResults.style.display='';
+  }else if(role==='jobseeker'){
+    profileScreen.classList.add('active');changeRole.textContent='求職者';primaryNavLabel.textContent='Skill Pass';backToResults.style.display='none';
+  }else{
+    roleScreen.classList.add('active');changeRole.textContent='モード選択';
+  }
+  if(updateUrl){const url=new URL(location.href);role?url.searchParams.set('role',role):url.searchParams.delete('role');history.replaceState({},'',url)}
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+document.querySelector('#choose-jobseeker').addEventListener('click',()=>setRole('jobseeker'));
+document.querySelector('#choose-employer').addEventListener('click',()=>setRole('employer'));
+changeRole.addEventListener('click',()=>setRole(null));
 document.querySelectorAll('.filter-chip').forEach(chip=>chip.addEventListener('click',()=>chip.classList.toggle('active')));
 document.querySelector('#open-profile').addEventListener('click',()=>{employerScreen.classList.remove('active');profileScreen.classList.add('active');window.scrollTo({top:0,behavior:'smooth'})});
-document.querySelector('#back-to-results').addEventListener('click',()=>{profileScreen.classList.remove('active');employerScreen.classList.add('active');window.scrollTo({top:0,behavior:'smooth'})});
+backToResults.addEventListener('click',()=>{profileScreen.classList.remove('active');employerScreen.classList.add('active');window.scrollTo({top:0,behavior:'smooth'})});
 tabs.forEach(tab=>tab.addEventListener('click',()=>{
   const id=tab.dataset.panel;
   tabs.forEach(x=>x.setAttribute('aria-selected',String(x===tab)));
@@ -351,6 +382,8 @@ sheet.querySelectorAll('.doc-button').forEach(button=>button.addEventListener('c
   preview.classList.add(button.dataset.docKind);
   preview.classList.add('active');
 }));
+const requestedRole=new URLSearchParams(location.search).get('role');
+setRole(requestedRole==='jobseeker'||requestedRole==='employer'?requestedRole:null,{updateUrl:false});
 </script>
 </body>
 </html>
