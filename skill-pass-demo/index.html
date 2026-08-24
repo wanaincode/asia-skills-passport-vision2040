@@ -24,7 +24,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Yu Gothic",Me
 button{font:inherit}
 .app{width:100%;min-height:100dvh;background:var(--navy2)}
 .topbar{height:62px;padding:0 max(18px,env(safe-area-inset-left));display:flex;align-items:center;justify-content:space-between;background:var(--navy);border-bottom:1px solid rgba(255,255,255,.05)}
-.brand{display:flex;align-items:center;gap:9px;font-weight:700;font-size:15px}.brand-mark{width:29px;height:29px;border-radius:9px;display:grid;place-items:center;background:var(--teal);color:var(--navy);font-size:13px;font-weight:900}.top-actions{display:flex;align-items:center;gap:9px}.user-mode{border:0;padding:5px 9px;border-radius:999px;background:#285067;color:#dcebf0;font-size:11px;font-weight:700;white-space:nowrap;cursor:pointer}
+.brand{display:flex;align-items:center;gap:9px;font-weight:700;font-size:15px}.top-actions{display:flex;align-items:center;gap:9px}.user-mode{border:0;padding:5px 9px;border-radius:999px;background:#285067;color:#dcebf0;font-size:11px;font-weight:700;white-space:nowrap;cursor:pointer}
 .demo{padding:4px 12px;border-radius:999px;background:var(--gold);color:#102033;font-size:14px;font-weight:700;letter-spacing:0}
 .main{padding:22px 18px calc(88px + env(safe-area-inset-bottom))}
 .screen{display:none}.screen.active{display:block}
@@ -99,6 +99,7 @@ button{font:inherit}
 .foot strong{display:block;margin-bottom:4px;color:var(--text);font-weight:500}
 .qr-verify{width:100%;margin-top:12px;border:0;border-radius:8px;padding:11px;background:var(--teal);color:#fff;font-size:16px;font-weight:800;letter-spacing:.04em;cursor:pointer}.qr-symbol{margin-right:8px;font-size:20px;vertical-align:-1px}
 .qr-add-button{width:100%;margin-top:12px;border:0;border-radius:9px;padding:10px 13px;background:var(--teal);color:#fff;font-weight:800;cursor:pointer}.qr-add-button.secondary{background:#eef6f5;color:var(--teal);border:1px solid #9bcac6}.qr-stage{display:grid;place-items:center;gap:14px;padding:20px 0 4px;text-align:center}.qr-code{position:relative;width:174px;height:174px;padding:13px;border:8px solid #eef4f6;border-radius:9px;background-color:#fff;background-image:linear-gradient(90deg,var(--navy) 12%,transparent 12% 24%,var(--navy) 24% 36%,transparent 36% 48%,var(--navy) 48% 60%,transparent 60% 72%,var(--navy) 72% 84%,transparent 84%),linear-gradient(var(--navy) 12%,transparent 12% 24%,var(--navy) 24% 36%,transparent 36% 48%,var(--navy) 48% 60%,transparent 60% 72%,var(--navy) 72% 84%,transparent 84%);background-size:29px 29px;box-shadow:0 4px 16px rgba(8,40,77,.14)}.qr-code::before,.qr-code::after,.qr-finder{content:"";position:absolute;width:36px;height:36px;border:7px solid var(--navy);background:#fff;box-shadow:inset 0 0 0 7px #fff,inset 0 0 0 13px var(--navy)}.qr-code::before{top:10px;left:10px}.qr-code::after{top:10px;right:10px}.qr-finder{bottom:10px;left:10px}.qr-pass-id{color:var(--muted);font-size:12px}.qr-help{margin:0;color:var(--muted);font-size:13px}.scan-frame{position:relative;width:210px;height:210px;display:grid;place-items:center;border:2px solid var(--teal);border-radius:17px;background:#edf5f6;overflow:hidden}.scan-frame::after{content:"";position:absolute;left:16px;right:16px;top:50%;height:2px;background:var(--gold);box-shadow:0 0 10px var(--gold)}.scan-placeholder{font-size:54px;color:var(--teal)}.scan-result{display:none;width:100%;padding:13px;border:1px solid #8cc8c3;border-radius:11px;background:#edf8f6;text-align:left}.scan-result.active{display:block}.scan-result strong{color:var(--navy)}.scan-result small{color:var(--muted)}
+.demo-guide{display:none;align-items:flex-start;gap:9px;margin:0 0 13px;padding:10px 12px;border:1px solid #edd27c;border-radius:10px;background:#fff8dd;color:#66500d;font-size:12px;line-height:1.5}.demo-guide.active{display:flex}.guide-badge{flex:0 0 auto;padding:2px 6px;border-radius:5px;background:var(--gold);color:#fff;font-size:10px;font-weight:900}.guided-action{position:relative;box-shadow:0 0 0 3px rgba(237,174,16,.22),0 5px 14px rgba(8,127,123,.14)}.guided-action::after{content:"まずはこちら";position:absolute;right:8px;top:-10px;padding:2px 7px;border-radius:999px;background:var(--gold);color:#fff;font-size:9px;font-weight:900}.nav-item:disabled{opacity:.38;cursor:not-allowed}.nav-item:disabled .nav-icon{filter:grayscale(1)}
 
 @media(min-width:700px){
   body{display:grid;place-items:center;padding:24px;background:radial-gradient(circle at 80% 10%,#143f49 0,#07111b 42%)}
@@ -163,11 +164,12 @@ body{background:radial-gradient(circle at 50% 0,#fff 0,#e8eef3 70%)}
 <body>
 <main class="app">
   <header class="topbar">
-    <div class="brand"><span class="brand-mark">UI</span><span>スキルパス</span></div>
+    <div class="brand"><span>スキルパス</span></div>
     <div class="top-actions"><button class="user-mode" id="change-role" type="button">モード選択</button><div class="demo">DEMO</div></div>
   </header>
 
   <div class="main">
+    <div class="demo-guide" id="demo-guide"><span class="guide-badge">DEMO</span><span id="demo-guide-text"></span></div>
     <section class="screen role-screen active" id="role-screen" aria-label="利用者モード選択">
       <div class="role-intro"><h1 class="role-title">利用者の視点を選択</h1><p class="role-sub">体験する立場を選んでください。</p></div>
       <div class="role-options">
@@ -182,7 +184,7 @@ body{background:radial-gradient(circle at 50% 0,#fff 0,#e8eef3 70%)}
           <h1 class="page-title">応募者管理</h1>
           <label class="search-box"><span class="search-icon">⌕</span><input type="search" aria-label="応募者を検索" placeholder="氏名・スキル・資格で検索"></label>
           <div class="filter-row" aria-label="候補者フィルター"><button class="filter-chip active" type="button">適合度順</button><button class="filter-chip" type="button">証明資料確認済み</button><button class="filter-chip" type="button">実務経験2年以上</button><button class="filter-chip" type="button">その他の条件</button></div>
-          <button class="qr-add-button" id="open-scan-qr" type="button"><span class="qr-symbol">▦</span>QRで応募者を追加</button>
+          <button class="qr-add-button guided-action" id="open-scan-qr" type="button"><span class="qr-symbol">▦</span>QRで応募者を追加</button>
         </div>
         <section class="job-box" aria-label="募集条件">
           <div class="job-row"><div><p class="eyebrow">対象求人</p><h2 class="job-title">英語教育・海外対応担当</h2></div><span class="edit-label">条件を編集</span></div>
@@ -308,14 +310,14 @@ body{background:radial-gradient(circle at 50% 0,#fff 0,#e8eef3 70%)}
       </div>
     </section>
 
-    <button class="qr-verify" id="open-share-qr" type="button"><span class="qr-symbol">▦</span>QRを表示</button>
+    <button class="qr-verify guided-action" id="open-share-qr" type="button"><span class="qr-symbol">▦</span>QRを表示</button>
 
     <footer class="foot">
       本画面は制度提案のための架空データを用いたプロトタイプです。
     </footer>
     </section>
   </div>
-  <nav class="bottom-nav hidden" id="bottom-nav" aria-label="アプリメニュー"><button class="nav-item" type="button"><span class="nav-icon">⌂</span><span>ホーム</span></button><button class="nav-item" type="button"><span class="nav-icon">▤</span><span>求人</span></button><button class="nav-item active" type="button"><span class="nav-icon">◎</span><span id="primary-nav-label">Skill Pass</span></button><button class="nav-item" type="button"><span class="nav-icon">□</span><span>メッセージ</span></button></nav>
+  <nav class="bottom-nav hidden" id="bottom-nav" aria-label="アプリメニュー"><button class="nav-item" type="button" disabled title="このデモでは使用できません"><span class="nav-icon">⌂</span><span>ホーム</span></button><button class="nav-item" type="button" disabled title="このデモでは使用できません"><span class="nav-icon">▤</span><span>求人</span></button><button class="nav-item active" type="button"><span class="nav-icon">◎</span><span id="primary-nav-label">Skill Pass</span></button><button class="nav-item" type="button" disabled title="このデモでは使用できません"><span class="nav-icon">□</span><span>メッセージ</span></button></nav>
 </main>
 
 <dialog class="sheet" id="evidence-sheet" aria-labelledby="evidence-title">
@@ -388,6 +390,8 @@ const bottomNav=document.querySelector('#bottom-nav');
 const backToResults=document.querySelector('#back-to-results');
 const primaryNavLabel=document.querySelector('#primary-nav-label');
 const secondaryTab=document.querySelector('#secondary-tab');
+const demoGuide=document.querySelector('#demo-guide');
+const demoGuideText=document.querySelector('#demo-guide-text');
 const shareQrSheet=document.querySelector('#share-qr-sheet');
 const scanQrSheet=document.querySelector('#scan-qr-sheet');
 const qrCandidate=document.querySelector('#open-profile');
@@ -400,11 +404,11 @@ function setRole(role,{updateUrl=true}={}){
   [roleScreen,employerScreen,profileScreen].forEach(screen=>screen.classList.remove('active'));
   bottomNav.classList.toggle('hidden',!role);
   if(role==='employer'){
-    employerScreen.classList.add('active');changeRole.textContent='採用担当者';primaryNavLabel.textContent='候補者';backToResults.style.display='';secondaryTab.textContent='求人との適合';secondaryTab.dataset.panel='jobs';resetProfileTabs();
+    employerScreen.classList.add('active');changeRole.textContent='採用担当者';primaryNavLabel.textContent='候補者';backToResults.style.display='';secondaryTab.textContent='求人との適合';secondaryTab.dataset.panel='jobs';demoGuideText.textContent='「QRで応募者を追加」から、Skill Passを応募者一覧へ登録できます。';demoGuide.classList.add('active');resetProfileTabs();
   }else if(role==='jobseeker'){
-    profileScreen.classList.add('active');changeRole.textContent='求職者';primaryNavLabel.textContent='Skill Pass';backToResults.style.display='none';secondaryTab.textContent='資料を追加';secondaryTab.dataset.panel='uploads';resetProfileTabs();
+    profileScreen.classList.add('active');changeRole.textContent='求職者';primaryNavLabel.textContent='Skill Pass';backToResults.style.display='none';secondaryTab.textContent='資料を追加';secondaryTab.dataset.panel='uploads';demoGuideText.textContent='技能の根拠資料を確認し、画面下の「QRを表示」をお試しください。';demoGuide.classList.add('active');resetProfileTabs();
   }else{
-    roleScreen.classList.add('active');changeRole.textContent='モード選択';
+    roleScreen.classList.add('active');changeRole.textContent='モード選択';demoGuide.classList.remove('active');
   }
   if(updateUrl){const url=new URL(location.href);role?url.searchParams.set('role',role):url.searchParams.delete('role');history.replaceState({},'',url)}
   window.scrollTo({top:0,behavior:'smooth'});
@@ -413,8 +417,8 @@ document.querySelector('#choose-jobseeker').addEventListener('click',()=>setRole
 document.querySelector('#choose-employer').addEventListener('click',()=>setRole('employer'));
 changeRole.addEventListener('click',()=>setRole(null));
 document.querySelectorAll('.filter-chip').forEach(chip=>chip.addEventListener('click',()=>chip.classList.toggle('active')));
-document.querySelector('#open-profile').addEventListener('click',()=>{employerScreen.classList.remove('active');profileScreen.classList.add('active');secondaryTab.textContent='求人との適合';secondaryTab.dataset.panel='jobs';resetProfileTabs();window.scrollTo({top:0,behavior:'smooth'})});
-backToResults.addEventListener('click',()=>{profileScreen.classList.remove('active');employerScreen.classList.add('active');window.scrollTo({top:0,behavior:'smooth'})});
+document.querySelector('#open-profile').addEventListener('click',()=>{employerScreen.classList.remove('active');profileScreen.classList.add('active');secondaryTab.textContent='求人との適合';secondaryTab.dataset.panel='jobs';demoGuideText.textContent='技能評価と根拠資料を確認できます。';resetProfileTabs();window.scrollTo({top:0,behavior:'smooth'})});
+backToResults.addEventListener('click',()=>{profileScreen.classList.remove('active');employerScreen.classList.add('active');demoGuideText.textContent='「QRで応募者を追加」から、Skill Passを応募者一覧へ登録できます。';window.scrollTo({top:0,behavior:'smooth'})});
 tabs.forEach(tab=>tab.addEventListener('click',()=>{
   const id=tab.dataset.panel;
   tabs.forEach(x=>x.setAttribute('aria-selected',String(x===tab)));
