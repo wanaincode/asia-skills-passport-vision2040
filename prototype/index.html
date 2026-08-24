@@ -67,6 +67,11 @@ button{font:inherit}
 .doc-button{border:1px solid #567086;border-radius:7px;padding:5px 8px;background:var(--panel2);color:var(--text);font-size:12px;cursor:pointer}.doc-button:hover,.doc-button:focus-visible{border-color:var(--teal);color:var(--teal)}
 .formula{margin:15px 0 0;padding:11px;border-radius:10px;background:rgba(97,209,191,.08);color:#cce9e4;font-size:13px;text-align:center}
 .doc-preview{display:none;margin-top:12px;padding:15px;border:1px dashed #688196;border-radius:10px;background:#f4f0e8;color:#182a39}.doc-preview.active{display:block}.doc-preview strong{display:block}.doc-preview small{color:#536779}
+.score-certificate{display:none;position:relative;overflow:hidden;margin-top:12px;padding:18px;border:2px solid #1e5c6b;border-radius:6px;background:linear-gradient(145deg,#fff 0,#f0f7f6 100%);box-shadow:inset 0 0 0 5px #fff,0 5px 16px rgba(15,45,58,.18)}
+.doc-preview.language .score-certificate{display:block}.certificate-watermark{position:absolute;inset:38% auto auto 50%;transform:translate(-50%,-50%) rotate(-18deg);color:rgba(213,91,66,.14);font-size:48px;font-weight:800;letter-spacing:.12em;pointer-events:none}
+.certificate-head{display:flex;align-items:center;justify-content:space-between;gap:12px;padding-bottom:10px;border-bottom:1px solid #aac1c6}.certificate-mark{color:#155f69;font-size:12px;font-weight:800;letter-spacing:.12em}.certificate-demo{padding:2px 7px;border:1px solid #d26450;color:#b84635;font-size:10px;font-weight:800}
+.certificate-name{margin:12px 0 2px;font-size:16px;font-weight:700}.certificate-id{color:#60727b;font-size:10px}.score-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:9px;margin-top:13px}.score-box{padding:10px;border:1px solid #c0d0d3;background:rgba(255,255,255,.72);text-align:center}.score-label{color:#46606b;font-size:10px}.score-number{display:block;color:#0f4f5d;font-size:27px;font-weight:800;line-height:1.15}.score-note{color:#60727b;font-size:9px}
+.certificate-foot{display:flex;align-items:flex-end;justify-content:space-between;gap:12px;margin-top:13px;color:#61727b;font-size:9px}.verified-seal{color:#13806d;font-size:10px;font-weight:800}
 .match{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:14px;align-items:start}
 .status{padding:3px 9px;border-radius:999px;background:rgba(97,209,191,.14);color:var(--teal);font-size:13px;font-weight:700;white-space:nowrap}
 .status.need{background:rgba(239,169,47,.13);color:var(--gold)}
@@ -227,13 +232,22 @@ button{font:inherit}
       <button class="sheet-close" type="button" aria-label="閉じる">×</button>
     </div>
     <div class="evidence-list">
-      <div class="evidence-item"><div><div class="evidence-type">英語能力</div><div class="evidence-name">TOEFL iBT 105／TOEIC L&amp;R 945</div><div class="evidence-meta">ETS・IIBC｜発行元確認済み</div></div><button class="doc-button" type="button" data-doc="英語能力試験">証明書を見る</button></div>
+      <div class="evidence-item"><div><div class="evidence-type">英語能力</div><div class="evidence-name">TOEFL iBT 105／TOEIC L&amp;R 945</div><div class="evidence-meta">ETS・IIBC｜発行元確認済み</div></div><button class="doc-button" type="button" data-doc="英語能力試験" data-doc-kind="language">証明書を見る</button></div>
       <div class="evidence-item"><div><div class="evidence-type">専門資格</div><div class="evidence-name">オーストラリア教員資格</div><div class="evidence-meta">資格登録機関｜発行元確認済み</div></div><button class="doc-button" type="button" data-doc="教員資格">証明書を見る</button></div>
       <div class="evidence-item"><div><div class="evidence-type">実務経験</div><div class="evidence-name">英語指導 3年</div><div class="evidence-meta">在職証明｜確認済み</div></div><button class="doc-button" type="button" data-doc="在職証明">証明書を見る</button></div>
       <div class="evidence-item"><div><div class="evidence-type">実技評価</div><div class="evidence-name">模擬授業評価 L4</div><div class="evidence-meta">認定評価者｜2026.07.20</div></div><button class="doc-button" type="button" data-doc="実技評価">評価を見る</button></div>
     </div>
     <div class="formula">言語試験＋教員資格＋指導経験＋実技評価 → 英語指導 L4</div>
-    <div class="doc-preview" id="doc-preview"><strong id="doc-title">証明書</strong><small>DEMO PDFプレビュー｜発行元・発行日・検証状態を確認できます。</small></div>
+    <div class="doc-preview" id="doc-preview">
+      <strong id="doc-title">証明書</strong><small>DEMO PDFプレビュー｜発行元・発行日・検証状態を確認できます。</small>
+      <div class="score-certificate" aria-label="英語能力試験のデモ証明書">
+        <div class="certificate-watermark">SAMPLE</div>
+        <div class="certificate-head"><span class="certificate-mark">SKILL PASS VERIFIED RECORD</span><span class="certificate-demo">DEMO</span></div>
+        <div class="certificate-name">佐藤 あかり｜Language Score Record</div><div class="certificate-id">PASS ID: JP-EDU-2026-0184</div>
+        <div class="score-grid"><div class="score-box"><span class="score-label">TOEFL iBT</span><span class="score-number">105</span><span class="score-note">Test date 2025.06.14</span></div><div class="score-box"><span class="score-label">TOEIC L&amp;R</span><span class="score-number">945</span><span class="score-note">Test date 2025.03.09</span></div></div>
+        <div class="certificate-foot"><span>Issuer records linked for demonstration only.</span><span class="verified-seal">✓ 発行元確認済み</span></div>
+      </div>
+    </div>
   </div>
 </dialog>
 
@@ -252,6 +266,7 @@ sheet.querySelector('.sheet-close').addEventListener('click',()=>sheet.close());
 sheet.addEventListener('click',event=>{if(event.target===sheet)sheet.close()});
 sheet.querySelectorAll('.doc-button').forEach(button=>button.addEventListener('click',()=>{
   document.querySelector('#doc-title').textContent=`${button.dataset.doc}｜確認済み`;
+  preview.classList.toggle('language',button.dataset.docKind==='language');
   preview.classList.add('active');
 }));
 </script>
