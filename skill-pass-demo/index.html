@@ -47,7 +47,7 @@ button{font:inherit}
 .meta,.date{margin:1px 0;color:var(--muted);font-size:14px}
 .verified{margin:2px 0;color:var(--teal);font-size:14px;font-weight:600}
 .desktop-verify{display:none}
-.tabs{position:sticky;top:0;z-index:5;display:grid;grid-template-columns:repeat(3,1fr);margin:18px 0;background:var(--navy2);border-bottom:1px solid var(--line)}
+.tabs{position:sticky;top:0;z-index:5;display:grid;grid-template-columns:repeat(2,1fr);margin:18px 0;background:var(--navy2);border-bottom:1px solid var(--line)}
 .tab{border:0;border-bottom:3px solid transparent;padding:13px 5px;background:transparent;color:#d2dde5;cursor:pointer}
 .tab[aria-selected="true"]{color:var(--teal);border-bottom-color:var(--gold)}
 .panel{display:none;animation:enter .18s ease-out}
@@ -200,37 +200,11 @@ button{font:inherit}
     </section>
 
     <nav class="tabs" aria-label="表示内容">
-      <button class="tab" type="button" data-panel="pass" aria-selected="true">PASS</button>
-      <button class="tab" type="button" data-panel="skills" aria-selected="false">技能</button>
-      <button class="tab" type="button" data-panel="jobs" aria-selected="false">仕事との適合</button>
+      <button class="tab" type="button" data-panel="skills" aria-selected="true">技能評価</button>
+      <button class="tab" type="button" data-panel="jobs" aria-selected="false">求人との適合</button>
     </nav>
 
-    <section class="panel active" id="pass" aria-label="Pass情報">
-      <div class="cards">
-        <article class="card">
-          <h2 class="card-title">海外資格</h2>
-          <p class="card-main">Victoria 教員登録</p>
-          <p class="card-note ok">発行元確認済み</p>
-        </article>
-        <article class="card">
-          <h2 class="card-title">実務経験</h2>
-          <p class="card-main">現地校で3年間</p>
-          <p class="card-note ok">在職証明確認済み</p>
-        </article>
-        <article class="card">
-          <h2 class="card-title">日本語</h2>
-          <p class="card-main">業務会話レベル</p>
-          <p class="card-note">評価日：2026.07.20</p>
-        </article>
-        <article class="card">
-          <h2 class="card-title">日本の法定資格</h2>
-          <p class="card-main">教員免許：未取得</p>
-          <p class="card-note">取得には別途手続きが必要</p>
-        </article>
-      </div>
-    </section>
-
-    <section class="panel" id="skills" aria-label="技能レベル">
+    <section class="panel active" id="skills" aria-label="技能評価">
       <div class="cards">
         <article class="card">
           <div class="skill-head"><div><h2 class="card-title">英語指導</h2><p class="card-note">学習者に合わせて指導できる</p></div><span class="skill-level">L4</span></div>
