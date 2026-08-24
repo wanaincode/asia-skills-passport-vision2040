@@ -28,7 +28,7 @@ button{font:inherit}
 .demo{padding:4px 12px;border-radius:999px;background:var(--gold);color:#102033;font-size:14px;font-weight:700;letter-spacing:0}
 .main{padding:22px 18px calc(88px + env(safe-area-inset-bottom))}
 .screen{display:none}.screen.active{display:block}
-.employer-head{margin-bottom:16px}.eyebrow{margin:0 0 5px;color:var(--teal);font-size:11px;font-weight:700;letter-spacing:.08em}.page-title{margin:0;font-size:25px;line-height:1.35}.page-lead{margin:5px 0 0;color:var(--muted);font-size:13px}
+.employer-head{margin-bottom:16px}.eyebrow{margin:0 0 5px;color:var(--teal);font-size:11px;font-weight:700;letter-spacing:.08em}.page-title{margin:0;font-size:25px;line-height:1.35}
 .search-box{display:flex;align-items:center;gap:10px;margin:15px 0 10px;padding:10px 14px;border:1px solid var(--line);border-radius:12px;background:#0f1f2d;color:var(--muted);font-size:13px}.search-box:focus-within{border-color:var(--teal)}.search-box input{min-width:0;width:100%;border:0;outline:0;background:transparent;color:var(--text);font:inherit}.search-box input::placeholder{color:var(--muted)}.search-icon{font-size:16px}.filter-row{display:flex;gap:7px;overflow:auto;padding-bottom:2px;scrollbar-width:none}.filter-row::-webkit-scrollbar{display:none}.filter-chip{flex:0 0 auto;border:1px solid var(--line);border-radius:999px;padding:6px 10px;background:transparent;color:#d2dde4;font-size:11px;cursor:pointer}.filter-chip.active{border-color:rgba(97,209,191,.55);background:rgba(97,209,191,.11);color:var(--teal)}
 .job-box{padding:14px;border:1px solid var(--line);border-radius:14px;background:linear-gradient(145deg,#1b3143,#182a39)}
 .job-row{display:flex;align-items:flex-start;justify-content:space-between;gap:12px}.job-title{margin:0;font-size:17px}.edit-label{color:var(--teal);font-size:12px;white-space:nowrap}
@@ -135,7 +135,6 @@ button{font:inherit}
       <div class="employer-layout">
         <div class="employer-head">
           <h1 class="page-title">応募者管理</h1>
-          <p class="page-lead">英語教育・海外対応担当</p>
           <label class="search-box"><span class="search-icon">⌕</span><input type="search" aria-label="応募者を検索" placeholder="氏名・スキル・資格で検索"></label>
           <div class="filter-row" aria-label="候補者フィルター"><button class="filter-chip active" type="button">適合度順</button><button class="filter-chip" type="button">証明確認済み</button><button class="filter-chip" type="button">経験2年以上</button><button class="filter-chip" type="button">その他の条件</button></div>
         </div>
