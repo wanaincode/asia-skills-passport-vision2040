@@ -1,0 +1,220 @@
+/opt/homebrew/Library/Homebrew/cmd/shellenv.sh: line 18: /bin/ps: Operation not permitted
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#0b1826">
+<title>Skill Pass Prototype｜佐藤あかり</title>
+<style>
+:root{
+  --navy:#0b1826;
+  --navy2:#122231;
+  --panel:#192b3b;
+  --panel2:#203548;
+  --line:#344b5e;
+  --text:#eef5f8;
+  --muted:#aebdca;
+  --teal:#61d1bf;
+  --gold:#efa92f;
+  --coral:#ef765c;
+}
+*{box-sizing:border-box}
+html,body{margin:0;min-height:100%;background:#07111b;color:var(--text)}
+body{font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Yu Gothic",Meiryo,sans-serif;line-height:1.55;-webkit-font-smoothing:antialiased}
+button{font:inherit}
+.app{width:100%;min-height:100dvh;background:var(--navy2)}
+.topbar{height:58px;padding:0 max(20px,env(safe-area-inset-left));display:flex;align-items:center;justify-content:space-between;background:var(--navy);letter-spacing:.08em}
+.brand{font-weight:700;font-size:15px}
+.demo{padding:4px 12px;border-radius:999px;background:var(--gold);color:#102033;font-size:14px;font-weight:700;letter-spacing:0}
+.main{padding:26px 20px max(26px,env(safe-area-inset-bottom))}
+.identity{display:grid;grid-template-columns:72px minmax(0,1fr);gap:18px;align-items:center;padding-bottom:25px;border-bottom:1px solid var(--line)}
+.avatar{width:72px;height:72px;border-radius:50%;display:grid;place-items:center;background:#15584f;color:var(--teal)}
+.avatar svg{width:31px;height:31px}
+.name{margin:0 0 2px;font-size:22px;font-weight:600;letter-spacing:.03em}
+.meta,.date{margin:1px 0;color:var(--muted);font-size:14px}
+.verified{margin:2px 0;color:var(--teal);font-size:14px;font-weight:600}
+.desktop-verify{display:none}
+.tabs{position:sticky;top:0;z-index:5;display:grid;grid-template-columns:repeat(3,1fr);margin:18px 0;background:var(--navy2);border-bottom:1px solid var(--line)}
+.tab{border:0;border-bottom:3px solid transparent;padding:13px 5px;background:transparent;color:#d2dde5;cursor:pointer}
+.tab[aria-selected="true"]{color:var(--teal);border-bottom-color:var(--gold)}
+.panel{display:none;animation:enter .18s ease-out}
+.panel.active{display:block}
+@keyframes enter{from{opacity:.35;transform:translateY(4px)}to{opacity:1;transform:none}}
+.cards{display:grid;gap:12px}
+.card{padding:16px 14px;border:1px solid var(--line);border-radius:13px;background:var(--panel)}
+.card-title{margin:0 0 4px;font-size:15px;font-weight:500}
+.card-main{margin:0;color:var(--text);font-size:15px}
+.card-note{margin:1px 0 0;color:var(--muted);font-size:14px}
+.ok{color:var(--teal)}
+.warn{color:var(--gold)}
+.skill-head{display:flex;align-items:flex-start;justify-content:space-between;gap:12px}
+.skill-level{color:var(--teal);font-size:15px;font-weight:700;white-space:nowrap}
+.meter{display:grid;grid-template-columns:repeat(4,1fr);gap:5px;margin-top:12px}
+.meter i{height:7px;border-radius:5px;background:#344b5e}
+.meter i.on{background:var(--teal)}
+.evidence{display:flex;align-items:center;gap:6px;margin-top:10px;color:var(--muted);font-size:13px}
+.match{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:14px;align-items:start}
+.status{padding:3px 9px;border-radius:999px;background:rgba(97,209,191,.14);color:var(--teal);font-size:13px;font-weight:700;white-space:nowrap}
+.status.need{background:rgba(239,169,47,.13);color:var(--gold)}
+.match-detail{margin:8px 0 0;color:var(--muted);font-size:14px}
+.requirements{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+.tag{padding:2px 8px;border-radius:5px;background:var(--panel2);color:#c9d5de;font-size:12px}
+.foot{margin:22px 5px 0;text-align:center;color:var(--muted);font-size:13px}
+.foot strong{display:block;margin-bottom:4px;color:var(--text);font-weight:500}
+
+@media(min-width:700px){
+  body{display:grid;place-items:center;padding:24px;background:radial-gradient(circle at 80% 10%,#143f49 0,#07111b 42%)}
+  .app{width:min(100%,980px);min-height:720px;border:10px solid #03080e;border-radius:30px;overflow:hidden;box-shadow:0 24px 80px rgba(0,0,0,.5)}
+  .topbar{height:66px;padding:0 28px}
+  .main{padding:28px 34px 34px}
+  .identity{grid-template-columns:92px minmax(0,1fr) 190px;gap:22px}
+  .avatar{width:92px;height:92px}
+  .name{font-size:26px}
+  .desktop-verify{display:block;justify-self:end;padding-left:22px;border-left:1px solid var(--line);text-align:right}
+  .verify-id{font-size:13px;color:var(--muted)}
+  .verify-status{margin-top:4px;color:var(--teal);font-weight:600}
+  .tabs{position:static;margin-top:22px}
+  .cards{grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+  #jobs .cards{grid-template-columns:1fr}
+  .card{padding:18px}
+  .foot{margin-top:26px}
+}
+
+@media(min-width:980px){
+  .app{min-height:750px}
+  .cards{grid-template-columns:repeat(2,minmax(0,1fr))}
+  #skills .cards{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+
+@media(prefers-reduced-motion:reduce){.panel{animation:none}}
+</style>
+</head>
+<body>
+<main class="app">
+  <header class="topbar">
+    <div class="brand">SKILL PASS</div>
+    <div class="demo">DEMO</div>
+  </header>
+
+  <div class="main">
+    <section class="identity" aria-label="本人情報">
+      <div class="avatar" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="8" r="3.2"/><path d="M5.5 20c.7-4 3-6.1 6.5-6.1S17.8 16 18.5 20"/></svg>
+      </div>
+      <div>
+        <h1 class="name">佐藤 あかり</h1>
+        <p class="meta">日本国籍｜教育・異文化対応</p>
+        <p class="verified">✓ 本人確認済み</p>
+        <p class="date">発行：2026.08.01　有効期限：2031.07.31</p>
+      </div>
+      <div class="desktop-verify">
+        <div class="verify-id">PASS ID</div>
+        <div>JP-EDU-2026-0184</div>
+        <div class="verify-status">発行元確認済み</div>
+      </div>
+    </section>
+
+    <nav class="tabs" aria-label="表示内容">
+      <button class="tab" type="button" data-panel="pass" aria-selected="true">PASS</button>
+      <button class="tab" type="button" data-panel="skills" aria-selected="false">技能</button>
+      <button class="tab" type="button" data-panel="jobs" aria-selected="false">仕事との適合</button>
+    </nav>
+
+    <section class="panel active" id="pass" aria-label="Pass情報">
+      <div class="cards">
+        <article class="card">
+          <h2 class="card-title">海外資格</h2>
+          <p class="card-main">豪州 教員資格</p>
+          <p class="card-note ok">発行元確認済み</p>
+        </article>
+        <article class="card">
+          <h2 class="card-title">実務経験</h2>
+          <p class="card-main">現地校で3年間</p>
+          <p class="card-note ok">在職証明確認済み</p>
+        </article>
+        <article class="card">
+          <h2 class="card-title">日本語</h2>
+          <p class="card-main">業務会話レベル</p>
+          <p class="card-note">評価日：2026.07.20</p>
+        </article>
+        <article class="card">
+          <h2 class="card-title">日本の法定資格</h2>
+          <p class="card-main">教員免許：未取得</p>
+          <p class="card-note">取得には別途手続きが必要</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="panel" id="skills" aria-label="技能レベル">
+      <div class="cards">
+        <article class="card">
+          <div class="skill-head"><div><h2 class="card-title">英語指導</h2><p class="card-note">学習者に合わせて指導できる</p></div><span class="skill-level">L4</span></div>
+          <div class="meter" aria-label="レベル4"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></div>
+          <div class="evidence">根拠：教員資格・3年間の指導経験</div>
+        </article>
+        <article class="card">
+          <div class="skill-head"><div><h2 class="card-title">授業設計</h2><p class="card-note">独力で授業・教材を設計できる</p></div><span class="skill-level">L3</span></div>
+          <div class="meter" aria-label="レベル3"><i class="on"></i><i class="on"></i><i class="on"></i><i></i></div>
+          <div class="evidence">根拠：実務成果物・面談評価</div>
+        </article>
+        <article class="card">
+          <div class="skill-head"><div><h2 class="card-title">異文化対応</h2><p class="card-note">多文化環境で独力で対応できる</p></div><span class="skill-level">L3</span></div>
+          <div class="meter" aria-label="レベル3"><i class="on"></i><i class="on"></i><i class="on"></i><i></i></div>
+          <div class="evidence">根拠：海外勤務・実技評価</div>
+        </article>
+        <article class="card">
+          <div class="skill-head"><div><h2 class="card-title">日本語文書</h2><p class="card-note">支援を受けて業務文書を作成できる</p></div><span class="skill-level">L2</span></div>
+          <div class="meter" aria-label="レベル2"><i class="on"></i><i class="on"></i><i></i><i></i></div>
+          <div class="evidence">根拠：言語試験・課題評価</div>
+        </article>
+      </div>
+    </section>
+
+    <section class="panel" id="jobs" aria-label="仕事との適合結果">
+      <div class="cards">
+        <article class="card match">
+          <div>
+            <h2 class="card-title">民間英語学校｜英語講師</h2>
+            <p class="match-detail">英語指導L4・授業設計L3を活用できます。</p>
+            <div class="requirements"><span class="tag">英語指導 L4</span><span class="tag">授業設計 L3</span></div>
+          </div>
+          <span class="status">適合</span>
+        </article>
+        <article class="card match">
+          <div>
+            <h2 class="card-title">教材会社｜英語教材開発</h2>
+            <p class="match-detail">海外教育経験を教材設計と市場理解に活かせます。</p>
+            <div class="requirements"><span class="tag">授業設計 L3</span><span class="tag">異文化対応 L3</span></div>
+          </div>
+          <span class="status">適合</span>
+        </article>
+        <article class="card match">
+          <div>
+            <h2 class="card-title">公立学校｜正規教員</h2>
+            <p class="match-detail">技能は確認済みですが、日本の教員免許が必要です。</p>
+            <div class="requirements"><span class="tag">不足：日本教員免許</span></div>
+          </div>
+          <span class="status need">追加資格</span>
+        </article>
+      </div>
+    </section>
+
+    <footer class="foot">
+      <strong>資格の有無だけでなく、「何が、どこまでできるか」を一目で確認。</strong>
+      本画面は制度提案のための架空データを用いたプロトタイプです。
+    </footer>
+  </div>
+</main>
+
+<script>
+const tabs=[...document.querySelectorAll('.tab')];
+const panels=[...document.querySelectorAll('.panel')];
+tabs.forEach(tab=>tab.addEventListener('click',()=>{
+  const id=tab.dataset.panel;
+  tabs.forEach(x=>x.setAttribute('aria-selected',String(x===tab)));
+  panels.forEach(x=>x.classList.toggle('active',x.id===id));
+}));
+</script>
+</body>
+</html>
