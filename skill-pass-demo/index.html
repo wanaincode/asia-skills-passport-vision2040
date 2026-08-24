@@ -38,7 +38,7 @@ button{font:inherit}
 .candidate-list{display:grid;gap:11px}.candidate{position:relative;width:100%;border:1px solid var(--line);border-radius:16px;padding:15px;background:var(--panel);color:var(--text);text-align:left;cursor:pointer;box-shadow:0 6px 18px rgba(0,0,0,.08)}.candidate:hover,.candidate:focus-visible{border-color:var(--teal);transform:translateY(-1px)}.candidate.recommended{border-color:rgba(97,209,191,.55)}.recommend-label{position:absolute;top:-9px;right:12px;padding:2px 8px;border-radius:999px;background:var(--teal);color:var(--navy);font-size:10px;font-weight:800}
 .candidate-top{display:grid;grid-template-columns:44px minmax(0,1fr) auto;gap:11px;align-items:center}.candidate-avatar{width:44px;height:44px;border-radius:50%;display:grid;place-items:center;background:#15584f;color:var(--teal);font-weight:700}.candidate-name{font-size:16px;font-weight:700}.candidate-role{color:var(--muted);font-size:12px}.score{color:var(--gold);font-size:22px;font-weight:800}.score small{font-size:11px;font-weight:500}
 .candidate-skills{display:flex;flex-wrap:wrap;gap:5px;margin-top:12px}.candidate-skill{padding:3px 7px;border-radius:5px;background:var(--panel2);color:#d5e1e8;font-size:11px}.candidate-note{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-top:9px;color:var(--muted);font-size:12px}.candidate-note .verified-mini{color:var(--teal)}.match-track{height:4px;margin-top:12px;border-radius:999px;background:#2b4152;overflow:hidden}.match-track span{display:block;height:100%;border-radius:inherit;background:linear-gradient(90deg,var(--teal),#8be1d2)}.candidate.disabled{cursor:default;opacity:.72}.candidate.disabled:hover{border-color:var(--line);transform:none}
-.profile-toolbar{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:18px}.back-button{border:0;padding:7px 0;background:transparent;color:var(--teal);cursor:pointer}.profile-score{color:var(--gold);font-weight:800}
+.profile-toolbar{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:18px}.profile-toolbar:has(.back-button[style*="display: none"]){display:none}.back-button{border:0;padding:7px 0;background:transparent;color:var(--teal);cursor:pointer}.profile-score{color:var(--gold);font-weight:800}.name-line{display:flex;align-items:center;gap:9px;flex-wrap:wrap}.name-line .profile-score{font-size:12px;line-height:1.2}
 .bottom-nav{position:fixed;z-index:8;left:0;right:0;bottom:0;height:68px;padding-bottom:env(safe-area-inset-bottom);display:grid;grid-template-columns:repeat(4,1fr);background:rgba(11,24,38,.97);border-top:1px solid var(--line);backdrop-filter:blur(12px)}.bottom-nav.hidden{display:none}.nav-item{border:0;background:transparent;color:#8295a4;font-size:10px;display:grid;place-content:center;gap:2px;text-align:center}.nav-icon{font-size:17px;line-height:1}.nav-item.active{color:var(--teal)}
 .identity{display:grid;grid-template-columns:72px minmax(0,1fr);gap:18px;align-items:center;padding-bottom:25px;border-bottom:1px solid var(--line)}
 .avatar{width:72px;height:72px;border-radius:50%;display:grid;place-items:center;background:#15584f;color:var(--teal)}
@@ -219,13 +219,13 @@ body{background:radial-gradient(circle at 50% 0,#fff 0,#e8eef3 70%)}
     </section>
 
     <section class="screen" id="profile-screen" aria-label="候補者のSkill Pass">
-      <div class="profile-toolbar"><button class="back-button" id="back-to-results" type="button">← 候補者一覧</button><span class="profile-score">適合度 86％</span></div>
+      <div class="profile-toolbar"><button class="back-button" id="back-to-results" type="button">← 候補者一覧</button></div>
     <section class="identity" aria-label="本人情報">
       <div class="avatar" aria-hidden="true">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="8" r="3.2"/><path d="M5.5 20c.7-4 3-6.1 6.5-6.1S17.8 16 18.5 20"/></svg>
       </div>
       <div>
-        <h1 class="name">佐藤 あかり</h1>
+        <div class="name-line"><h1 class="name">佐藤 あかり</h1><span class="profile-score">適合度 86％</span></div>
         <p class="meta">日本国籍｜教育・異文化対応</p>
         <p class="verified">✓ 本人確認済み</p>
         <p class="date">発行：2026.08.01　有効期限：2031.07.31</p>
