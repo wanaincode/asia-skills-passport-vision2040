@@ -222,7 +222,7 @@ body{background:radial-gradient(circle at 50% 0,#fff 0,#e8eef3 70%)}
     <section class="identity" aria-label="本人情報">
       <div class="avatar"><img src="assets/sato-akari.png" alt="佐藤あかりのプロフィール画像"></div>
       <div>
-        <div class="name-line"><h1 class="name">佐藤 あかり</h1><span class="profile-score">適合度 86％</span></div>
+        <div class="name-line"><h1 class="name">佐藤 あかり</h1><span class="profile-score" id="profile-match-score">適合度 86％</span></div>
         <p class="meta">日本国籍｜教育・異文化対応</p>
         <p class="verified">✓ 本人確認済み</p>
         <p class="date">発行：2026.08.01　有効期限：2031.07.31</p>
@@ -392,6 +392,7 @@ const shareQrSheet=document.querySelector('#share-qr-sheet');
 const scanQrSheet=document.querySelector('#scan-qr-sheet');
 const qrCandidate=document.querySelector('#open-profile');
 const resultCount=document.querySelector('#result-count');
+const profileMatchScore=document.querySelector('#profile-match-score');
 function resetProfileTabs(panel='skills'){
   tabs.forEach(tab=>tab.setAttribute('aria-selected',String(tab.dataset.panel===panel)));
   panels.forEach(item=>item.classList.toggle('active',item.id===panel));
@@ -402,7 +403,7 @@ function setRole(role,{updateUrl=true}={}){
   if(role==='employer'){
     employerScreen.classList.add('active');changeRole.textContent='採用担当者';primaryNavLabel.textContent='候補者';backToResults.style.display='';secondaryTab.textContent='求人との適合';secondaryTab.dataset.panel='jobs';qrCandidate.hidden=true;qrCandidate.classList.remove('guided-action');resultCount.textContent='2名';demoGuideText.textContent='「QRで応募者を追加」から、Skill Passを応募者一覧へ登録できます。';demoGuide.classList.add('active');resetProfileTabs();
   }else if(role==='jobseeker'){
-    profileScreen.classList.add('active');changeRole.textContent='求職者';primaryNavLabel.textContent='Skill Pass';backToResults.style.display='none';secondaryTab.textContent='資料を追加';secondaryTab.dataset.panel='uploads';demoGuideText.textContent='技能の根拠資料を確認し、画面下の「QRを表示」をお試しください。';demoGuide.classList.add('active');resetProfileTabs();
+    profileScreen.classList.add('active');changeRole.textContent='求職者';primaryNavLabel.textContent='Skill Pass';backToResults.style.display='none';profileMatchScore.style.display='none';secondaryTab.textContent='資料を追加';secondaryTab.dataset.panel='uploads';demoGuideText.textContent='技能の根拠資料を確認し、画面下の「QRを表示」をお試しください。';demoGuide.classList.add('active');resetProfileTabs();
   }else{
     roleScreen.classList.add('active');changeRole.textContent='モード選択';demoGuide.classList.remove('active');
   }
@@ -413,7 +414,7 @@ document.querySelector('#choose-jobseeker').addEventListener('click',()=>setRole
 document.querySelector('#choose-employer').addEventListener('click',()=>setRole('employer'));
 changeRole.addEventListener('click',()=>setRole(null));
 document.querySelectorAll('.filter-chip').forEach(chip=>chip.addEventListener('click',()=>chip.classList.toggle('active')));
-document.querySelector('#open-profile').addEventListener('click',()=>{qrCandidate.classList.remove('guided-action');employerScreen.classList.remove('active');profileScreen.classList.add('active');secondaryTab.textContent='求人との適合';secondaryTab.dataset.panel='jobs';demoGuideText.textContent='技能評価と根拠資料を確認できます。';resetProfileTabs();window.scrollTo({top:0,behavior:'smooth'})});
+document.querySelector('#open-profile').addEventListener('click',()=>{qrCandidate.classList.remove('guided-action');employerScreen.classList.remove('active');profileScreen.classList.add('active');profileMatchScore.style.display='';secondaryTab.textContent='求人との適合';secondaryTab.dataset.panel='jobs';demoGuideText.textContent='技能評価と根拠資料を確認できます。';resetProfileTabs();window.scrollTo({top:0,behavior:'smooth'})});
 backToResults.addEventListener('click',()=>{profileScreen.classList.remove('active');employerScreen.classList.add('active');demoGuideText.textContent='「QRで応募者を追加」から、Skill Passを応募者一覧へ登録できます。';window.scrollTo({top:0,behavior:'smooth'})});
 tabs.forEach(tab=>tab.addEventListener('click',()=>{
   const id=tab.dataset.panel;
