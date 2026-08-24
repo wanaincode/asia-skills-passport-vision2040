@@ -98,6 +98,7 @@ button{font:inherit}
 .foot{margin:22px 5px 0;text-align:center;color:var(--muted);font-size:13px}
 .foot strong{display:block;margin-bottom:4px;color:var(--text);font-weight:500}
 .qr-verify{width:100%;margin-top:12px;border:0;border-radius:8px;padding:11px;background:var(--teal);color:#fff;font-size:16px;font-weight:800;letter-spacing:.04em;cursor:pointer}.qr-symbol{margin-right:8px;font-size:20px;vertical-align:-1px}
+.qr-add-button{width:100%;margin-top:12px;border:0;border-radius:9px;padding:10px 13px;background:var(--teal);color:#fff;font-weight:800;cursor:pointer}.qr-add-button.secondary{background:#eef6f5;color:var(--teal);border:1px solid #9bcac6}.qr-stage{display:grid;place-items:center;gap:14px;padding:20px 0 4px;text-align:center}.qr-code{position:relative;width:174px;height:174px;padding:13px;border:8px solid #eef4f6;border-radius:9px;background-color:#fff;background-image:linear-gradient(90deg,var(--navy) 12%,transparent 12% 24%,var(--navy) 24% 36%,transparent 36% 48%,var(--navy) 48% 60%,transparent 60% 72%,var(--navy) 72% 84%,transparent 84%),linear-gradient(var(--navy) 12%,transparent 12% 24%,var(--navy) 24% 36%,transparent 36% 48%,var(--navy) 48% 60%,transparent 60% 72%,var(--navy) 72% 84%,transparent 84%);background-size:29px 29px;box-shadow:0 4px 16px rgba(8,40,77,.14)}.qr-code::before,.qr-code::after,.qr-finder{content:"";position:absolute;width:36px;height:36px;border:7px solid var(--navy);background:#fff;box-shadow:inset 0 0 0 7px #fff,inset 0 0 0 13px var(--navy)}.qr-code::before{top:10px;left:10px}.qr-code::after{top:10px;right:10px}.qr-finder{bottom:10px;left:10px}.qr-pass-id{color:var(--muted);font-size:12px}.qr-help{margin:0;color:var(--muted);font-size:13px}.scan-frame{position:relative;width:210px;height:210px;display:grid;place-items:center;border:2px solid var(--teal);border-radius:17px;background:#edf5f6;overflow:hidden}.scan-frame::after{content:"";position:absolute;left:16px;right:16px;top:50%;height:2px;background:var(--gold);box-shadow:0 0 10px var(--gold)}.scan-placeholder{font-size:54px;color:var(--teal)}.scan-result{display:none;width:100%;padding:13px;border:1px solid #8cc8c3;border-radius:11px;background:#edf8f6;text-align:left}.scan-result.active{display:block}.scan-result strong{color:var(--navy)}.scan-result small{color:var(--muted)}
 
 @media(min-width:700px){
   body{display:grid;place-items:center;padding:24px;background:radial-gradient(circle at 80% 10%,#143f49 0,#07111b 42%)}
@@ -181,6 +182,7 @@ body{background:radial-gradient(circle at 50% 0,#fff 0,#e8eef3 70%)}
           <h1 class="page-title">応募者管理</h1>
           <label class="search-box"><span class="search-icon">⌕</span><input type="search" aria-label="応募者を検索" placeholder="氏名・スキル・資格で検索"></label>
           <div class="filter-row" aria-label="候補者フィルター"><button class="filter-chip active" type="button">適合度順</button><button class="filter-chip" type="button">証明資料確認済み</button><button class="filter-chip" type="button">実務経験2年以上</button><button class="filter-chip" type="button">その他の条件</button></div>
+          <button class="qr-add-button" id="open-scan-qr" type="button"><span class="qr-symbol">▦</span>QRで応募者を追加</button>
         </div>
         <section class="job-box" aria-label="募集条件">
           <div class="job-row"><div><p class="eyebrow">対象求人</p><h2 class="job-title">英語教育・海外対応担当</h2></div><span class="edit-label">条件を編集</span></div>
@@ -188,9 +190,9 @@ body{background:radial-gradient(circle at 50% 0,#fff 0,#e8eef3 70%)}
           <div class="job-tags"><span class="job-tag required">英語指導 L3+</span><span class="job-tag required">授業設計 L3+</span><span class="job-tag">異文化対応 L2+</span><span class="job-tag">実務経験 2年以上</span><span class="job-tag">日本の教員免許 不要</span></div>
         </section>
         <div>
-          <div class="result-head"><h2 class="result-title">応募者一覧</h2><span class="result-count">3名</span></div>
+          <div class="result-head"><h2 class="result-title">応募者一覧</h2><span class="result-count" id="result-count">2名</span></div>
           <div class="candidate-list">
-            <button class="candidate recommended" id="open-profile" type="button">
+            <button class="candidate recommended" id="open-profile" type="button" hidden>
               <span class="recommend-label">おすすめ</span>
               <div class="candidate-top"><span class="candidate-avatar">佐</span><span><span class="candidate-name">佐藤 あかり</span><br><span class="candidate-role">教育・異文化対応｜海外勤務 3年</span></span><span class="score">86<small>％</small></span></div>
               <div class="candidate-skills"><span class="candidate-skill">英語指導 L4</span><span class="candidate-skill">授業設計 L3</span><span class="candidate-skill">異文化対応 L3</span></div>
@@ -306,7 +308,7 @@ body{background:radial-gradient(circle at 50% 0,#fff 0,#e8eef3 70%)}
       </div>
     </section>
 
-    <button class="qr-verify" type="button"><span class="qr-symbol">▦</span>QRで照会</button>
+    <button class="qr-verify" id="open-share-qr" type="button"><span class="qr-symbol">▦</span>QRを表示</button>
 
     <footer class="foot">
       本画面は制度提案のための架空データを用いたプロトタイプです。
@@ -361,6 +363,20 @@ body{background:radial-gradient(circle at 50% 0,#fff 0,#e8eef3 70%)}
   </div>
 </dialog>
 
+<dialog class="sheet" id="share-qr-sheet" aria-labelledby="share-qr-title">
+  <div class="sheet-inner">
+    <div class="sheet-head"><div><h2 class="sheet-title" id="share-qr-title">Skill Pass QR</h2><p class="sheet-sub">採用担当者に提示してください</p></div><button class="sheet-close" type="button" aria-label="閉じる">×</button></div>
+    <div class="qr-stage"><div class="qr-code" aria-label="佐藤あかりのSkill Pass QR"><span class="qr-finder"></span></div><strong>佐藤 あかり</strong><div class="qr-pass-id">PASS ID｜JP-EDU-2026-0184</div><p class="qr-help">採用担当者が読み取ると、確認済みの技能情報を応募者一覧へ追加できます。</p></div>
+  </div>
+</dialog>
+
+<dialog class="sheet" id="scan-qr-sheet" aria-labelledby="scan-qr-title">
+  <div class="sheet-inner">
+    <div class="sheet-head"><div><h2 class="sheet-title" id="scan-qr-title">QRで応募者を追加</h2><p class="sheet-sub">求職者のSkill Pass QRを読み取ります</p></div><button class="sheet-close" type="button" aria-label="閉じる">×</button></div>
+    <div class="qr-stage"><div class="scan-frame"><span class="scan-placeholder">▦</span></div><button class="qr-add-button secondary" id="simulate-scan" type="button">デモQRを読み取る</button><div class="scan-result" id="scan-result"><strong>佐藤 あかり</strong><br><small>本人確認済み｜証明資料4件を確認済み｜適合度86％</small><button class="qr-add-button" id="add-candidate" type="button">応募者一覧に追加</button></div></div>
+  </div>
+</dialog>
+
 <script>
 const tabs=[...document.querySelectorAll('.tab')];
 const panels=[...document.querySelectorAll('.panel')];
@@ -372,6 +388,10 @@ const bottomNav=document.querySelector('#bottom-nav');
 const backToResults=document.querySelector('#back-to-results');
 const primaryNavLabel=document.querySelector('#primary-nav-label');
 const secondaryTab=document.querySelector('#secondary-tab');
+const shareQrSheet=document.querySelector('#share-qr-sheet');
+const scanQrSheet=document.querySelector('#scan-qr-sheet');
+const qrCandidate=document.querySelector('#open-profile');
+const resultCount=document.querySelector('#result-count');
 function resetProfileTabs(panel='skills'){
   tabs.forEach(tab=>tab.setAttribute('aria-selected',String(tab.dataset.panel===panel)));
   panels.forEach(item=>item.classList.toggle('active',item.id===panel));
@@ -411,6 +431,11 @@ sheet.querySelectorAll('.doc-button').forEach(button=>button.addEventListener('c
   preview.classList.add(button.dataset.docKind);
   preview.classList.add('active');
 }));
+document.querySelector('#open-share-qr').addEventListener('click',()=>shareQrSheet.showModal());
+document.querySelector('#open-scan-qr').addEventListener('click',()=>{document.querySelector('#scan-result').classList.remove('active');scanQrSheet.showModal()});
+document.querySelector('#simulate-scan').addEventListener('click',()=>document.querySelector('#scan-result').classList.add('active'));
+document.querySelector('#add-candidate').addEventListener('click',()=>{qrCandidate.hidden=false;resultCount.textContent='3名';scanQrSheet.close();qrCandidate.scrollIntoView({behavior:'smooth',block:'center'})});
+[shareQrSheet,scanQrSheet].forEach(dialog=>{dialog.querySelector('.sheet-close').addEventListener('click',()=>dialog.close());dialog.addEventListener('click',event=>{if(event.target===dialog)dialog.close()})});
 const requestedRole=new URLSearchParams(location.search).get('role');
 setRole(requestedRole==='jobseeker'||requestedRole==='employer'?requestedRole:null,{updateUrl:false});
 </script>
