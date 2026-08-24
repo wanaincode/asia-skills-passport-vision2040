@@ -66,8 +66,8 @@ button{font:inherit}
 .meter i{height:7px;border-radius:5px;background:#344b5e}
 .meter i.on{background:var(--teal)}
 .evidence{display:flex;align-items:center;gap:6px;margin-top:10px;color:var(--muted);font-size:13px}
-.evidence-button{width:100%;justify-content:space-between;border:0;padding:0;background:transparent;cursor:pointer;text-align:left}
-.evidence-button:hover,.evidence-button:focus-visible{color:var(--teal)}
+.evidence-button{width:100%;justify-content:space-between;border:1px solid rgba(20,139,132,.28);border-radius:9px;padding:9px 11px;background:#edf8f6;color:var(--teal);cursor:pointer;text-align:left;transition:background-color .18s ease,border-color .18s ease,color .18s ease,transform .18s ease}
+.evidence-button:hover,.evidence-button:focus-visible{border-color:var(--teal);background:var(--teal);color:#fff;transform:translateY(-1px);outline:none}
 .evidence-button span:last-child{font-size:18px;line-height:1}
 .sheet{width:min(92vw,620px);max-height:86dvh;padding:0;border:1px solid var(--line);border-radius:20px;background:var(--navy2);color:var(--text);box-shadow:0 24px 80px rgba(0,0,0,.65)}
 .sheet::backdrop{background:rgba(2,8,14,.72);backdrop-filter:blur(3px)}
@@ -248,7 +248,7 @@ body{background:radial-gradient(circle at 50% 0,#fff 0,#e8eef3 70%)}
         <article class="card">
           <div class="skill-head"><div><h2 class="card-title">英語指導</h2><p class="card-note">学習者に合わせて指導できる</p></div><span class="skill-level">L4</span></div>
           <div class="meter" aria-label="レベル4"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></div>
-          <button class="evidence evidence-button guided-action" type="button" data-evidence="english" aria-haspopup="dialog"><span>根拠資料 4件</span><span aria-hidden="true">›</span></button>
+          <button class="evidence evidence-button" type="button" data-evidence="english" aria-haspopup="dialog"><span>根拠資料 4件</span><span aria-hidden="true">›</span></button>
         </article>
         <article class="card">
           <div class="skill-head"><div><h2 class="card-title">授業設計</h2><p class="card-note">一人で授業・教材を設計できる</p></div><span class="skill-level">L3</span></div>
