@@ -99,6 +99,453 @@ button{font:inherit}
 .foot strong{display:block;margin-bottom:4px;color:var(--text);font-weight:500}
 .qr-verify{width:100%;margin-top:12px;border:0;border-radius:8px;padding:11px;background:var(--teal);color:#fff;font-size:16px;font-weight:800;letter-spacing:.04em;cursor:pointer}.qr-symbol{margin-right:8px;font-size:20px;vertical-align:-1px}
 .qr-add-button{width:100%;margin-top:12px;border:0;border-radius:9px;padding:10px 13px;background:var(--teal);color:#fff;font-weight:800;cursor:pointer}.qr-add-button.secondary{background:#eef6f5;color:var(--teal);border:1px solid #9bcac6}.qr-stage{display:grid;place-items:center;gap:14px;padding:20px 0 4px;text-align:center}.qr-code{position:relative;width:174px;height:174px;padding:13px;border:8px solid #eef4f6;border-radius:9px;background-color:#fff;background-image:linear-gradient(90deg,var(--navy) 12%,transparent 12% 24%,var(--navy) 24% 36%,transparent 36% 48%,var(--navy) 48% 60%,transparent 60% 72%,var(--navy) 72% 84%,transparent 84%),linear-gradient(var(--navy) 12%,transparent 12% 24%,var(--navy) 24% 36%,transparent 36% 48%,var(--navy) 48% 60%,transparent 60% 72%,var(--navy) 72% 84%,transparent 84%);background-size:29px 29px;box-shadow:0 4px 16px rgba(8,40,77,.14)}.qr-code::before,.qr-code::after,.qr-finder{content:"";position:absolute;width:36px;height:36px;border:7px solid var(--navy);background:#fff;box-shadow:inset 0 0 0 7px #fff,inset 0 0 0 13px var(--navy)}.qr-code::before{top:10px;left:10px}.qr-code::after{top:10px;right:10px}.qr-finder{bottom:10px;left:10px}.qr-pass-id{color:var(--muted);font-size:12px}.qr-help{margin:0;color:var(--muted);font-size:13px}.scan-frame{position:relative;width:210px;height:210px;display:grid;place-items:center;border:2px solid var(--teal);border-radius:17px;background:#edf5f6;overflow:hidden}.scan-frame::after{content:"";position:absolute;left:16px;right:16px;top:50%;height:2px;background:var(--gold);box-shadow:0 0 10px var(--gold)}.scan-placeholder{font-size:54px;color:var(--teal)}.scan-result{display:none;width:100%;padding:13px;border:1px solid #8cc8c3;border-radius:11px;background:#edf8f6;text-align:left}.scan-result.active{display:block}.scan-result strong{color:var(--navy)}.scan-result small{color:var(--muted)}
+.demo-guide{display:none;align-items:flex-start;gap:9px;margin:0 0 13px;padding:10px 12px;border:1px solid #edd27c;border-radius:10px;background:#fff8dd;color:#66500d;font-size:12px;line-height:1.5}.demo-guide.active{display:flex}.guide-badge{flex:0 0 auto;padding:2px 6px;border-radius:5px;background:var(--gold);color:#fff;font-size:10px;font-weight:900}.guided-action{position:relative!important;outline:2px solid #111820!important;outline-offset:2px;box-shadow:0 5px 14px rgba(8,40,77,.16)!important}.guided-action::after{content:"ここをタップ";position:absolute;z-index:4;right:8px;top:-12px;padding:3px 8px;border:2px solid #111820;border-radius:5px;background:#111820;color:#fff;font-size:9px;font-weight:900;line-height:1.1;white-space:nowrap}.nav-item:disabled{opacity:.38;cursor:not-allowed}.nav-item:disabled .nav-icon{filter:grayscale(1)}
+
+@media(min-width:700px){
+  body{display:grid;place-items:center;padding:24px;background:radial-gradient(circle at 80% 10%,#143f49 0,#07111b 42%)}
+  .app{width:min(100%,980px);min-height:720px;border:10px solid #03080e;border-radius:30px;overflow:hidden;box-shadow:0 24px 80px rgba(0,0,0,.5)}
+  .topbar{height:66px;padding:0 28px}
+  .main{padding:28px 34px 96px}
+  .employer-layout{display:grid;grid-template-columns:minmax(260px,.85fr) minmax(0,1.5fr);gap:24px;align-items:start}.employer-head{grid-column:1/-1;margin-bottom:0}.job-box{position:sticky;top:20px}.result-head{margin-top:0}.candidate-list{grid-template-columns:repeat(2,minmax(0,1fr))}.candidate:first-child{grid-column:1/-1}
+  .role-options{grid-template-columns:repeat(2,minmax(0,1fr));max-width:700px;margin:auto}.role-card{padding:26px}.role-screen{min-height:560px}
+  .identity{grid-template-columns:92px minmax(0,1fr) 190px;gap:22px}
+  .avatar{width:92px;height:92px}
+  .name{font-size:26px}
+  .desktop-verify{display:block;justify-self:end;padding-left:22px;border-left:1px solid var(--line);text-align:right}
+  .verify-id{font-size:13px;color:var(--muted)}
+  .verify-status{margin-top:4px;color:var(--teal);font-weight:600}
+  .tabs{position:static;margin-top:22px}
+  .cards{grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+  #jobs .cards{grid-template-columns:1fr}
+  .card{padding:18px}
+  .foot{margin-top:26px}
+  .bottom-nav{position:absolute;left:10px;right:10px;bottom:10px;border-radius:0 0 20px 20px}
+}
+
+@media(min-width:980px){
+  .app{min-height:750px}
+  .cards{grid-template-columns:repeat(2,minmax(0,1fr))}
+  #skills .cards{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+
+@media(prefers-reduced-motion:reduce){.panel{animation:none}}
+
+/* Light credential-app theme inspired by the presentation prototype */
+:root{--navy:#08284d;--navy2:#f5f8fb;--panel:#ffffff;--panel2:#edf4f5;--line:#d5e0e8;--text:#122941;--muted:#64778a;--teal:#087f7b;--gold:#edae10;--coral:#dc6856}
+html,body{background:#e9eff4;color:var(--text)}
+body{background:radial-gradient(circle at 50% 0,#fff 0,#e8eef3 70%)}
+.app{background:#f7f9fb;color:var(--text)}
+.topbar{height:64px;background:#fff;border-bottom:1px solid var(--line);box-shadow:0 2px 9px rgba(8,40,77,.06)}
+.brand{color:var(--navy);font-size:17px}.brand-mark{background:var(--navy);color:#fff;border-radius:5px;font-size:10px}.user-mode{background:#eef3f6;color:var(--navy);border:1px solid var(--line)}.demo{background:var(--gold);color:#fff;font-size:11px}
+.main{background:#f7f9fb}.role-title,.page-title,.name,.result-title,.job-title{color:var(--navy)}
+.role-card,.job-box,.candidate,.identity,.card,.upload-item{background:#fff;border-color:var(--line);box-shadow:0 3px 10px rgba(8,40,77,.055)}
+.role-card:hover,.role-card:focus-visible,.candidate:hover,.candidate:focus-visible{border-color:var(--teal)}
+.role-icon,.candidate-avatar,.avatar{background:#e2f3f1;color:var(--teal)}
+.role-arrow,.eyebrow,.edit-label,.verified,.verified-mini,.verify-status,.ok,.evidence-button:hover,.evidence-button:focus-visible{color:var(--teal)}
+.search-box{background:#fff;color:var(--muted);border-color:var(--line)}.search-box input{color:var(--text)}
+.filter-chip{background:#fff;color:#506579}.filter-chip.active{background:#e5f3f2;color:var(--teal);border-color:#89c7c2}
+.job-box{background:#fff}.job-tag,.candidate-skill,.tag{background:#edf2f6;color:#354c62}.job-tag.required{background:#e6f4f3;color:var(--teal)}
+.candidate.recommended{border-color:#62b9b2}.recommend-label{background:var(--teal);color:#fff}.score{color:var(--gold)}.match-track{background:#e0e7ec}.match-track span{background:var(--teal)}
+.profile-toolbar{margin-bottom:12px}.back-button{color:var(--teal)}.profile-score{color:#a66f00;background:#fff5d6;border:1px solid #f1d271;border-radius:999px;padding:4px 9px}
+.identity{position:relative;grid-template-columns:64px minmax(0,1fr) auto;padding:15px;border:1px solid var(--line);border-radius:12px}.avatar{width:58px;height:58px}.name{font-size:20px}.meta,.date{font-size:12px}.verified{display:inline-block;padding:2px 8px;border-radius:999px;background:#e5f4f1;font-size:11px}.verify-shield{width:46px;height:52px;display:grid;place-items:center;clip-path:polygon(50% 0,94% 16%,88% 74%,50% 100%,12% 74%,6% 16%);background:var(--teal);color:#fff;font-size:25px;font-weight:900}
+.desktop-verify{display:none!important}
+.tabs{top:0;margin:12px 0;background:#fff;border:1px solid var(--line);border-radius:10px;overflow:hidden}.tab{color:#52677b;border-bottom-width:4px}.tab[aria-selected="true"]{color:var(--teal);border-bottom-color:var(--gold);background:#f6fbfa;font-weight:700}
+.panel{position:relative;padding:44px 12px 12px;border:1px solid var(--line);border-radius:11px;background:#fff;box-shadow:0 3px 10px rgba(8,40,77,.055);overflow:hidden}.panel::before{position:absolute;inset:0 0 auto;display:flex;align-items:center;height:32px;padding:0 12px;background:var(--navy);color:#fff;font-size:12px;font-weight:800;letter-spacing:.02em}.panel#skills::before{content:"技能プロフィール"}.panel#uploads::before{content:"証明資料"}.panel#jobs::before{content:"求人要件との適合"}
+.cards{gap:0}.card{border:0;border-bottom:1px solid #e3e9ee;border-radius:0;box-shadow:none;padding:13px 8px}.card:last-child{border-bottom:0}.card-title,.card-main{color:var(--navy);font-weight:700}.card-note,.match-detail,.evidence{color:var(--muted)}
+.skill-level{display:grid;place-items:center;min-width:31px;height:31px;border-radius:50%;background:var(--gold);color:#fff;font-size:12px}.meter{gap:2px;margin-top:10px}.meter i{height:6px;border-radius:0;background:#e4e9ed}.meter i:first-child{border-radius:99px 0 0 99px}.meter i:last-child{border-radius:0 99px 99px 0}.meter i.on{background:var(--teal)}
+.evidence-button{color:var(--teal);font-weight:700}.status{background:#e1f2ef;color:var(--teal)}.status.need{background:#fff2d2;color:#9a6900}
+.upload-box{border-color:#89b8b5;background:#f4fbfa}.upload-icon{background:#dff2ef}.upload-button{background:var(--teal);color:#fff}.upload-file-icon{background:#e2f3f1;color:var(--teal)}
+.foot{color:#7b8997}.bottom-nav{background:#fff;border-top:1px solid var(--line);box-shadow:0 -3px 12px rgba(8,40,77,.07)}.nav-item{color:#77899a}.nav-item.active{color:var(--teal)}
+.sheet{background:#fff;color:var(--text);border-color:var(--line)}.sheet-head{border-bottom-color:var(--line)}.sheet-close{background:#eef3f6;color:var(--navy);border-color:var(--line)}.evidence-item{background:#fff}.formula{background:#e6f4f2;color:#265c59}.doc-button{background:#eef4f6;color:var(--navy);border-color:#bdd0dc}
+
+@media(max-width:699px){.main{padding:15px 12px calc(82px + env(safe-area-inset-bottom))}.profile-toolbar{font-size:12px}.desktop-verify{display:none}.cards{grid-template-columns:1fr!important}.role-screen{min-height:calc(100dvh - 145px)}.bottom-nav{height:61px}}
+</style>
+</head>
+<body>
+<main class="app">
+  <header class="topbar">
+    <div class="brand"><span>スキルパス</span></div>
+    <div class="top-actions"><button class="user-mode" id="change-role" type="button">モード選択</button><div class="demo">DEMO</div></div>
+  </header>
+
+  <div class="main">
+    <div class="demo-guide" id="demo-guide"><span class="guide-badge">DEMO</span><span id="demo-guide-text"></span></div>
+    <section class="screen role-screen active" id="role-screen" aria-label="利用者モード選択">
+      <div class="role-intro"><h1 class="role-title">利用者の視点を選択</h1><p class="role-sub">体験する立場を選んでください。</p></div>
+      <div class="role-options">
+        <button class="role-card guided-action" id="choose-jobseeker" type="button"><span class="role-icon">♙</span><span class="role-name">求職者</span><span class="role-desc">自分の技能評価と証明資料を確認</span><span class="role-arrow">Skill Passを開く ›</span></button>
+        <button class="role-card guided-action" id="choose-employer" type="button"><span class="role-icon">▣</span><span class="role-name">採用担当者</span><span class="role-desc">求人条件に合う応募者を比較・確認</span><span class="role-arrow">応募者管理を開く ›</span></button>
+      </div>
+    </section>
+
+    <section class="screen" id="employer-screen" aria-label="候補者マッチング">
+      <div class="employer-layout">
+        <div class="employer-head">
+          <h1 class="page-title">応募者管理</h1>
+          <label class="search-box"><span class="search-icon">⌕</span><input type="search" aria-label="応募者を検索" placeholder="氏名・スキル・資格で検索"></label>
+          <div class="filter-row" aria-label="候補者フィルター"><button class="filter-chip active" type="button">適合度順</button><button class="filter-chip" type="button">証明資料確認済み</button><button class="filter-chip" type="button">実務経験2年以上</button><button class="filter-chip" type="button">その他の条件</button></div>
+          <button class="qr-add-button guided-action" id="open-scan-qr" type="button"><span class="qr-symbol">▦</span>QRで応募者を追加</button>
+        </div>
+        <section class="job-box" aria-label="募集条件">
+          <div class="job-row"><div><p class="eyebrow">対象求人</p><h2 class="job-title">英語教育・海外対応担当</h2></div><span class="edit-label">条件を編集</span></div>
+          <p class="job-meta">民間教育企業｜東京・一部リモート</p>
+          <div class="job-tags"><span class="job-tag required">英語指導 L3+</span><span class="job-tag required">授業設計 L3+</span><span class="job-tag">異文化対応 L2+</span><span class="job-tag">実務経験 2年以上</span><span class="job-tag">日本の教員免許 不要</span></div>
+        </section>
+        <div>
+          <div class="result-head"><h2 class="result-title">応募者一覧</h2><span class="result-count" id="result-count">2名</span></div>
+          <div class="candidate-list">
+            <button class="candidate recommended" id="open-profile" type="button" hidden>
+              <span class="recommend-label">おすすめ</span>
+              <div class="candidate-top"><span class="candidate-avatar">佐</span><span><span class="candidate-name">佐藤 あかり</span><br><span class="candidate-role">教育・異文化対応｜海外勤務 3年</span></span><span class="score">86<small>％</small></span></div>
+              <div class="candidate-skills"><span class="candidate-skill">英語指導 L4</span><span class="candidate-skill">授業設計 L3</span><span class="candidate-skill">異文化対応 L3</span></div>
+              <div class="match-track" aria-label="適合度86パーセント"><span style="width:86%"></span></div>
+              <div class="candidate-note"><span class="verified-mini">✓ 証明資料4件を確認済み</span><span>詳細を見る ›</span></div>
+            </button>
+            <button class="candidate disabled" type="button" disabled>
+              <div class="candidate-top"><span class="candidate-avatar">山</span><span><span class="candidate-name">山田 健</span><br><span class="candidate-role">教材制作｜実務経験 2年</span></span><span class="score">72<small>％</small></span></div>
+              <div class="candidate-skills"><span class="candidate-skill">英語指導 L3</span><span class="candidate-skill">授業設計 L3</span></div>
+              <div class="match-track" aria-label="適合度72パーセント"><span style="width:72%"></span></div>
+              <div class="candidate-note"><span>不足：異文化対応の証明</span><span>DEMO</span></div>
+            </button>
+            <button class="candidate disabled" type="button" disabled>
+              <div class="candidate-top"><span class="candidate-avatar">林</span><span><span class="candidate-name">林 ミン</span><br><span class="candidate-role">海外営業・通訳｜実務経験 4年</span></span><span class="score">64<small>％</small></span></div>
+              <div class="candidate-skills"><span class="candidate-skill">異文化対応 L4</span><span class="candidate-skill">業務英語 L4</span></div>
+              <div class="match-track" aria-label="適合度64パーセント"><span style="width:64%"></span></div>
+              <div class="candidate-note"><span>不足：授業設計 L3</span><span>DEMO</span></div>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="screen" id="profile-screen" aria-label="候補者のSkill Pass">
+      <div class="profile-toolbar"><button class="back-button" id="back-to-results" type="button">← 候補者一覧</button><span class="profile-score">適合度 86％</span></div>
+    <section class="identity" aria-label="本人情報">
+      <div class="avatar" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="8" r="3.2"/><path d="M5.5 20c.7-4 3-6.1 6.5-6.1S17.8 16 18.5 20"/></svg>
+      </div>
+      <div>
+        <h1 class="name">佐藤 あかり</h1>
+        <p class="meta">日本国籍｜教育・異文化対応</p>
+        <p class="verified">✓ 本人確認済み</p>
+        <p class="date">発行：2026.08.01　有効期限：2031.07.31</p>
+      </div>
+      <div class="desktop-verify">
+        <div class="verify-id">PASS ID</div>
+        <div>JP-EDU-2026-0184</div>
+        <div class="verify-status">発行元確認済み</div>
+      </div>
+      <div class="verify-shield" aria-label="確認済み">✓</div>
+    </section>
+
+    <nav class="tabs" aria-label="表示内容">
+      <button class="tab" type="button" data-panel="skills" aria-selected="true">技能評価</button>
+      <button class="tab" id="secondary-tab" type="button" data-panel="uploads" aria-selected="false">資料を追加</button>
+    </nav>
+
+    <section class="panel active" id="skills" aria-label="技能評価">
+      <div class="cards">
+        <article class="card">
+          <div class="skill-head"><div><h2 class="card-title">英語指導</h2><p class="card-note">学習者に合わせて指導できる</p></div><span class="skill-level">L4</span></div>
+          <div class="meter" aria-label="レベル4"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></div>
+          <button class="evidence evidence-button guided-action" type="button" data-evidence="english" aria-haspopup="dialog"><span>根拠資料 4件</span><span aria-hidden="true">›</span></button>
+        </article>
+        <article class="card">
+          <div class="skill-head"><div><h2 class="card-title">授業設計</h2><p class="card-note">一人で授業・教材を設計できる</p></div><span class="skill-level">L3</span></div>
+          <div class="meter" aria-label="レベル3"><i class="on"></i><i class="on"></i><i class="on"></i><i></i></div>
+          <div class="evidence">根拠：実務成果物・面談評価</div>
+        </article>
+        <article class="card">
+          <div class="skill-head"><div><h2 class="card-title">異文化対応</h2><p class="card-note">多文化環境で自立して対応できる</p></div><span class="skill-level">L3</span></div>
+          <div class="meter" aria-label="レベル3"><i class="on"></i><i class="on"></i><i class="on"></i><i></i></div>
+          <div class="evidence">根拠：海外勤務・実技評価</div>
+        </article>
+        <article class="card">
+          <div class="skill-head"><div><h2 class="card-title">日本語での文書作成</h2><p class="card-note">支援を受けながら業務文書を作成できる</p></div><span class="skill-level">L2</span></div>
+          <div class="meter" aria-label="レベル2"><i class="on"></i><i class="on"></i><i></i><i></i></div>
+          <div class="evidence">根拠：言語試験・課題評価</div>
+        </article>
+      </div>
+    </section>
+
+    <section class="panel" id="uploads" aria-label="資料を追加">
+      <div class="upload-box">
+        <div class="upload-icon">＋</div>
+        <div class="upload-title">技能を証明する資料を追加</div>
+        <div class="upload-note">資格証明書・在職証明・試験結果など<br>PDF、JPG、PNG（最大10MB）</div>
+        <button class="upload-button" type="button">ファイルを選択</button>
+      </div>
+      <div class="upload-list">
+        <div class="upload-item"><span class="upload-file-icon">PDF</span><span><span class="upload-file-name">ビクトリア州教員登録証明書</span><br><span class="upload-file-meta">2026.07.18 更新</span></span><span class="upload-status">✓ 確認済み</span></div>
+        <div class="upload-item"><span class="upload-file-icon">PDF</span><span><span class="upload-file-name">在職証明書</span><br><span class="upload-file-meta">2026.07.18 更新</span></span><span class="upload-status">✓ 確認済み</span></div>
+      </div>
+    </section>
+
+    <section class="panel" id="jobs" aria-label="仕事との適合結果">
+      <div class="cards">
+        <article class="card match">
+          <div>
+            <h2 class="card-title">民間英語学校｜英語講師</h2>
+            <p class="match-detail">英語指導L4・授業設計L3を活用できます。</p>
+            <div class="requirements"><span class="tag">英語指導 L4</span><span class="tag">授業設計 L3</span></div>
+          </div>
+          <span class="status">適合</span>
+        </article>
+        <article class="card match">
+          <div>
+            <h2 class="card-title">教材会社｜英語教材開発</h2>
+            <p class="match-detail">海外教育経験を教材設計と市場理解に活かせます。</p>
+            <div class="requirements"><span class="tag">授業設計 L3</span><span class="tag">異文化対応 L3</span></div>
+          </div>
+          <span class="status">適合</span>
+        </article>
+        <article class="card match">
+          <div>
+            <h2 class="card-title">公立学校｜正規教員</h2>
+            <p class="match-detail">技能は確認済みですが、日本の教員免許が必要です。</p>
+            <div class="requirements"><span class="tag">不足：日本教員免許</span></div>
+          </div>
+          <span class="status need">要追加資格</span>
+        </article>
+      </div>
+    </section>
+
+    <button class="qr-verify guided-action" id="open-share-qr" type="button"><span class="qr-symbol">▦</span>QRを表示</button>
+
+    <footer class="foot">
+      本画面は制度提案のための架空データを用いたプロトタイプです。
+    </footer>
+    </section>
+  </div>
+  <nav class="bottom-nav hidden" id="bottom-nav" aria-label="アプリメニュー"><button class="nav-item" type="button" disabled title="このデモでは使用できません"><span class="nav-icon">⌂</span><span>ホーム</span></button><button class="nav-item" type="button" disabled title="このデモでは使用できません"><span class="nav-icon">▤</span><span>求人</span></button><button class="nav-item active" type="button"><span class="nav-icon">◎</span><span id="primary-nav-label">Skill Pass</span></button><button class="nav-item" type="button" disabled title="このデモでは使用できません"><span class="nav-icon">□</span><span>メッセージ</span></button></nav>
+</main>
+
+<dialog class="sheet" id="evidence-sheet" aria-labelledby="evidence-title">
+  <div class="sheet-inner">
+    <div class="sheet-head">
+      <div><h2 class="sheet-title" id="evidence-title">英語指導｜L4</h2><p class="sheet-sub">複数の資格・経験・実技評価に基づいて判定</p></div>
+      <button class="sheet-close" type="button" aria-label="閉じる">×</button>
+    </div>
+    <div class="evidence-list">
+      <div class="evidence-item"><div><div class="evidence-type">英語能力</div><div class="evidence-name">TOEFL iBT 105／TOEIC L&amp;R 945</div><div class="evidence-meta">ETS・IIBC｜発行元確認済み</div></div><button class="doc-button" type="button" data-doc="英語能力試験" data-doc-kind="language">証明書を見る</button></div>
+      <div class="evidence-item"><div><div class="evidence-type">専門資格</div><div class="evidence-name">Victoria Teacher Registration</div><div class="evidence-meta">州資格登録機関｜発行元確認済み</div></div><button class="doc-button" type="button" data-doc="Victoria 教員登録" data-doc-kind="teacher">証明書を見る</button></div>
+      <div class="evidence-item"><div><div class="evidence-type">実務経験</div><div class="evidence-name">英語指導 3年</div><div class="evidence-meta">在職証明書｜確認済み</div></div><button class="doc-button" type="button" data-doc="在職証明書" data-doc-kind="employment">証明書を見る</button></div>
+      <div class="evidence-item"><div><div class="evidence-type">実技評価</div><div class="evidence-name">模擬授業評価 L4</div><div class="evidence-meta">登録評価者：田中 美咲｜2026.07.20</div></div><button class="doc-button" type="button" data-doc="実技評価" data-doc-kind="practical">評価を見る</button></div>
+    </div>
+    <div class="formula">言語試験＋教員資格＋指導経験＋実技評価 → 英語指導 L4</div>
+    <div class="doc-preview" id="doc-preview">
+      <strong id="doc-title">証明書</strong><small>DEMO PDFプレビュー｜発行元・発行日・確認状況を表示します。</small>
+      <div class="mock-document" data-preview="language" aria-label="英語能力試験のデモ証明書">
+        <div class="certificate-watermark">SAMPLE</div>
+        <div class="certificate-head"><span class="certificate-mark">SKILL PASS VERIFIED RECORD</span><span class="certificate-demo">DEMO</span></div>
+        <div class="certificate-name">佐藤 あかり｜Language Score Record</div><div class="certificate-id">PASS ID: JP-EDU-2026-0184</div>
+        <div class="score-grid"><div class="score-box"><span class="score-label">TOEFL iBT</span><span class="score-number">105</span><span class="score-note">Test date 2025.06.14</span></div><div class="score-box"><span class="score-label">TOEIC L&amp;R</span><span class="score-number">945</span><span class="score-note">Test date 2025.03.09</span></div></div>
+        <div class="certificate-foot"><span>Issuer records linked for demonstration only.</span><span class="verified-seal">✓ 発行元確認済み</span></div>
+      </div>
+      <div class="mock-document" data-preview="teacher" aria-label="Victoria教員登録のデモ証明書">
+        <div class="certificate-watermark">SAMPLE</div><div class="certificate-head"><span class="certificate-mark">VICTORIA TEACHER REGISTRATION</span><span class="certificate-demo">DEMO</span></div>
+        <div class="document-title">Registration Record</div><div class="document-sub">Skill Pass verified summary｜This is not an official registration certificate.</div>
+        <div class="document-table"><span>Registrant</span><span>Akari Sato</span><span>Status</span><span>Full Registration</span><span>Teaching Area</span><span>English</span><span>Registration No.</span><span>DEMO-VIC-0184</span><span>Valid Until</span><span>2028.07.31</span></div>
+        <div class="certificate-foot"><span>Jurisdiction: Victoria, Australia</span><span class="verified-seal">✓ 発行元確認済み</span></div>
+      </div>
+      <div class="mock-document" data-preview="employment" aria-label="在職証明のデモ証明書">
+        <div class="certificate-watermark">SAMPLE</div><div class="certificate-head"><span class="certificate-mark">CERTIFICATE OF EMPLOYMENT</span><span class="certificate-demo">DEMO</span></div>
+        <div class="document-title">Southern Cross Learning School</div><div class="document-sub">Fictional institution created for the Skill Pass prototype.</div>
+        <div class="document-table"><span>Employee</span><span>Akari Sato</span><span>Position</span><span>English Teacher</span><span>Employment</span><span>2023.04–2026.03</span><span>Experience</span><span>3 years</span><span>Main Duties</span><span>授業設計・英語指導・保護者対応</span></div>
+        <div class="signature">Emma Wilson</div><div class="certificate-foot"><span>School Administrator｜DEMO</span><span class="verified-seal">✓ 在職情報確認済み</span></div>
+      </div>
+      <div class="mock-document" data-preview="practical" aria-label="実技評価のデモ評価票">
+        <div class="certificate-watermark">SAMPLE</div><div class="certificate-head"><span class="certificate-mark">SKILL PASS 実技評価委員会</span><span class="certificate-demo">DEMO</span></div>
+        <div class="document-title">模擬授業 実技評価票｜総合 L4</div><div class="document-sub">日本・ASEAN共同評価モデル｜評価日 2026.07.20</div>
+        <div class="rubric"><span>授業設計</span><span>L4</span><span>説明力</span><span>L4</span><span>学習者対応</span><span>L4</span><span>異文化対応</span><span>L3</span></div>
+        <div class="document-table"><span>外部評価者</span><span>田中 美咲</span><span>専門</span><span>英語教育専門評価者</span><span>登録番号</span><span>DEMO-JP-042</span><span>連携想定</span><span>大学・教育機関・英語教育関連学会</span></div>
+        <div class="certificate-foot"><span>Skill Pass実技評価委員会</span><span class="verified-seal">✓ 登録評価者による評価</span></div>
+      </div>
+    </div>
+  </div>
+</dialog>
+
+<dialog class="sheet" id="share-qr-sheet" aria-labelledby="share-qr-title">
+  <div class="sheet-inner">
+    <div class="sheet-head"><div><h2 class="sheet-title" id="share-qr-title">Skill Pass QR</h2><p class="sheet-sub">採用担当者に提示してください</p></div><button class="sheet-close" type="button" aria-label="閉じる">×</button></div>
+    <div class="qr-stage"><div class="qr-code" aria-label="佐藤あかりのSkill Pass QR"><span class="qr-finder"></span></div><strong>佐藤 あかり</strong><div class="qr-pass-id">PASS ID｜JP-EDU-2026-0184</div><p class="qr-help">採用担当者が読み取ると、確認済みの技能情報を応募者一覧へ追加できます。</p></div>
+  </div>
+</dialog>
+
+<dialog class="sheet" id="scan-qr-sheet" aria-labelledby="scan-qr-title">
+  <div class="sheet-inner">
+    <div class="sheet-head"><div><h2 class="sheet-title" id="scan-qr-title">QRで応募者を追加</h2><p class="sheet-sub">求職者のSkill Pass QRを読み取ります</p></div><button class="sheet-close" type="button" aria-label="閉じる">×</button></div>
+    <div class="qr-stage"><div class="scan-frame"><span class="scan-placeholder">▦</span></div><button class="qr-add-button secondary guided-action" id="simulate-scan" type="button">デモQRを読み取る</button><div class="scan-result" id="scan-result"><strong>佐藤 あかり</strong><br><small>本人確認済み｜証明資料4件を確認済み｜適合度86％</small><button class="qr-add-button" id="add-candidate" type="button">応募者一覧に追加</button></div></div>
+  </div>
+</dialog>
+
+<script>
+const tabs=[...document.querySelectorAll('.tab')];
+const panels=[...document.querySelectorAll('.panel')];
+const roleScreen=document.querySelector('#role-screen');
+const employerScreen=document.querySelector('#employer-screen');
+const profileScreen=document.querySelector('#profile-screen');
+const changeRole=document.querySelector('#change-role');
+const bottomNav=document.querySelector('#bottom-nav');
+const backToResults=document.querySelector('#back-to-results');
+const primaryNavLabel=document.querySelector('#primary-nav-label');
+const secondaryTab=document.querySelector('#secondary-tab');
+const demoGuide=document.querySelector('#demo-guide');
+const demoGuideText=document.querySelector('#demo-guide-text');
+const shareQrSheet=document.querySelector('#share-qr-sheet');
+const scanQrSheet=document.querySelector('#scan-qr-sheet');
+const qrCandidate=document.querySelector('#open-profile');
+const resultCount=document.querySelector('#result-count');
+function resetProfileTabs(panel='skills'){
+  tabs.forEach(tab=>tab.setAttribute('aria-selected',String(tab.dataset.panel===panel)));
+  panels.forEach(item=>item.classList.toggle('active',item.id===panel));
+}
+function setRole(role,{updateUrl=true}={}){
+  [roleScreen,employerScreen,profileScreen].forEach(screen=>screen.classList.remove('active'));
+  bottomNav.classList.toggle('hidden',!role);
+  if(role==='employer'){
+    employerScreen.classList.add('active');changeRole.textContent='採用担当者';primaryNavLabel.textContent='候補者';backToResults.style.display='';secondaryTab.textContent='求人との適合';secondaryTab.dataset.panel='jobs';qrCandidate.hidden=true;qrCandidate.classList.remove('guided-action');resultCount.textContent='2名';demoGuideText.textContent='「QRで応募者を追加」から、Skill Passを応募者一覧へ登録できます。';demoGuide.classList.add('active');resetProfileTabs();
+  }else if(role==='jobseeker'){
+    profileScreen.classList.add('active');changeRole.textContent='求職者';primaryNavLabel.textContent='Skill Pass';backToResults.style.display='none';secondaryTab.textContent='資料を追加';secondaryTab.dataset.panel='uploads';demoGuideText.textContent='技能の根拠資料を確認し、画面下の「QRを表示」をお試しください。';demoGuide.classList.add('active');resetProfileTabs();
+  }else{
+    roleScreen.classList.add('active');changeRole.textContent='モード選択';demoGuide.classList.remove('active');
+  }
+  if(updateUrl){const url=new URL(location.href);role?url.searchParams.set('role',role):url.searchParams.delete('role');history.replaceState({},'',url)}
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+document.querySelector('#choose-jobseeker').addEventListener('click',()=>setRole('jobseeker'));
+document.querySelector('#choose-employer').addEventListener('click',()=>setRole('employer'));
+changeRole.addEventListener('click',()=>setRole(null));
+document.querySelectorAll('.filter-chip').forEach(chip=>chip.addEventListener('click',()=>chip.classList.toggle('active')));
+document.querySelector('#open-profile').addEventListener('click',()=>{qrCandidate.classList.remove('guided-action');employerScreen.classList.remove('active');profileScreen.classList.add('active');secondaryTab.textContent='求人との適合';secondaryTab.dataset.panel='jobs';demoGuideText.textContent='技能評価と根拠資料を確認できます。';resetProfileTabs();window.scrollTo({top:0,behavior:'smooth'})});
+backToResults.addEventListener('click',()=>{profileScreen.classList.remove('active');employerScreen.classList.add('active');demoGuideText.textContent='「QRで応募者を追加」から、Skill Passを応募者一覧へ登録できます。';window.scrollTo({top:0,behavior:'smooth'})});
+tabs.forEach(tab=>tab.addEventListener('click',()=>{
+  const id=tab.dataset.panel;
+  tabs.forEach(x=>x.setAttribute('aria-selected',String(x===tab)));
+  panels.forEach(x=>x.classList.toggle('active',x.id===id));
+}));
+const sheet=document.querySelector('#evidence-sheet');
+const preview=document.querySelector('#doc-preview');
+document.querySelector('[data-evidence="english"]').addEventListener('click',()=>{preview.classList.remove('active');sheet.showModal()});
+sheet.querySelector('.sheet-close').addEventListener('click',()=>sheet.close());
+sheet.addEventListener('click',event=>{if(event.target===sheet)sheet.close()});
+sheet.querySelectorAll('.doc-button').forEach(button=>button.addEventListener('click',()=>{
+  document.querySelector('#doc-title').textContent=`${button.dataset.doc}｜確認済み`;
+  preview.classList.remove('language','teacher','employment','practical');
+  preview.classList.add(button.dataset.docKind);
+  preview.classList.add('active');
+}));
+document.querySelector('#open-share-qr').addEventListener('click',()=>shareQrSheet.showModal());
+document.querySelector('#open-scan-qr').addEventListener('click',()=>{document.querySelector('#scan-result').classList.remove('active');document.querySelector('#simulate-scan').classList.add('guided-action');document.querySelector('#add-candidate').classList.remove('guided-action');scanQrSheet.showModal()});
+document.querySelector('#simulate-scan').addEventListener('click',()=>{document.querySelector('#scan-result').classList.add('active');document.querySelector('#simulate-scan').classList.remove('guided-action');document.querySelector('#add-candidate').classList.add('guided-action')});
+document.querySelector('#add-candidate').addEventListener('click',()=>{qrCandidate.hidden=false;qrCandidate.classList.add('guided-action');resultCount.textContent='3名';demoGuideText.textContent='追加された佐藤さんをタップして、技能評価を確認してください。';scanQrSheet.close();qrCandidate.scrollIntoView({behavior:'smooth',block:'center'})});
+[shareQrSheet,scanQrSheet].forEach(dialog=>{dialog.querySelector('.sheet-close').addEventListener('click',()=>dialog.close());dialog.addEventListener('click',event=>{if(event.target===dialog)dialog.close()})});
+const requestedRole=new URLSearchParams(location.search).get('role');
+setRole(requestedRole==='jobseeker'||requestedRole==='employer'?requestedRole:null,{updateUrl:false});
+</script>
+</body>
+</html>
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#0b1826">
+<title>Skill Pass Demo｜候補者マッチング</title>
+<style>
+:root{
+  --navy:#0b1826;
+  --navy2:#122231;
+  --panel:#192b3b;
+  --panel2:#203548;
+  --line:#344b5e;
+  --text:#eef5f8;
+  --muted:#aebdca;
+  --teal:#61d1bf;
+  --gold:#efa92f;
+  --coral:#ef765c;
+}
+*{box-sizing:border-box}
+html,body{margin:0;min-height:100%;background:#07111b;color:var(--text)}
+body{font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Yu Gothic",Meiryo,sans-serif;line-height:1.55;-webkit-font-smoothing:antialiased}
+button{font:inherit}
+.app{width:100%;min-height:100dvh;background:var(--navy2)}
+.topbar{height:62px;padding:0 max(18px,env(safe-area-inset-left));display:flex;align-items:center;justify-content:space-between;background:var(--navy);border-bottom:1px solid rgba(255,255,255,.05)}
+.brand{display:flex;align-items:center;gap:9px;font-weight:700;font-size:15px}.top-actions{display:flex;align-items:center;gap:9px}.user-mode{border:0;padding:5px 9px;border-radius:999px;background:#285067;color:#dcebf0;font-size:11px;font-weight:700;white-space:nowrap;cursor:pointer}
+.demo{padding:4px 12px;border-radius:999px;background:var(--gold);color:#102033;font-size:14px;font-weight:700;letter-spacing:0}
+.main{padding:22px 18px calc(88px + env(safe-area-inset-bottom))}
+.screen{display:none}.screen.active{display:block}
+.role-screen{min-height:calc(100dvh - 172px);display:none;align-content:center}.role-screen.active{display:grid}.role-intro{text-align:center;margin:0 auto 24px;max-width:440px}.role-title{margin:0;font-size:28px}.role-sub{margin:7px 0 0;color:var(--muted);font-size:13px}.role-options{display:grid;gap:12px}.role-card{border:1px solid var(--line);border-radius:18px;padding:20px;background:var(--panel);color:var(--text);text-align:left;cursor:pointer}.role-card:hover,.role-card:focus-visible{border-color:var(--teal)}.role-icon{width:44px;height:44px;border-radius:13px;display:grid;place-items:center;margin-bottom:15px;background:#15584f;color:var(--teal);font-size:19px}.role-name{display:block;font-size:18px;font-weight:700}.role-desc{display:block;margin-top:4px;color:var(--muted);font-size:13px}.role-arrow{display:block;margin-top:14px;color:var(--teal);font-size:13px}
+.employer-head{margin-bottom:16px}.eyebrow{margin:0 0 5px;color:var(--teal);font-size:11px;font-weight:700;letter-spacing:.08em}.page-title{margin:0;font-size:25px;line-height:1.35}
+.search-box{display:flex;align-items:center;gap:10px;margin:15px 0 10px;padding:10px 14px;border:1px solid var(--line);border-radius:12px;background:#0f1f2d;color:var(--muted);font-size:13px}.search-box:focus-within{border-color:var(--teal)}.search-box input{min-width:0;width:100%;border:0;outline:0;background:transparent;color:var(--text);font:inherit}.search-box input::placeholder{color:var(--muted)}.search-icon{font-size:16px}.filter-row{display:flex;gap:7px;overflow:auto;padding-bottom:2px;scrollbar-width:none}.filter-row::-webkit-scrollbar{display:none}.filter-chip{flex:0 0 auto;border:1px solid var(--line);border-radius:999px;padding:6px 10px;background:transparent;color:#d2dde4;font-size:11px;cursor:pointer}.filter-chip.active{border-color:rgba(97,209,191,.55);background:rgba(97,209,191,.11);color:var(--teal)}
+.job-box{padding:14px;border:1px solid var(--line);border-radius:14px;background:linear-gradient(145deg,#1b3143,#182a39)}
+.job-row{display:flex;align-items:flex-start;justify-content:space-between;gap:12px}.job-title{margin:0;font-size:17px}.edit-label{color:var(--teal);font-size:12px;white-space:nowrap}
+.job-meta{margin:4px 0 0;color:var(--muted);font-size:13px}.job-tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}.job-tag{padding:4px 8px;border-radius:6px;background:var(--panel2);color:#d9e4ea;font-size:12px}.job-tag.required{border:1px solid rgba(97,209,191,.4);color:var(--teal)}
+.result-head{display:flex;align-items:flex-end;justify-content:space-between;gap:12px;margin:22px 2px 10px}.result-title{margin:0;font-size:17px}.result-count{color:var(--muted);font-size:12px}
+.candidate-list{display:grid;gap:11px}.candidate{position:relative;width:100%;border:1px solid var(--line);border-radius:16px;padding:15px;background:var(--panel);color:var(--text);text-align:left;cursor:pointer;box-shadow:0 6px 18px rgba(0,0,0,.08)}.candidate:hover,.candidate:focus-visible{border-color:var(--teal);transform:translateY(-1px)}.candidate.recommended{border-color:rgba(97,209,191,.55)}.recommend-label{position:absolute;top:-9px;right:12px;padding:2px 8px;border-radius:999px;background:var(--teal);color:var(--navy);font-size:10px;font-weight:800}
+.candidate-top{display:grid;grid-template-columns:44px minmax(0,1fr) auto;gap:11px;align-items:center}.candidate-avatar{width:44px;height:44px;border-radius:50%;display:grid;place-items:center;background:#15584f;color:var(--teal);font-weight:700}.candidate-name{font-size:16px;font-weight:700}.candidate-role{color:var(--muted);font-size:12px}.score{color:var(--gold);font-size:22px;font-weight:800}.score small{font-size:11px;font-weight:500}
+.candidate-skills{display:flex;flex-wrap:wrap;gap:5px;margin-top:12px}.candidate-skill{padding:3px 7px;border-radius:5px;background:var(--panel2);color:#d5e1e8;font-size:11px}.candidate-note{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-top:9px;color:var(--muted);font-size:12px}.candidate-note .verified-mini{color:var(--teal)}.match-track{height:4px;margin-top:12px;border-radius:999px;background:#2b4152;overflow:hidden}.match-track span{display:block;height:100%;border-radius:inherit;background:linear-gradient(90deg,var(--teal),#8be1d2)}.candidate.disabled{cursor:default;opacity:.72}.candidate.disabled:hover{border-color:var(--line);transform:none}
+.profile-toolbar{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:18px}.back-button{border:0;padding:7px 0;background:transparent;color:var(--teal);cursor:pointer}.profile-score{color:var(--gold);font-weight:800}
+.bottom-nav{position:fixed;z-index:8;left:0;right:0;bottom:0;height:68px;padding-bottom:env(safe-area-inset-bottom);display:grid;grid-template-columns:repeat(4,1fr);background:rgba(11,24,38,.97);border-top:1px solid var(--line);backdrop-filter:blur(12px)}.bottom-nav.hidden{display:none}.nav-item{border:0;background:transparent;color:#8295a4;font-size:10px;display:grid;place-content:center;gap:2px;text-align:center}.nav-icon{font-size:17px;line-height:1}.nav-item.active{color:var(--teal)}
+.identity{display:grid;grid-template-columns:72px minmax(0,1fr);gap:18px;align-items:center;padding-bottom:25px;border-bottom:1px solid var(--line)}
+.avatar{width:72px;height:72px;border-radius:50%;display:grid;place-items:center;background:#15584f;color:var(--teal)}
+.avatar svg{width:31px;height:31px}
+.name{margin:0 0 2px;font-size:22px;font-weight:600;letter-spacing:.03em}
+.meta,.date{margin:1px 0;color:var(--muted);font-size:14px}
+.verified{margin:2px 0;color:var(--teal);font-size:14px;font-weight:600}
+.desktop-verify{display:none}
+.tabs{position:sticky;top:0;z-index:5;display:grid;grid-template-columns:repeat(2,1fr);margin:18px 0;background:var(--navy2);border-bottom:1px solid var(--line)}
+.tab{border:0;border-bottom:3px solid transparent;padding:13px 5px;background:transparent;color:#d2dde5;cursor:pointer}
+.tab[aria-selected="true"]{color:var(--teal);border-bottom-color:var(--gold)}
+.panel{display:none;animation:enter .18s ease-out}
+.panel.active{display:block}
+@keyframes enter{from{opacity:.35;transform:translateY(4px)}to{opacity:1;transform:none}}
+.cards{display:grid;gap:12px}
+.card{padding:16px 14px;border:1px solid var(--line);border-radius:13px;background:var(--panel)}
+.card-title{margin:0 0 4px;font-size:15px;font-weight:500}
+.card-main{margin:0;color:var(--text);font-size:15px}
+.card-note{margin:1px 0 0;color:var(--muted);font-size:14px}
+.ok{color:var(--teal)}
+.warn{color:var(--gold)}
+.skill-head{display:flex;align-items:flex-start;justify-content:space-between;gap:12px}
+.skill-level{color:var(--teal);font-size:15px;font-weight:700;white-space:nowrap}
+.meter{display:grid;grid-template-columns:repeat(4,1fr);gap:5px;margin-top:12px}
+.meter i{height:7px;border-radius:5px;background:#344b5e}
+.meter i.on{background:var(--teal)}
+.evidence{display:flex;align-items:center;gap:6px;margin-top:10px;color:var(--muted);font-size:13px}
+.evidence-button{width:100%;justify-content:space-between;border:0;padding:0;background:transparent;cursor:pointer;text-align:left}
+.evidence-button:hover,.evidence-button:focus-visible{color:var(--teal)}
+.evidence-button span:last-child{font-size:18px;line-height:1}
+.sheet{width:min(92vw,620px);max-height:86dvh;padding:0;border:1px solid var(--line);border-radius:20px;background:var(--navy2);color:var(--text);box-shadow:0 24px 80px rgba(0,0,0,.65)}
+.sheet::backdrop{background:rgba(2,8,14,.72);backdrop-filter:blur(3px)}
+.sheet-inner{padding:22px}
+.sheet-head{display:flex;align-items:flex-start;justify-content:space-between;gap:18px;padding-bottom:16px;border-bottom:1px solid var(--line)}
+.sheet-title{margin:0;font-size:21px}.sheet-sub{margin:3px 0 0;color:var(--muted);font-size:13px}
+.sheet-close{width:34px;height:34px;border:1px solid var(--line);border-radius:50%;background:var(--panel);color:var(--text);cursor:pointer}
+.evidence-list{display:grid;gap:10px;margin-top:16px}.evidence-item{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:12px;align-items:center;padding:13px;border:1px solid var(--line);border-radius:12px;background:var(--panel)}
+.evidence-type{color:var(--teal);font-size:12px;font-weight:700}.evidence-name{margin-top:2px;font-size:14px}.evidence-meta{color:var(--muted);font-size:12px}
+.doc-button{border:1px solid #567086;border-radius:7px;padding:5px 8px;background:var(--panel2);color:var(--text);font-size:12px;cursor:pointer}.doc-button:hover,.doc-button:focus-visible{border-color:var(--teal);color:var(--teal)}
+.formula{margin:15px 0 0;padding:11px;border-radius:10px;background:rgba(97,209,191,.08);color:#cce9e4;font-size:13px;text-align:center}
+.doc-preview{display:none;margin-top:12px;padding:15px;border:1px dashed #688196;border-radius:10px;background:#f4f0e8;color:#182a39}.doc-preview.active{display:block}.doc-preview strong{display:block}.doc-preview small{color:#536779}
+.mock-document{display:none;position:relative;overflow:hidden;margin-top:12px;padding:18px;border:2px solid #1e5c6b;border-radius:6px;background:linear-gradient(145deg,#fff 0,#f0f7f6 100%);box-shadow:inset 0 0 0 5px #fff,0 5px 16px rgba(15,45,58,.18)}
+.doc-preview.language [data-preview="language"],.doc-preview.teacher [data-preview="teacher"],.doc-preview.employment [data-preview="employment"],.doc-preview.practical [data-preview="practical"]{display:block}.certificate-watermark{position:absolute;inset:38% auto auto 50%;transform:translate(-50%,-50%) rotate(-18deg);color:rgba(213,91,66,.14);font-size:48px;font-weight:800;letter-spacing:.12em;pointer-events:none}
+.certificate-head{display:flex;align-items:center;justify-content:space-between;gap:12px;padding-bottom:10px;border-bottom:1px solid #aac1c6}.certificate-mark{color:#155f69;font-size:12px;font-weight:800;letter-spacing:.12em}.certificate-demo{padding:2px 7px;border:1px solid #d26450;color:#b84635;font-size:10px;font-weight:800}
+.certificate-name{margin:12px 0 2px;font-size:16px;font-weight:700}.certificate-id{color:#60727b;font-size:10px}.score-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:9px;margin-top:13px}.score-box{padding:10px;border:1px solid #c0d0d3;background:rgba(255,255,255,.72);text-align:center}.score-label{color:#46606b;font-size:10px}.score-number{display:block;color:#0f4f5d;font-size:27px;font-weight:800;line-height:1.15}.score-note{color:#60727b;font-size:9px}
+.certificate-foot{display:flex;align-items:flex-end;justify-content:space-between;gap:12px;margin-top:13px;color:#61727b;font-size:9px}.verified-seal{color:#13806d;font-size:10px;font-weight:800}
+.document-title{margin:12px 0 3px;color:#0f4f5d;font-size:17px;font-weight:800}.document-sub{color:#60727b;font-size:10px}.document-table{display:grid;grid-template-columns:110px minmax(0,1fr);margin-top:13px;border-top:1px solid #b7c9cd;border-left:1px solid #b7c9cd;font-size:10px}.document-table span{padding:6px;border-right:1px solid #b7c9cd;border-bottom:1px solid #b7c9cd}.document-table span:nth-child(odd){background:#e4efee;color:#3f5c65;font-weight:700}.signature{margin-top:15px;text-align:right;color:#214c58;font-family:"Bradley Hand","Segoe Print",cursive;font-size:18px}.rubric{display:grid;grid-template-columns:1fr auto;gap:0;margin-top:13px;border-top:1px solid #b7c9cd;font-size:10px}.rubric span{padding:6px;border-bottom:1px solid #b7c9cd}.rubric span:nth-child(even){color:#0f6d64;font-weight:800}
+.match{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:14px;align-items:start}
+.status{padding:3px 9px;border-radius:999px;background:rgba(97,209,191,.14);color:var(--teal);font-size:13px;font-weight:700;white-space:nowrap}
+.status.need{background:rgba(239,169,47,.13);color:var(--gold)}
+.match-detail{margin:8px 0 0;color:var(--muted);font-size:14px}
+.requirements{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+.tag{padding:2px 8px;border-radius:5px;background:var(--panel2);color:#c9d5de;font-size:12px}
+.upload-box{display:grid;place-items:center;gap:8px;min-height:150px;padding:24px;border:1px dashed #587186;border-radius:14px;background:rgba(32,53,72,.45);text-align:center}
+.upload-icon{width:46px;height:46px;border-radius:14px;display:grid;place-items:center;background:rgba(97,209,191,.12);color:var(--teal);font-size:24px}.upload-title{font-weight:700}.upload-note{color:var(--muted);font-size:12px}.upload-button{margin-top:5px;border:0;border-radius:9px;padding:9px 16px;background:var(--teal);color:var(--navy);font-weight:800;cursor:pointer}
+.upload-list{display:grid;gap:10px;margin-top:14px}.upload-item{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:11px;align-items:center;padding:13px;border:1px solid var(--line);border-radius:12px;background:var(--panel)}.upload-file-icon{width:35px;height:35px;border-radius:9px;display:grid;place-items:center;background:var(--panel2);color:var(--gold);font-size:11px;font-weight:800}.upload-file-name{font-size:14px}.upload-file-meta{color:var(--muted);font-size:11px}.upload-status{color:var(--teal);font-size:12px;white-space:nowrap}
+.foot{margin:22px 5px 0;text-align:center;color:var(--muted);font-size:13px}
+.foot strong{display:block;margin-bottom:4px;color:var(--text);font-weight:500}
+.qr-verify{width:100%;margin-top:12px;border:0;border-radius:8px;padding:11px;background:var(--teal);color:#fff;font-size:16px;font-weight:800;letter-spacing:.04em;cursor:pointer}.qr-symbol{margin-right:8px;font-size:20px;vertical-align:-1px}
+.qr-add-button{width:100%;margin-top:12px;border:0;border-radius:9px;padding:10px 13px;background:var(--teal);color:#fff;font-weight:800;cursor:pointer}.qr-add-button.secondary{background:#eef6f5;color:var(--teal);border:1px solid #9bcac6}.qr-stage{display:grid;place-items:center;gap:14px;padding:20px 0 4px;text-align:center}.qr-code{position:relative;width:174px;height:174px;padding:13px;border:8px solid #eef4f6;border-radius:9px;background-color:#fff;background-image:linear-gradient(90deg,var(--navy) 12%,transparent 12% 24%,var(--navy) 24% 36%,transparent 36% 48%,var(--navy) 48% 60%,transparent 60% 72%,var(--navy) 72% 84%,transparent 84%),linear-gradient(var(--navy) 12%,transparent 12% 24%,var(--navy) 24% 36%,transparent 36% 48%,var(--navy) 48% 60%,transparent 60% 72%,var(--navy) 72% 84%,transparent 84%);background-size:29px 29px;box-shadow:0 4px 16px rgba(8,40,77,.14)}.qr-code::before,.qr-code::after,.qr-finder{content:"";position:absolute;width:36px;height:36px;border:7px solid var(--navy);background:#fff;box-shadow:inset 0 0 0 7px #fff,inset 0 0 0 13px var(--navy)}.qr-code::before{top:10px;left:10px}.qr-code::after{top:10px;right:10px}.qr-finder{bottom:10px;left:10px}.qr-pass-id{color:var(--muted);font-size:12px}.qr-help{margin:0;color:var(--muted);font-size:13px}.scan-frame{position:relative;width:210px;height:210px;display:grid;place-items:center;border:2px solid var(--teal);border-radius:17px;background:#edf5f6;overflow:hidden}.scan-frame::after{content:"";position:absolute;left:16px;right:16px;top:50%;height:2px;background:var(--gold);box-shadow:0 0 10px var(--gold)}.scan-placeholder{font-size:54px;color:var(--teal)}.scan-result{display:none;width:100%;padding:13px;border:1px solid #8cc8c3;border-radius:11px;background:#edf8f6;text-align:left}.scan-result.active{display:block}.scan-result strong{color:var(--navy)}.scan-result small{color:var(--muted)}
 .demo-guide{display:none;align-items:flex-start;gap:9px;margin:0 0 13px;padding:10px 12px;border:1px solid #edd27c;border-radius:10px;background:#fff8dd;color:#66500d;font-size:12px;line-height:1.5}.demo-guide.active{display:flex}.guide-badge{flex:0 0 auto;padding:2px 6px;border-radius:5px;background:var(--gold);color:#fff;font-size:10px;font-weight:900}.guided-action{position:relative;box-shadow:0 0 0 3px rgba(237,174,16,.22),0 5px 14px rgba(8,127,123,.14)}.guided-action::after{content:"まずはこちら";position:absolute;right:8px;top:-10px;padding:2px 7px;border-radius:999px;background:var(--gold);color:#fff;font-size:9px;font-weight:900}.nav-item:disabled{opacity:.38;cursor:not-allowed}.nav-item:disabled .nav-icon{filter:grayscale(1)}
 
 @media(min-width:700px){
