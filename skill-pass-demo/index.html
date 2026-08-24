@@ -78,7 +78,6 @@ button{font:inherit}
 .evidence-list{display:grid;gap:10px;margin-top:16px}.evidence-item{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:12px;align-items:center;padding:13px;border:1px solid var(--line);border-radius:12px;background:var(--panel)}
 .evidence-type{color:var(--teal);font-size:12px;font-weight:700}.evidence-name{margin-top:2px;font-size:14px}.evidence-meta{color:var(--muted);font-size:12px}
 .doc-button{border:1px solid #567086;border-radius:7px;padding:5px 8px;background:var(--panel2);color:var(--text);font-size:12px;cursor:pointer}.doc-button:hover,.doc-button:focus-visible{border-color:var(--teal);color:var(--teal)}
-.formula{margin:15px 0 0;padding:11px;border-radius:10px;background:rgba(97,209,191,.08);color:#cce9e4;font-size:13px;text-align:center}
 .doc-preview{display:none;margin-top:12px;padding:15px;border:1px dashed #688196;border-radius:10px;background:#f4f0e8;color:#182a39}.doc-preview.active{display:block}.doc-preview strong{display:block}.doc-preview small{color:#536779}
 .mock-document{display:none;position:relative;overflow:hidden;margin-top:12px;padding:18px;border:2px solid #1e5c6b;border-radius:6px;background:linear-gradient(145deg,#fff 0,#f0f7f6 100%);box-shadow:inset 0 0 0 5px #fff,0 5px 16px rgba(15,45,58,.18)}
 .doc-preview.language [data-preview="language"],.doc-preview.teacher [data-preview="teacher"],.doc-preview.employment [data-preview="employment"],.doc-preview.practical [data-preview="practical"]{display:block}.certificate-watermark{position:absolute;inset:38% auto auto 50%;transform:translate(-50%,-50%) rotate(-18deg);color:rgba(213,91,66,.14);font-size:48px;font-weight:800;letter-spacing:.12em;pointer-events:none}
@@ -156,7 +155,7 @@ body{background:radial-gradient(circle at 50% 0,#fff 0,#e8eef3 70%)}
 .evidence-button{color:var(--teal);font-weight:700}.evidence-button:hover,.evidence-button:focus-visible{color:#fff}.status{background:#e1f2ef;color:var(--teal)}.status.need{background:#fff2d2;color:#9a6900}
 .upload-box{border-color:#89b8b5;background:#f4fbfa}.upload-icon{background:#dff2ef}.upload-button{background:var(--teal);color:#fff}.upload-file-icon{background:#e2f3f1;color:var(--teal)}
 .foot{color:#7b8997}.bottom-nav{background:#fff;border-top:1px solid var(--line);box-shadow:0 -3px 12px rgba(8,40,77,.07)}.nav-item{color:#77899a}.nav-item.active{color:var(--teal)}
-.sheet{background:#fff;color:var(--text);border-color:var(--line)}.sheet-head{border-bottom-color:var(--line)}.sheet-close{background:#eef3f6;color:var(--navy);border-color:var(--line)}.evidence-item{background:#fff}.formula{background:#e6f4f2;color:#265c59}.doc-button{background:#eef4f6;color:var(--navy);border-color:#bdd0dc}
+.sheet{background:#fff;color:var(--text);border-color:var(--line)}.sheet-head{border-bottom-color:var(--line)}.sheet-close{background:#eef3f6;color:var(--navy);border-color:var(--line)}.evidence-item{background:#fff}.doc-button{background:#eef4f6;color:var(--navy);border-color:#bdd0dc}
 
 @media(max-width:699px){.main{padding:15px 12px calc(82px + env(safe-area-inset-bottom))}.profile-toolbar{font-size:12px}.desktop-verify{display:none}.cards{grid-template-columns:1fr!important}.role-screen{min-height:calc(100dvh - 145px)}.bottom-nav{height:61px}}
 </style>
@@ -330,7 +329,6 @@ body{background:radial-gradient(circle at 50% 0,#fff 0,#e8eef3 70%)}
       <div class="evidence-item"><div><div class="evidence-type">実務経験</div><div class="evidence-name">英語指導 3年</div><div class="evidence-meta">在職証明書｜確認済み</div></div><button class="doc-button" type="button" data-doc="在職証明書" data-doc-kind="employment">証明書を見る</button></div>
       <div class="evidence-item"><div><div class="evidence-type">実技評価</div><div class="evidence-name">模擬授業評価 L4</div><div class="evidence-meta">登録評価者：田中 美咲｜2026.07.20</div></div><button class="doc-button" type="button" data-doc="実技評価" data-doc-kind="practical">評価を見る</button></div>
     </div>
-    <div class="formula">言語試験＋教員資格＋指導経験＋実技評価 → 英語指導 L4</div>
     <div class="doc-preview" id="doc-preview">
       <strong id="doc-title">証明書</strong><small>DEMO PDFプレビュー｜発行元・発行日・確認状況を表示します。</small>
       <div class="mock-document" data-preview="language" aria-label="英語能力試験のデモ証明書">
