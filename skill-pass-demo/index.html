@@ -97,6 +97,7 @@ button{font:inherit}
 .upload-list{display:grid;gap:10px;margin-top:14px}.upload-item{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:11px;align-items:center;padding:13px;border:1px solid var(--line);border-radius:12px;background:var(--panel)}.upload-file-icon{width:35px;height:35px;border-radius:9px;display:grid;place-items:center;background:var(--panel2);color:var(--gold);font-size:11px;font-weight:800}.upload-file-name{font-size:14px}.upload-file-meta{color:var(--muted);font-size:11px}.upload-status{color:var(--teal);font-size:12px;white-space:nowrap}
 .foot{margin:22px 5px 0;text-align:center;color:var(--muted);font-size:13px}
 .foot strong{display:block;margin-bottom:4px;color:var(--text);font-weight:500}
+.qr-verify{width:100%;margin-top:12px;border:0;border-radius:8px;padding:11px;background:var(--teal);color:#fff;font-size:16px;font-weight:800;letter-spacing:.04em;cursor:pointer}.qr-symbol{margin-right:8px;font-size:20px;vertical-align:-1px}
 
 @media(min-width:700px){
   body{display:grid;place-items:center;padding:24px;background:radial-gradient(circle at 80% 10%,#143f49 0,#07111b 42%)}
@@ -126,12 +127,42 @@ button{font:inherit}
 }
 
 @media(prefers-reduced-motion:reduce){.panel{animation:none}}
+
+/* Light credential-app theme inspired by the presentation prototype */
+:root{--navy:#08284d;--navy2:#f5f8fb;--panel:#ffffff;--panel2:#edf4f5;--line:#d5e0e8;--text:#122941;--muted:#64778a;--teal:#087f7b;--gold:#edae10;--coral:#dc6856}
+html,body{background:#e9eff4;color:var(--text)}
+body{background:radial-gradient(circle at 50% 0,#fff 0,#e8eef3 70%)}
+.app{background:#f7f9fb;color:var(--text)}
+.topbar{height:64px;background:#fff;border-bottom:1px solid var(--line);box-shadow:0 2px 9px rgba(8,40,77,.06)}
+.brand{color:var(--navy);font-size:17px}.brand-mark{background:var(--navy);color:#fff;border-radius:5px;font-size:10px}.user-mode{background:#eef3f6;color:var(--navy);border:1px solid var(--line)}.demo{background:var(--gold);color:#fff;font-size:11px}
+.main{background:#f7f9fb}.role-title,.page-title,.name,.result-title,.job-title{color:var(--navy)}
+.role-card,.job-box,.candidate,.identity,.card,.upload-item{background:#fff;border-color:var(--line);box-shadow:0 3px 10px rgba(8,40,77,.055)}
+.role-card:hover,.role-card:focus-visible,.candidate:hover,.candidate:focus-visible{border-color:var(--teal)}
+.role-icon,.candidate-avatar,.avatar{background:#e2f3f1;color:var(--teal)}
+.role-arrow,.eyebrow,.edit-label,.verified,.verified-mini,.verify-status,.ok,.evidence-button:hover,.evidence-button:focus-visible{color:var(--teal)}
+.search-box{background:#fff;color:var(--muted);border-color:var(--line)}.search-box input{color:var(--text)}
+.filter-chip{background:#fff;color:#506579}.filter-chip.active{background:#e5f3f2;color:var(--teal);border-color:#89c7c2}
+.job-box{background:#fff}.job-tag,.candidate-skill,.tag{background:#edf2f6;color:#354c62}.job-tag.required{background:#e6f4f3;color:var(--teal)}
+.candidate.recommended{border-color:#62b9b2}.recommend-label{background:var(--teal);color:#fff}.score{color:var(--gold)}.match-track{background:#e0e7ec}.match-track span{background:var(--teal)}
+.profile-toolbar{margin-bottom:12px}.back-button{color:var(--teal)}.profile-score{color:#a66f00;background:#fff5d6;border:1px solid #f1d271;border-radius:999px;padding:4px 9px}
+.identity{position:relative;grid-template-columns:64px minmax(0,1fr) auto;padding:15px;border:1px solid var(--line);border-radius:12px}.avatar{width:58px;height:58px}.name{font-size:20px}.meta,.date{font-size:12px}.verified{display:inline-block;padding:2px 8px;border-radius:999px;background:#e5f4f1;font-size:11px}.verify-shield{width:46px;height:52px;display:grid;place-items:center;clip-path:polygon(50% 0,94% 16%,88% 74%,50% 100%,12% 74%,6% 16%);background:var(--teal);color:#fff;font-size:25px;font-weight:900}
+.desktop-verify{display:none!important}
+.tabs{top:0;margin:12px 0;background:#fff;border:1px solid var(--line);border-radius:10px;overflow:hidden}.tab{color:#52677b;border-bottom-width:4px}.tab[aria-selected="true"]{color:var(--teal);border-bottom-color:var(--gold);background:#f6fbfa;font-weight:700}
+.panel{position:relative;padding:44px 12px 12px;border:1px solid var(--line);border-radius:11px;background:#fff;box-shadow:0 3px 10px rgba(8,40,77,.055);overflow:hidden}.panel::before{position:absolute;inset:0 0 auto;display:flex;align-items:center;height:32px;padding:0 12px;background:var(--navy);color:#fff;font-size:12px;font-weight:800;letter-spacing:.02em}.panel#skills::before{content:"技能プロフィール"}.panel#uploads::before{content:"証明資料"}.panel#jobs::before{content:"求人要件との適合"}
+.cards{gap:0}.card{border:0;border-bottom:1px solid #e3e9ee;border-radius:0;box-shadow:none;padding:13px 8px}.card:last-child{border-bottom:0}.card-title,.card-main{color:var(--navy);font-weight:700}.card-note,.match-detail,.evidence{color:var(--muted)}
+.skill-level{display:grid;place-items:center;min-width:31px;height:31px;border-radius:50%;background:var(--gold);color:#fff;font-size:12px}.meter{gap:2px;margin-top:10px}.meter i{height:6px;border-radius:0;background:#e4e9ed}.meter i:first-child{border-radius:99px 0 0 99px}.meter i:last-child{border-radius:0 99px 99px 0}.meter i.on{background:var(--teal)}
+.evidence-button{color:var(--teal);font-weight:700}.status{background:#e1f2ef;color:var(--teal)}.status.need{background:#fff2d2;color:#9a6900}
+.upload-box{border-color:#89b8b5;background:#f4fbfa}.upload-icon{background:#dff2ef}.upload-button{background:var(--teal);color:#fff}.upload-file-icon{background:#e2f3f1;color:var(--teal)}
+.foot{color:#7b8997}.bottom-nav{background:#fff;border-top:1px solid var(--line);box-shadow:0 -3px 12px rgba(8,40,77,.07)}.nav-item{color:#77899a}.nav-item.active{color:var(--teal)}
+.sheet{background:#fff;color:var(--text);border-color:var(--line)}.sheet-head{border-bottom-color:var(--line)}.sheet-close{background:#eef3f6;color:var(--navy);border-color:var(--line)}.evidence-item{background:#fff}.formula{background:#e6f4f2;color:#265c59}.doc-button{background:#eef4f6;color:var(--navy);border-color:#bdd0dc}
+
+@media(max-width:699px){.main{padding:15px 12px calc(82px + env(safe-area-inset-bottom))}.profile-toolbar{font-size:12px}.desktop-verify{display:none}.cards{grid-template-columns:1fr!important}.role-screen{min-height:calc(100dvh - 145px)}.bottom-nav{height:61px}}
 </style>
 </head>
 <body>
 <main class="app">
   <header class="topbar">
-    <div class="brand"><span class="brand-mark">SP</span><span>SKILL PASS</span></div>
+    <div class="brand"><span class="brand-mark">UI</span><span>スキルパス</span></div>
     <div class="top-actions"><button class="user-mode" id="change-role" type="button">モード選択</button><div class="demo">DEMO</div></div>
   </header>
 
@@ -200,6 +231,7 @@ button{font:inherit}
         <div>JP-EDU-2026-0184</div>
         <div class="verify-status">発行元確認済み</div>
       </div>
+      <div class="verify-shield" aria-label="確認済み">✓</div>
     </section>
 
     <nav class="tabs" aria-label="表示内容">
@@ -273,6 +305,8 @@ button{font:inherit}
         </article>
       </div>
     </section>
+
+    <button class="qr-verify" type="button"><span class="qr-symbol">▦</span>QRで照会</button>
 
     <footer class="foot">
       本画面は制度提案のための架空データを用いたプロトタイプです。
