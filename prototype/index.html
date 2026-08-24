@@ -53,6 +53,20 @@ button{font:inherit}
 .meter i{height:7px;border-radius:5px;background:#344b5e}
 .meter i.on{background:var(--teal)}
 .evidence{display:flex;align-items:center;gap:6px;margin-top:10px;color:var(--muted);font-size:13px}
+.evidence-button{width:100%;justify-content:space-between;border:0;padding:0;background:transparent;cursor:pointer;text-align:left}
+.evidence-button:hover,.evidence-button:focus-visible{color:var(--teal)}
+.evidence-button span:last-child{font-size:18px;line-height:1}
+.sheet{width:min(92vw,620px);max-height:86dvh;padding:0;border:1px solid var(--line);border-radius:20px;background:var(--navy2);color:var(--text);box-shadow:0 24px 80px rgba(0,0,0,.65)}
+.sheet::backdrop{background:rgba(2,8,14,.72);backdrop-filter:blur(3px)}
+.sheet-inner{padding:22px}
+.sheet-head{display:flex;align-items:flex-start;justify-content:space-between;gap:18px;padding-bottom:16px;border-bottom:1px solid var(--line)}
+.sheet-title{margin:0;font-size:21px}.sheet-sub{margin:3px 0 0;color:var(--muted);font-size:13px}
+.sheet-close{width:34px;height:34px;border:1px solid var(--line);border-radius:50%;background:var(--panel);color:var(--text);cursor:pointer}
+.evidence-list{display:grid;gap:10px;margin-top:16px}.evidence-item{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:12px;align-items:center;padding:13px;border:1px solid var(--line);border-radius:12px;background:var(--panel)}
+.evidence-type{color:var(--teal);font-size:12px;font-weight:700}.evidence-name{margin-top:2px;font-size:14px}.evidence-meta{color:var(--muted);font-size:12px}
+.doc-button{border:1px solid #567086;border-radius:7px;padding:5px 8px;background:var(--panel2);color:var(--text);font-size:12px;cursor:pointer}.doc-button:hover,.doc-button:focus-visible{border-color:var(--teal);color:var(--teal)}
+.formula{margin:15px 0 0;padding:11px;border-radius:10px;background:rgba(97,209,191,.08);color:#cce9e4;font-size:13px;text-align:center}
+.doc-preview{display:none;margin-top:12px;padding:15px;border:1px dashed #688196;border-radius:10px;background:#f4f0e8;color:#182a39}.doc-preview.active{display:block}.doc-preview strong{display:block}.doc-preview small{color:#536779}
 .match{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:14px;align-items:start}
 .status{padding:3px 9px;border-radius:999px;background:rgba(97,209,191,.14);color:var(--teal);font-size:13px;font-weight:700;white-space:nowrap}
 .status.need{background:rgba(239,169,47,.13);color:var(--gold)}
@@ -150,7 +164,7 @@ button{font:inherit}
         <article class="card">
           <div class="skill-head"><div><h2 class="card-title">英語指導</h2><p class="card-note">学習者に合わせて指導できる</p></div><span class="skill-level">L4</span></div>
           <div class="meter" aria-label="レベル4"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></div>
-          <div class="evidence">根拠：教員資格・3年間の指導経験</div>
+          <button class="evidence evidence-button" type="button" data-evidence="english" aria-haspopup="dialog"><span>根拠 4件</span><span aria-hidden="true">›</span></button>
         </article>
         <article class="card">
           <div class="skill-head"><div><h2 class="card-title">授業設計</h2><p class="card-note">独力で授業・教材を設計できる</p></div><span class="skill-level">L3</span></div>
@@ -206,6 +220,23 @@ button{font:inherit}
   </div>
 </main>
 
+<dialog class="sheet" id="evidence-sheet" aria-labelledby="evidence-title">
+  <div class="sheet-inner">
+    <div class="sheet-head">
+      <div><h2 class="sheet-title" id="evidence-title">英語指導｜L4</h2><p class="sheet-sub">複数の資格・経験・実技評価をもとに判定</p></div>
+      <button class="sheet-close" type="button" aria-label="閉じる">×</button>
+    </div>
+    <div class="evidence-list">
+      <div class="evidence-item"><div><div class="evidence-type">英語能力</div><div class="evidence-name">TOEFL iBT 105／TOEIC L&amp;R 945</div><div class="evidence-meta">ETS・IIBC｜発行元確認済み</div></div><button class="doc-button" type="button" data-doc="英語能力試験">証明書を見る</button></div>
+      <div class="evidence-item"><div><div class="evidence-type">専門資格</div><div class="evidence-name">オーストラリア教員資格</div><div class="evidence-meta">資格登録機関｜発行元確認済み</div></div><button class="doc-button" type="button" data-doc="教員資格">証明書を見る</button></div>
+      <div class="evidence-item"><div><div class="evidence-type">実務経験</div><div class="evidence-name">英語指導 3年</div><div class="evidence-meta">在職証明｜確認済み</div></div><button class="doc-button" type="button" data-doc="在職証明">証明書を見る</button></div>
+      <div class="evidence-item"><div><div class="evidence-type">実技評価</div><div class="evidence-name">模擬授業評価 L4</div><div class="evidence-meta">認定評価者｜2026.07.20</div></div><button class="doc-button" type="button" data-doc="実技評価">評価を見る</button></div>
+    </div>
+    <div class="formula">言語試験＋教員資格＋指導経験＋実技評価 → 英語指導 L4</div>
+    <div class="doc-preview" id="doc-preview"><strong id="doc-title">証明書</strong><small>DEMO PDFプレビュー｜発行元・発行日・検証状態を確認できます。</small></div>
+  </div>
+</dialog>
+
 <script>
 const tabs=[...document.querySelectorAll('.tab')];
 const panels=[...document.querySelectorAll('.panel')];
@@ -213,6 +244,15 @@ tabs.forEach(tab=>tab.addEventListener('click',()=>{
   const id=tab.dataset.panel;
   tabs.forEach(x=>x.setAttribute('aria-selected',String(x===tab)));
   panels.forEach(x=>x.classList.toggle('active',x.id===id));
+}));
+const sheet=document.querySelector('#evidence-sheet');
+const preview=document.querySelector('#doc-preview');
+document.querySelector('[data-evidence="english"]').addEventListener('click',()=>{preview.classList.remove('active');sheet.showModal()});
+sheet.querySelector('.sheet-close').addEventListener('click',()=>sheet.close());
+sheet.addEventListener('click',event=>{if(event.target===sheet)sheet.close()});
+sheet.querySelectorAll('.doc-button').forEach(button=>button.addEventListener('click',()=>{
+  document.querySelector('#doc-title').textContent=`${button.dataset.doc}｜確認済み`;
+  preview.classList.add('active');
 }));
 </script>
 </body>
