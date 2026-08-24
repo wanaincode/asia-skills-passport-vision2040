@@ -157,13 +157,37 @@ body{background:radial-gradient(circle at 50% 0,#fff 0,#e8eef3 70%)}
 .foot{color:#7b8997}.bottom-nav{background:#fff;border-top:1px solid var(--line);box-shadow:0 -3px 12px rgba(8,40,77,.07)}.nav-item{color:#77899a}.nav-item.active{color:var(--teal)}
 .sheet{background:#fff;color:var(--text);border-color:var(--line)}.sheet-head{border-bottom-color:var(--line)}.sheet-close{background:#eef3f6;color:var(--navy);border-color:var(--line)}.evidence-item{background:#fff}.doc-button{background:#eef4f6;color:var(--navy);border-color:#bdd0dc}
 
+/* Role-specific visual language: one product, two clearly different tasks */
+body[data-role="jobseeker"] .topbar{border-bottom:3px solid var(--teal)}
+body[data-role="jobseeker"] .user-mode{background:var(--teal);border-color:var(--teal);color:#fff}
+body[data-role="jobseeker"] .main{background:#f4f8f7}
+body[data-role="jobseeker"] .bottom-nav{border-top-color:#b8d9d5}
+
+body[data-role="employer"]{--employer:#173b63;--employer-soft:#e9f0f7}
+body[data-role="employer"] .topbar{border-bottom:3px solid var(--employer)}
+body[data-role="employer"] .user-mode{background:var(--employer);border-color:var(--employer);color:#fff}
+body[data-role="employer"] .main{background:#f2f5f9}
+body[data-role="employer"] .page-title,body[data-role="employer"] .result-title,body[data-role="employer"] .job-title{color:var(--employer)}
+body[data-role="employer"] .eyebrow,body[data-role="employer"] .edit-label,body[data-role="employer"] .candidate-note .verified-mini,body[data-role="employer"] .back-button{color:var(--employer)}
+body[data-role="employer"] .search-box:focus-within{border-color:var(--employer)}
+body[data-role="employer"] .filter-chip.active{border-color:#9eb4ca;background:var(--employer-soft);color:var(--employer)}
+body[data-role="employer"] .job-tag.required{border-color:#b5c5d5;background:var(--employer-soft);color:var(--employer)}
+body[data-role="employer"] .qr-add-button{background:var(--employer)}
+body[data-role="employer"] .qr-add-button.secondary{border-color:#a8bdd1;background:var(--employer-soft);color:var(--employer)}
+body[data-role="employer"] .candidate:hover,body[data-role="employer"] .candidate:focus-visible{border-color:var(--employer)}
+body[data-role="employer"] .candidate.recommended{border-color:#dca221}
+body[data-role="employer"] .recommend-label{background:var(--gold);color:#fff}
+body[data-role="employer"] .match-track span{background:linear-gradient(90deg,var(--employer),var(--gold))}
+body[data-role="employer"] .nav-item.active{color:var(--employer)}
+body[data-role="employer"] .bottom-nav{border-top-color:#c5d1dd}
+
 @media(max-width:699px){.main{padding:15px 12px calc(82px + env(safe-area-inset-bottom))}.profile-toolbar{font-size:12px}.desktop-verify{display:none}.cards{grid-template-columns:1fr!important}.role-screen{min-height:calc(100dvh - 145px)}.bottom-nav{height:61px}}
 </style>
 </head>
 <body>
 <main class="app">
   <header class="topbar">
-    <div class="brand"><span>スキルパス</span></div>
+    <div class="brand"><span id="brand-label">スキルパス</span></div>
     <div class="top-actions"><button class="user-mode" id="change-role" type="button">モード選択</button><div class="demo">DEMO</div></div>
   </header>
 
@@ -314,7 +338,7 @@ body{background:radial-gradient(circle at 50% 0,#fff 0,#e8eef3 70%)}
     </footer>
     </section>
   </div>
-  <nav class="bottom-nav hidden" id="bottom-nav" aria-label="アプリメニュー"><button class="nav-item" type="button" disabled title="このデモでは使用できません"><span class="nav-icon">⌂</span><span>ホーム</span></button><button class="nav-item" type="button" disabled title="このデモでは使用できません"><span class="nav-icon">▤</span><span>求人</span></button><button class="nav-item active" type="button"><span class="nav-icon">◎</span><span id="primary-nav-label">Skill Pass</span></button><button class="nav-item" type="button" disabled title="このデモでは使用できません"><span class="nav-icon">□</span><span>メッセージ</span></button></nav>
+  <nav class="bottom-nav hidden" id="bottom-nav" aria-label="アプリメニュー"><button class="nav-item" type="button" disabled title="このデモでは使用できません"><span class="nav-icon">⌂</span><span id="nav-home-label">ホーム</span></button><button class="nav-item" type="button" disabled title="このデモでは使用できません"><span class="nav-icon">▤</span><span id="nav-jobs-label">求人</span></button><button class="nav-item active" type="button"><span class="nav-icon">◎</span><span id="primary-nav-label">Skill Pass</span></button><button class="nav-item" type="button" disabled title="このデモでは使用できません"><span class="nav-icon">□</span><span>メッセージ</span></button></nav>
 </main>
 
 <dialog class="sheet" id="evidence-sheet" aria-labelledby="evidence-title">
@@ -382,8 +406,11 @@ const roleScreen=document.querySelector('#role-screen');
 const employerScreen=document.querySelector('#employer-screen');
 const profileScreen=document.querySelector('#profile-screen');
 const changeRole=document.querySelector('#change-role');
+const brandLabel=document.querySelector('#brand-label');
 const bottomNav=document.querySelector('#bottom-nav');
 const backToResults=document.querySelector('#back-to-results');
+const navHomeLabel=document.querySelector('#nav-home-label');
+const navJobsLabel=document.querySelector('#nav-jobs-label');
 const primaryNavLabel=document.querySelector('#primary-nav-label');
 const secondaryTab=document.querySelector('#secondary-tab');
 const demoGuide=document.querySelector('#demo-guide');
@@ -399,13 +426,14 @@ function resetProfileTabs(panel='skills'){
 }
 function setRole(role,{updateUrl=true}={}){
   [roleScreen,employerScreen,profileScreen].forEach(screen=>screen.classList.remove('active'));
+  document.body.dataset.role=role||'home';
   bottomNav.classList.toggle('hidden',!role);
   if(role==='employer'){
-    employerScreen.classList.add('active');changeRole.textContent='採用担当者';primaryNavLabel.textContent='候補者';backToResults.style.display='';secondaryTab.textContent='求人との適合';secondaryTab.dataset.panel='jobs';qrCandidate.hidden=true;qrCandidate.classList.remove('guided-action');resultCount.textContent='2名';demoGuideText.textContent='「QRで応募者を追加」から、Skill Passを応募者一覧へ登録できます。';demoGuide.classList.add('active');resetProfileTabs();
+    employerScreen.classList.add('active');brandLabel.textContent='スキルパス｜採用担当者';changeRole.textContent='採用担当者モード';navHomeLabel.textContent='ホーム';navJobsLabel.textContent='求人条件';primaryNavLabel.textContent='応募者';backToResults.style.display='';secondaryTab.textContent='求人との適合';secondaryTab.dataset.panel='jobs';qrCandidate.hidden=true;qrCandidate.classList.remove('guided-action');resultCount.textContent='2名';demoGuideText.textContent='「QRで応募者を追加」から、Skill Passを応募者一覧へ登録できます。';demoGuide.classList.add('active');resetProfileTabs();
   }else if(role==='jobseeker'){
-    profileScreen.classList.add('active');changeRole.textContent='求職者';primaryNavLabel.textContent='Skill Pass';backToResults.style.display='none';profileMatchScore.style.display='none';secondaryTab.textContent='資料を追加';secondaryTab.dataset.panel='uploads';demoGuideText.textContent='技能の根拠資料を確認し、画面下の「QRを表示」をお試しください。';demoGuide.classList.add('active');resetProfileTabs();
+    profileScreen.classList.add('active');brandLabel.textContent='スキルパス｜求職者';changeRole.textContent='求職者モード';navHomeLabel.textContent='ホーム';navJobsLabel.textContent='求人';primaryNavLabel.textContent='Skill Pass';backToResults.style.display='none';profileMatchScore.style.display='none';secondaryTab.textContent='資料を追加';secondaryTab.dataset.panel='uploads';demoGuideText.textContent='技能の根拠資料を確認し、画面下の「QRを表示」をお試しください。';demoGuide.classList.add('active');resetProfileTabs();
   }else{
-    roleScreen.classList.add('active');changeRole.textContent='モード選択';demoGuide.classList.remove('active');
+    roleScreen.classList.add('active');brandLabel.textContent='スキルパス';changeRole.textContent='モード選択';demoGuide.classList.remove('active');
   }
   if(updateUrl){const url=new URL(location.href);role?url.searchParams.set('role',role):url.searchParams.delete('role');history.replaceState({},'',url)}
   window.scrollTo({top:0,behavior:'smooth'});
