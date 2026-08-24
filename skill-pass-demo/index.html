@@ -139,8 +139,8 @@ button{font:inherit}
     <section class="screen role-screen active" id="role-screen" aria-label="利用者モード選択">
       <div class="role-intro"><h1 class="role-title">利用者の視点を選択</h1><p class="role-sub">求職者・採用担当者、どちらの視点で体験するか選んでください。</p></div>
       <div class="role-options">
-        <button class="role-card" id="choose-jobseeker" type="button"><span class="role-icon">♙</span><span class="role-name">求職者</span><span class="role-desc">自分の技能・証明・仕事との適合を確認</span><span class="role-arrow">Skill Passを開く ›</span></button>
-        <button class="role-card" id="choose-employer" type="button"><span class="role-icon">▣</span><span class="role-name">採用担当者</span><span class="role-desc">求人条件から応募者を比較・確認</span><span class="role-arrow">応募者管理を開く ›</span></button>
+        <button class="role-card" id="choose-jobseeker" type="button"><span class="role-icon">♙</span><span class="role-name">求職者</span><span class="role-desc">自分の技能評価と証明資料を確認</span><span class="role-arrow">Skill Passを開く ›</span></button>
+        <button class="role-card" id="choose-employer" type="button"><span class="role-icon">▣</span><span class="role-name">採用担当者</span><span class="role-desc">求人条件に合う応募者を比較・確認</span><span class="role-arrow">応募者管理を開く ›</span></button>
       </div>
     </section>
 
@@ -149,31 +149,31 @@ button{font:inherit}
         <div class="employer-head">
           <h1 class="page-title">応募者管理</h1>
           <label class="search-box"><span class="search-icon">⌕</span><input type="search" aria-label="応募者を検索" placeholder="氏名・スキル・資格で検索"></label>
-          <div class="filter-row" aria-label="候補者フィルター"><button class="filter-chip active" type="button">適合度順</button><button class="filter-chip" type="button">証明確認済み</button><button class="filter-chip" type="button">経験2年以上</button><button class="filter-chip" type="button">その他の条件</button></div>
+          <div class="filter-row" aria-label="候補者フィルター"><button class="filter-chip active" type="button">適合度順</button><button class="filter-chip" type="button">証明資料確認済み</button><button class="filter-chip" type="button">実務経験2年以上</button><button class="filter-chip" type="button">その他の条件</button></div>
         </div>
         <section class="job-box" aria-label="募集条件">
           <div class="job-row"><div><p class="eyebrow">対象求人</p><h2 class="job-title">英語教育・海外対応担当</h2></div><span class="edit-label">条件を編集</span></div>
           <p class="job-meta">民間教育企業｜東京・一部リモート</p>
-          <div class="job-tags"><span class="job-tag required">英語指導 L3+</span><span class="job-tag required">授業設計 L3+</span><span class="job-tag">異文化対応 L2+</span><span class="job-tag">実務経験 2年以上</span><span class="job-tag">日本教員免許 不要</span></div>
+          <div class="job-tags"><span class="job-tag required">英語指導 L3+</span><span class="job-tag required">授業設計 L3+</span><span class="job-tag">異文化対応 L2+</span><span class="job-tag">実務経験 2年以上</span><span class="job-tag">日本の教員免許 不要</span></div>
         </section>
         <div>
           <div class="result-head"><h2 class="result-title">応募者一覧</h2><span class="result-count">3名</span></div>
           <div class="candidate-list">
             <button class="candidate recommended" id="open-profile" type="button">
               <span class="recommend-label">おすすめ</span>
-              <div class="candidate-top"><span class="candidate-avatar">佐</span><span><span class="candidate-name">佐藤 あかり</span><br><span class="candidate-role">教育・異文化対応｜海外勤務3年</span></span><span class="score">86<small>％</small></span></div>
+              <div class="candidate-top"><span class="candidate-avatar">佐</span><span><span class="candidate-name">佐藤 あかり</span><br><span class="candidate-role">教育・異文化対応｜海外勤務 3年</span></span><span class="score">86<small>％</small></span></div>
               <div class="candidate-skills"><span class="candidate-skill">英語指導 L4</span><span class="candidate-skill">授業設計 L3</span><span class="candidate-skill">異文化対応 L3</span></div>
               <div class="match-track" aria-label="適合度86パーセント"><span style="width:86%"></span></div>
-              <div class="candidate-note"><span class="verified-mini">✓ 証明4件確認済み</span><span>詳細を見る ›</span></div>
+              <div class="candidate-note"><span class="verified-mini">✓ 証明資料4件を確認済み</span><span>詳細を見る ›</span></div>
             </button>
             <button class="candidate disabled" type="button" disabled>
-              <div class="candidate-top"><span class="candidate-avatar">山</span><span><span class="candidate-name">山田 健</span><br><span class="candidate-role">教材制作｜実務経験2年</span></span><span class="score">72<small>％</small></span></div>
+              <div class="candidate-top"><span class="candidate-avatar">山</span><span><span class="candidate-name">山田 健</span><br><span class="candidate-role">教材制作｜実務経験 2年</span></span><span class="score">72<small>％</small></span></div>
               <div class="candidate-skills"><span class="candidate-skill">英語指導 L3</span><span class="candidate-skill">授業設計 L3</span></div>
               <div class="match-track" aria-label="適合度72パーセント"><span style="width:72%"></span></div>
               <div class="candidate-note"><span>不足：異文化対応の証明</span><span>DEMO</span></div>
             </button>
             <button class="candidate disabled" type="button" disabled>
-              <div class="candidate-top"><span class="candidate-avatar">林</span><span><span class="candidate-name">林 ミン</span><br><span class="candidate-role">海外営業・通訳｜実務経験4年</span></span><span class="score">64<small>％</small></span></div>
+              <div class="candidate-top"><span class="candidate-avatar">林</span><span><span class="candidate-name">林 ミン</span><br><span class="candidate-role">海外営業・通訳｜実務経験 4年</span></span><span class="score">64<small>％</small></span></div>
               <div class="candidate-skills"><span class="candidate-skill">異文化対応 L4</span><span class="candidate-skill">業務英語 L4</span></div>
               <div class="match-track" aria-label="適合度64パーセント"><span style="width:64%"></span></div>
               <div class="candidate-note"><span>不足：授業設計 L3</span><span>DEMO</span></div>
@@ -212,20 +212,20 @@ button{font:inherit}
         <article class="card">
           <div class="skill-head"><div><h2 class="card-title">英語指導</h2><p class="card-note">学習者に合わせて指導できる</p></div><span class="skill-level">L4</span></div>
           <div class="meter" aria-label="レベル4"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></div>
-          <button class="evidence evidence-button" type="button" data-evidence="english" aria-haspopup="dialog"><span>根拠 4件</span><span aria-hidden="true">›</span></button>
+          <button class="evidence evidence-button" type="button" data-evidence="english" aria-haspopup="dialog"><span>根拠資料 4件</span><span aria-hidden="true">›</span></button>
         </article>
         <article class="card">
-          <div class="skill-head"><div><h2 class="card-title">授業設計</h2><p class="card-note">独力で授業・教材を設計できる</p></div><span class="skill-level">L3</span></div>
+          <div class="skill-head"><div><h2 class="card-title">授業設計</h2><p class="card-note">一人で授業・教材を設計できる</p></div><span class="skill-level">L3</span></div>
           <div class="meter" aria-label="レベル3"><i class="on"></i><i class="on"></i><i class="on"></i><i></i></div>
           <div class="evidence">根拠：実務成果物・面談評価</div>
         </article>
         <article class="card">
-          <div class="skill-head"><div><h2 class="card-title">異文化対応</h2><p class="card-note">多文化環境で独力で対応できる</p></div><span class="skill-level">L3</span></div>
+          <div class="skill-head"><div><h2 class="card-title">異文化対応</h2><p class="card-note">多文化環境で自立して対応できる</p></div><span class="skill-level">L3</span></div>
           <div class="meter" aria-label="レベル3"><i class="on"></i><i class="on"></i><i class="on"></i><i></i></div>
           <div class="evidence">根拠：海外勤務・実技評価</div>
         </article>
         <article class="card">
-          <div class="skill-head"><div><h2 class="card-title">日本語文書</h2><p class="card-note">支援を受けて業務文書を作成できる</p></div><span class="skill-level">L2</span></div>
+          <div class="skill-head"><div><h2 class="card-title">日本語での文書作成</h2><p class="card-note">支援を受けながら業務文書を作成できる</p></div><span class="skill-level">L2</span></div>
           <div class="meter" aria-label="レベル2"><i class="on"></i><i class="on"></i><i></i><i></i></div>
           <div class="evidence">根拠：言語試験・課題評価</div>
         </article>
@@ -240,7 +240,7 @@ button{font:inherit}
         <button class="upload-button" type="button">ファイルを選択</button>
       </div>
       <div class="upload-list">
-        <div class="upload-item"><span class="upload-file-icon">PDF</span><span><span class="upload-file-name">Victoria 教員登録証明書</span><br><span class="upload-file-meta">2026.07.18 更新</span></span><span class="upload-status">✓ 確認済み</span></div>
+        <div class="upload-item"><span class="upload-file-icon">PDF</span><span><span class="upload-file-name">ビクトリア州教員登録証明書</span><br><span class="upload-file-meta">2026.07.18 更新</span></span><span class="upload-status">✓ 確認済み</span></div>
         <div class="upload-item"><span class="upload-file-icon">PDF</span><span><span class="upload-file-name">在職証明書</span><br><span class="upload-file-meta">2026.07.18 更新</span></span><span class="upload-status">✓ 確認済み</span></div>
       </div>
     </section>
@@ -269,7 +269,7 @@ button{font:inherit}
             <p class="match-detail">技能は確認済みですが、日本の教員免許が必要です。</p>
             <div class="requirements"><span class="tag">不足：日本教員免許</span></div>
           </div>
-          <span class="status need">追加資格</span>
+          <span class="status need">要追加資格</span>
         </article>
       </div>
     </section>
@@ -285,18 +285,18 @@ button{font:inherit}
 <dialog class="sheet" id="evidence-sheet" aria-labelledby="evidence-title">
   <div class="sheet-inner">
     <div class="sheet-head">
-      <div><h2 class="sheet-title" id="evidence-title">英語指導｜L4</h2><p class="sheet-sub">複数の資格・経験・実技評価をもとに判定</p></div>
+      <div><h2 class="sheet-title" id="evidence-title">英語指導｜L4</h2><p class="sheet-sub">複数の資格・経験・実技評価に基づいて判定</p></div>
       <button class="sheet-close" type="button" aria-label="閉じる">×</button>
     </div>
     <div class="evidence-list">
       <div class="evidence-item"><div><div class="evidence-type">英語能力</div><div class="evidence-name">TOEFL iBT 105／TOEIC L&amp;R 945</div><div class="evidence-meta">ETS・IIBC｜発行元確認済み</div></div><button class="doc-button" type="button" data-doc="英語能力試験" data-doc-kind="language">証明書を見る</button></div>
       <div class="evidence-item"><div><div class="evidence-type">専門資格</div><div class="evidence-name">Victoria Teacher Registration</div><div class="evidence-meta">州資格登録機関｜発行元確認済み</div></div><button class="doc-button" type="button" data-doc="Victoria 教員登録" data-doc-kind="teacher">証明書を見る</button></div>
-      <div class="evidence-item"><div><div class="evidence-type">実務経験</div><div class="evidence-name">英語指導 3年</div><div class="evidence-meta">在職証明｜確認済み</div></div><button class="doc-button" type="button" data-doc="在職証明" data-doc-kind="employment">証明書を見る</button></div>
+      <div class="evidence-item"><div><div class="evidence-type">実務経験</div><div class="evidence-name">英語指導 3年</div><div class="evidence-meta">在職証明書｜確認済み</div></div><button class="doc-button" type="button" data-doc="在職証明書" data-doc-kind="employment">証明書を見る</button></div>
       <div class="evidence-item"><div><div class="evidence-type">実技評価</div><div class="evidence-name">模擬授業評価 L4</div><div class="evidence-meta">登録評価者：田中 美咲｜2026.07.20</div></div><button class="doc-button" type="button" data-doc="実技評価" data-doc-kind="practical">評価を見る</button></div>
     </div>
     <div class="formula">言語試験＋教員資格＋指導経験＋実技評価 → 英語指導 L4</div>
     <div class="doc-preview" id="doc-preview">
-      <strong id="doc-title">証明書</strong><small>DEMO PDFプレビュー｜発行元・発行日・検証状態を確認できます。</small>
+      <strong id="doc-title">証明書</strong><small>DEMO PDFプレビュー｜発行元・発行日・確認状況を表示します。</small>
       <div class="mock-document" data-preview="language" aria-label="英語能力試験のデモ証明書">
         <div class="certificate-watermark">SAMPLE</div>
         <div class="certificate-head"><span class="certificate-mark">SKILL PASS VERIFIED RECORD</span><span class="certificate-demo">DEMO</span></div>
