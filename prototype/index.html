@@ -37,7 +37,6 @@ button{font:inherit}
 .candidate-list{display:grid;gap:11px}.candidate{position:relative;width:100%;border:1px solid var(--line);border-radius:16px;padding:15px;background:var(--panel);color:var(--text);text-align:left;cursor:pointer;box-shadow:0 6px 18px rgba(0,0,0,.08)}.candidate:hover,.candidate:focus-visible{border-color:var(--teal);transform:translateY(-1px)}.candidate.recommended{border-color:rgba(97,209,191,.55)}.recommend-label{position:absolute;top:-9px;right:12px;padding:2px 8px;border-radius:999px;background:var(--teal);color:var(--navy);font-size:10px;font-weight:800}
 .candidate-top{display:grid;grid-template-columns:44px minmax(0,1fr) auto;gap:11px;align-items:center}.candidate-avatar{width:44px;height:44px;border-radius:50%;display:grid;place-items:center;background:#15584f;color:var(--teal);font-weight:700}.candidate-name{font-size:16px;font-weight:700}.candidate-role{color:var(--muted);font-size:12px}.score{color:var(--gold);font-size:22px;font-weight:800}.score small{font-size:11px;font-weight:500}
 .candidate-skills{display:flex;flex-wrap:wrap;gap:5px;margin-top:12px}.candidate-skill{padding:3px 7px;border-radius:5px;background:var(--panel2);color:#d5e1e8;font-size:11px}.candidate-note{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-top:9px;color:var(--muted);font-size:12px}.candidate-note .verified-mini{color:var(--teal)}.match-track{height:4px;margin-top:12px;border-radius:999px;background:#2b4152;overflow:hidden}.match-track span{display:block;height:100%;border-radius:inherit;background:linear-gradient(90deg,var(--teal),#8be1d2)}.candidate.disabled{cursor:default;opacity:.72}.candidate.disabled:hover{border-color:var(--line);transform:none}
-.decision-note{margin:18px 2px 0;padding:10px 12px;border-left:3px solid var(--gold);background:rgba(239,169,47,.07);color:var(--muted);font-size:12px}
 .profile-toolbar{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:18px}.back-button{border:0;padding:7px 0;background:transparent;color:var(--teal);cursor:pointer}.profile-score{color:var(--gold);font-weight:800}
 .bottom-nav{position:fixed;z-index:8;left:0;right:0;bottom:0;height:68px;padding-bottom:env(safe-area-inset-bottom);display:grid;grid-template-columns:repeat(4,1fr);background:rgba(11,24,38,.97);border-top:1px solid var(--line);backdrop-filter:blur(12px)}.nav-item{border:0;background:transparent;color:#8295a4;font-size:10px;display:grid;place-content:center;gap:2px;text-align:center}.nav-icon{font-size:17px;line-height:1}.nav-item.active{color:var(--teal)}
 .identity{display:grid;grid-template-columns:72px minmax(0,1fr);gap:18px;align-items:center;padding-bottom:25px;border-bottom:1px solid var(--line)}
@@ -100,7 +99,7 @@ button{font:inherit}
   .app{width:min(100%,980px);min-height:720px;border:10px solid #03080e;border-radius:30px;overflow:hidden;box-shadow:0 24px 80px rgba(0,0,0,.5)}
   .topbar{height:66px;padding:0 28px}
   .main{padding:28px 34px 96px}
-  .employer-layout{display:grid;grid-template-columns:minmax(260px,.85fr) minmax(0,1.5fr);gap:24px;align-items:start}.employer-head{grid-column:1/-1;margin-bottom:0}.job-box{position:sticky;top:20px}.result-head{margin-top:0}.candidate-list{grid-template-columns:repeat(2,minmax(0,1fr))}.candidate:first-child{grid-column:1/-1}.decision-note{grid-column:1/-1}
+  .employer-layout{display:grid;grid-template-columns:minmax(260px,.85fr) minmax(0,1.5fr);gap:24px;align-items:start}.employer-head{grid-column:1/-1;margin-bottom:0}.job-box{position:sticky;top:20px}.result-head{margin-top:0}.candidate-list{grid-template-columns:repeat(2,minmax(0,1fr))}.candidate:first-child{grid-column:1/-1}
   .identity{grid-template-columns:92px minmax(0,1fr) 190px;gap:22px}
   .avatar{width:92px;height:92px}
   .name{font-size:26px}
@@ -135,19 +134,18 @@ button{font:inherit}
     <section class="screen active" id="employer-screen" aria-label="候補者マッチング">
       <div class="employer-layout">
         <div class="employer-head">
-          <p class="eyebrow">EMPLOYER VIEW</p>
-          <h1 class="page-title">候補者</h1>
-          <p class="page-lead">技能の証明と求人条件を照合して表示しています。</p>
-          <label class="search-box"><span class="search-icon">⌕</span><input type="search" aria-label="候補者を検索" placeholder="スキル・資格・候補者を検索"></label>
+          <h1 class="page-title">応募者管理</h1>
+          <p class="page-lead">英語教育・海外対応担当</p>
+          <label class="search-box"><span class="search-icon">⌕</span><input type="search" aria-label="応募者を検索" placeholder="氏名・スキル・資格で検索"></label>
           <div class="filter-row" aria-label="候補者フィルター"><button class="filter-chip active" type="button">適合度順</button><button class="filter-chip" type="button">証明確認済み</button><button class="filter-chip" type="button">経験2年以上</button><button class="filter-chip" type="button">その他の条件</button></div>
         </div>
         <section class="job-box" aria-label="募集条件">
-          <div class="job-row"><div><p class="eyebrow">募集条件</p><h2 class="job-title">英語教育・海外対応担当</h2></div><span class="edit-label">入力済み</span></div>
+          <div class="job-row"><div><p class="eyebrow">対象求人</p><h2 class="job-title">英語教育・海外対応担当</h2></div><span class="edit-label">条件を編集</span></div>
           <p class="job-meta">民間教育企業｜東京・一部リモート</p>
           <div class="job-tags"><span class="job-tag required">英語指導 L3+</span><span class="job-tag required">授業設計 L3+</span><span class="job-tag">異文化対応 L2+</span><span class="job-tag">実務経験 2年以上</span><span class="job-tag">日本教員免許 不要</span></div>
         </section>
         <div>
-          <div class="result-head"><h2 class="result-title">応募者とのマッチング</h2><span class="result-count">3名を比較</span></div>
+          <div class="result-head"><h2 class="result-title">応募者一覧</h2><span class="result-count">3名</span></div>
           <div class="candidate-list">
             <button class="candidate recommended" id="open-profile" type="button">
               <span class="recommend-label">おすすめ</span>
@@ -169,7 +167,6 @@ button{font:inherit}
               <div class="candidate-note"><span>不足：授業設計 L3</span><span>DEMO</span></div>
             </button>
           </div>
-          <p class="decision-note">Skill Passは採用を決定するものではなく、面接前の比較と確認を支援します。</p>
         </div>
       </div>
     </section>
